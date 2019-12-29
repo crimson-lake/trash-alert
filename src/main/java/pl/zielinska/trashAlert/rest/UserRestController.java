@@ -39,7 +39,7 @@ public class UserRestController {
         return theUser;
     }
 
-    @DeleteMapping("/users/username")
+    @DeleteMapping("/users/{username}")
     public String deleteUser(@PathVariable String username) {
         userService.deleteByUsername(username);
         return username;
