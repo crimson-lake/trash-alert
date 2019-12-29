@@ -2,11 +2,9 @@ package pl.zielinska.trashAlert.rest;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import pl.zielinska.trashAlert.dao.UserDAO;
+import org.springframework.web.bind.annotation.*;
 import pl.zielinska.trashAlert.entity.User;
+import pl.zielinska.trashAlert.service.UserService;
 
 import java.util.List;
 
@@ -16,11 +14,35 @@ import java.util.List;
 public class UserRestController {
 
     @NonNull
-    private UserDAO userDAO;
+    private UserService userService;
 
     @GetMapping("/users")
     public List<User> findAll() {
-        return userDAO.findAll();
+        return userService.findAll();
+    }
+
+    @GetMapping("/users/{username}")
+    public User find(@PathVariable String username) {
+        return userService.findByUsername(username);
+    }
+
+    @PostMapping("/users")
+    public User addUser(@RequestBody User theUser) {
+        theUser.setId(0);
+        userService.save(theUser);
+        return theUser;
+    }
+
+    @PutMapping("/users")
+    public User updateUser(@RequestBody User theUser) {
+        userService.save(theUser);
+        return theUser;
+    }
+
+    @DeleteMapping("/users/username")
+    public String deleteUser(@PathVariable String username) {
+        userService.deleteByUsername(username);
+        return username;
     }
 
 }
