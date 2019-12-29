@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -32,4 +34,12 @@ public class User {
     @NonNull
     @Column(name = "email")
     private String email;
+
+    @OneToMany( fetch=FetchType.LAZY,
+                mappedBy = "userId")
+    private Set<Ad> ads = new HashSet<>();
+
+    @OneToMany( fetch=FetchType.LAZY,
+            mappedBy = "userId")
+    private Set<Comment> comments = new HashSet<>();
 }
