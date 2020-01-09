@@ -1,17 +1,18 @@
 package pl.zielinska.trashAlert.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.NonNull;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
-@NoArgsConstructor
 @Entity
 @Table(name="users")
+@Data @NoArgsConstructor @AllArgsConstructor
+@EqualsAndHashCode(of = {"id", "username", "firstName", "lastName", "email"})
 public class User {
 
     @Id
@@ -19,27 +20,35 @@ public class User {
     @Column(name = "id")
     private int id;
 
-    @NonNull
     @Column(name = "username")
     private String username;
 
-    @NonNull
     @Column(name = "first_name")
     private String firstName;
 
-    @NonNull
     @Column(name = "last_name")
     private String lastName;
 
-    @NonNull
     @Column(name = "email")
     private String email;
 
     @OneToMany( fetch=FetchType.LAZY,
-                mappedBy = "userId")
+                cascade=CascadeType.ALL,
+                mappedBy = "adAuthor")
     private Set<Ad> ads = new HashSet<>();
 
     @OneToMany( fetch=FetchType.LAZY,
-            mappedBy = "userId")
+                cascade=CascadeType.ALL,
+                mappedBy = "author")
     private Set<Comment> comments = new HashSet<>();
+
+    public void addAd(Ad theAd) {
+        ads.add(theAd);
+        theAd.setAdAuthor(this);
+    }
+
+    public void removeAd(Ad theAd) {
+        ads.remove(theAd);
+        theAd.setAdAuthor(null);
+    }
 }
