@@ -3,10 +3,12 @@ package pl.zielinska.trashAlert.rest;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import pl.zielinska.trashAlert.entity.Ad;
 import pl.zielinska.trashAlert.entity.User;
 import pl.zielinska.trashAlert.service.UserService;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api")
@@ -21,16 +23,16 @@ public class UserRestController {
         return userService.findAll();
     }
 
-    @GetMapping("/users/{username}")
-    public User find(@PathVariable String username) {
-        return userService.findByUsername(username);
-    }
-
     @PostMapping("/users")
     public User addUser(@RequestBody User theUser) {
         theUser.setId(0);
         userService.save(theUser);
         return theUser;
+    }
+
+    @GetMapping("/ads")
+    public Set<Ad> usersAds() {
+        return userService.usersAds();
     }
 
     @PutMapping("/users")
@@ -39,10 +41,5 @@ public class UserRestController {
         return theUser;
     }
 
-    @DeleteMapping("/users/{username}")
-    public String deleteUser(@PathVariable String username) {
-        userService.deleteByUsername(username);
-        return username;
-    }
 
 }
