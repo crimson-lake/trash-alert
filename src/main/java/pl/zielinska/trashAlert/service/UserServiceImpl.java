@@ -1,7 +1,7 @@
 package pl.zielinska.trashAlert.service;
 
-import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.zielinska.trashAlert.dao.AdRepository;
 import pl.zielinska.trashAlert.dao.UserRepository;
@@ -15,10 +15,10 @@ import java.util.Set;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    @NonNull
+    @Autowired
     private UserRepository userRepository;
 
-    @NonNull
+    @Autowired
     private AdRepository adRepository;
 
     @Override
