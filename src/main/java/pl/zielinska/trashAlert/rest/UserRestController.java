@@ -2,6 +2,7 @@ package pl.zielinska.trashAlert.rest;
 
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import pl.zielinska.trashAlert.entity.Ad;
 import pl.zielinska.trashAlert.entity.User;
@@ -18,7 +19,8 @@ public class UserRestController {
     @NonNull
     private UserService userService;
 
-    @GetMapping("/users")
+    @GetMapping(path="/users",
+                produces = {MediaType.APPLICATION_XML_VALUE})
     public List<User> findAll() {
         return userService.findAll();
     }
@@ -30,7 +32,8 @@ public class UserRestController {
         return theUser;
     }
 
-    @GetMapping("/ads")
+    @GetMapping(path="/ads",
+                produces = {MediaType.APPLICATION_XML_VALUE})
     public Set<Ad> usersAds() {
         return userService.usersAds();
     }

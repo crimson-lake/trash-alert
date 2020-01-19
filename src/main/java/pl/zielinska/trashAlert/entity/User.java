@@ -1,9 +1,7 @@
 package pl.zielinska.trashAlert.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -11,7 +9,7 @@ import java.util.Set;
 
 @Entity
 @Table(name="users")
-@Data @NoArgsConstructor @AllArgsConstructor
+@NoArgsConstructor @AllArgsConstructor @Builder @Data
 @EqualsAndHashCode(of = {"id", "username", "firstName", "lastName", "email"})
 public class User {
 
@@ -32,23 +30,15 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    @JsonBackReference
     @OneToMany( fetch=FetchType.LAZY,
                 cascade=CascadeType.ALL,
                 mappedBy = "adAuthor")
-    private Set<Ad> ads = new HashSet<>();
+    @Singular private Set<Ad> ads = new HashSet<>();
 
     @OneToMany( fetch=FetchType.LAZY,
                 cascade=CascadeType.ALL,
                 mappedBy = "author")
-    private Set<Comment> comments = new HashSet<>();
+    @Singular private Set<Comment> comments = new HashSet<>();
 
-    public void addAd(Ad theAd) {
-        ads.add(theAd);
-        theAd.setAdAuthor(this);
-    }
-
-    public void removeAd(Ad theAd) {
-        ads.remove(theAd);
-        theAd.setAdAuthor(null);
-    }
 }
