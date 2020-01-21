@@ -9,6 +9,7 @@ import java.util.Set;
 public interface UserService {
 
     List<User> findAll();
+    User findByUsername(String username);
     void save(User theUser);
-    Set<Ad> usersAds();
+    Set<Ad> usersAds(String username);
 }

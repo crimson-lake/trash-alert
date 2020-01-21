@@ -1,48 +1,47 @@
 package pl.zielinska.trashAlert.rest;
 
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import pl.zielinska.trashAlert.entity.Ad;
 import pl.zielinska.trashAlert.entity.User;
 import pl.zielinska.trashAlert.service.UserService;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
-@RequestMapping("/api")
-@RequiredArgsConstructor
+@RequestMapping("/api/users")
+@AllArgsConstructor
 public class UserRestController {
 
-    @NonNull
+    @Autowired
     private UserService userService;
 
-    @GetMapping(path="/users",
-                produces = {MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(produces = {MediaType.APPLICATION_XML_VALUE,
+                            MediaType.APPLICATION_JSON_VALUE})
     public List<User> findAll() {
         return userService.findAll();
     }
 
-    @PostMapping("/users")
+    @GetMapping(produces = {MediaType.APPLICATION_XML_VALUE,
+                            MediaType.APPLICATION_JSON_VALUE})
+    public User findUser(@RequestParam String username) {
+        return userService.findByUsername(username);
+    }
+
+    @PostMapping(consumes = {MediaType.APPLICATION_XML_VALUE,
+                             MediaType.APPLICATION_JSON_VALUE})
     public User addUser(@RequestBody User theUser) {
         theUser.setId(0);
         userService.save(theUser);
         return theUser;
     }
 
-    @GetMapping(path="/ads",
-                produces = {MediaType.APPLICATION_XML_VALUE})
-    public Set<Ad> usersAds() {
-        return userService.usersAds();
-    }
-
-    @PutMapping("/users")
+    @PutMapping(consumes = {MediaType.APPLICATION_XML_VALUE,
+                            MediaType.APPLICATION_JSON_VALUE})
     public User updateUser(@RequestBody User theUser) {
         userService.save(theUser);
         return theUser;
     }
-
 
 }

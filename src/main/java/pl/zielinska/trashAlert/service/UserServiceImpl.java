@@ -3,7 +3,6 @@ package pl.zielinska.trashAlert.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.zielinska.trashAlert.dao.AdRepository;
 import pl.zielinska.trashAlert.dao.UserRepository;
 import pl.zielinska.trashAlert.entity.Ad;
 import pl.zielinska.trashAlert.entity.User;
@@ -18,12 +17,14 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Autowired
-    private AdRepository adRepository;
-
     @Override
     public List<User> findAll() {
         return userRepository.findAll();
+    }
+
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
 
     @Override
@@ -31,8 +32,9 @@ public class UserServiceImpl implements UserService {
         userRepository.save(theUser);
     }
 
-    public Set<Ad> usersAds() {
-        User user = userRepository.findById(1).get();
+    @Override
+    public Set<Ad> usersAds(String username) {
+        User user = userRepository.findByUsername(username);
         return user.getAds();
     }
 }
