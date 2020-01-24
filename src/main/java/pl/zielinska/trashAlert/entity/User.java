@@ -33,7 +33,7 @@ public class User {
     @JsonBackReference
     @OneToMany( fetch=FetchType.LAZY,
                 cascade=CascadeType.ALL,
-                mappedBy = "adAuthor")
+                mappedBy = "author")
     @Singular private Set<Ad> ads = new HashSet<>();
 
     @OneToMany( fetch=FetchType.LAZY,
