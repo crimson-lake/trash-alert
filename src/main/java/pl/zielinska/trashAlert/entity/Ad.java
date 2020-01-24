@@ -35,7 +35,7 @@ public class Ad {
     @JsonManagedReference
     @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id")
-    private User adAuthor;
+    private User author;
 
     @OneToMany( fetch = FetchType.LAZY,
                 cascade = CascadeType.ALL,

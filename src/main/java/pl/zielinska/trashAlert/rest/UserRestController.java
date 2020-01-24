@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
+import pl.zielinska.trashAlert.entity.Ad;
 import pl.zielinska.trashAlert.entity.User;
 import pl.zielinska.trashAlert.service.UserService;
 
 import java.util.List;
+import java.util.Set;
 
 @RestController
 @RequestMapping("/api/users")
@@ -17,16 +19,24 @@ public class UserRestController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(produces = {MediaType.APPLICATION_XML_VALUE,
-                            MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE,
+                            MediaType.APPLICATION_XML_VALUE})
     public List<User> findAll() {
         return userService.findAll();
     }
 
-    @GetMapping(produces = {MediaType.APPLICATION_XML_VALUE,
+    @GetMapping(path = "/{username}",
+                produces = {MediaType.APPLICATION_XML_VALUE,
                             MediaType.APPLICATION_JSON_VALUE})
-    public User findUser(@RequestParam String username) {
+    public User find(@PathVariable("username") String username) {
         return userService.findByUsername(username);
+    }
+
+    @GetMapping(path = "/ads",
+                produces = {MediaType.APPLICATION_XML_VALUE,
+                            MediaType.APPLICATION_JSON_VALUE})
+    public Set<Ad> usersAds(@RequestParam String username) {
+        return userService.usersAds(username);
     }
 
     @PostMapping(consumes = {MediaType.APPLICATION_XML_VALUE,
