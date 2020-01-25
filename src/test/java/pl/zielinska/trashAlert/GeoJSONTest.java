@@ -7,9 +7,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import pl.zielinska.trashAlert.dao.AdRepository;
 import pl.zielinska.trashAlert.entity.Ad;
 import pl.zielinska.trashAlert.entity.geoJSON.GeoJSON;
+import pl.zielinska.trashAlert.entity.geoJSON.GeoJSONCollection;
 import pl.zielinska.trashAlert.service.AdService;
 
-import java.util.List;
 import java.util.logging.Logger;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -36,7 +36,7 @@ public class GeoJSONTest {
 
     @Test
     void createGeoJSONDataFromAllAdds() throws JsonProcessingException {
-        List<GeoJSON> allCoordinates = adService.getAllCoordinates();
+        GeoJSONCollection allCoordinates = adService.getAllCoordinates();
         assertNotNull(allCoordinates);
         LOGGER.info(allCoordinates.toString());
     }

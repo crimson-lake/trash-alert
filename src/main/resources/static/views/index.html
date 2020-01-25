@@ -3,16 +3,20 @@
 <html>
 	<head>
 		<title>Trash Alert</title>
-
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
-	    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
-	    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
-	    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/app/style.css">
+		<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
+	    <script src="https://code.angularjs.org/1.6.9/angular.min.js"></script>
+		<script src="js/app/app.js"></script>
+		<script src="js/app/GService.js"></script>
+		<script src="js/app/GeoController.js"></script>
 	</head>
-	<body>
+	<body ng-app="geo">
+
 		<nav id="mainNavbar" class="navbar navbar-light bg-light navbar-expand-md py-0 fixed-top">
 			<a href="#" class="navbar-brand">TRASH ALERT</a>
 			<button class="navbar-toggler border-0" data-toggle="collapse" data-target="#navLinks" aria-label="Toggle navigation">
@@ -36,7 +40,7 @@
     		</span>
 		</nav>
 
-		<section id="about" class="container-fluid content">
+		<section id="about" class="container-fluid content ">
 			<div class="row my-5">
 				<div class="col-md-7">
 					<div id="mapid"></div>
@@ -59,9 +63,7 @@
 			</div>
 		</section>
 
-	
-
-	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script>
@@ -73,6 +75,12 @@
 	    	id: 'mapbox/streets-v11',
 	    	accessToken: 'pk.eyJ1IjoiY3JpbXNvbi1sYWtlIiwiYSI6ImNrNXB4NG9naDAxYWgza3Awc3U4dGRhYWoifQ.aFqMq_YpgGn7KZC8KlLnew'
 		}).addTo(mymap);
+
+		$.get("/trash-resque/api/ads/geoinfo", function(data) {
+			L.geoJSON(data).addTo(mymap);
+		});
+
+
 	</script>
 	</body>
 </html>
