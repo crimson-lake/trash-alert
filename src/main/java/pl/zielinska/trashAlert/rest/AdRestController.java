@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import pl.zielinska.trashAlert.entity.Ad;
-import pl.zielinska.trashAlert.entity.geoJSON.GeoJSON;
+import pl.zielinska.trashAlert.entity.geoJSON.GeoJSONCollection;
 import pl.zielinska.trashAlert.service.AdService;
 
 import java.util.List;
@@ -34,7 +34,7 @@ public class AdRestController {
     }
 
     @GetMapping(path = "/geoinfo")
-    public List<GeoJSON> findGeoInfoForAllAds() throws JsonProcessingException {
+    public GeoJSONCollection findGeoInfoForAllAds() throws JsonProcessingException {
         return adService.getAllCoordinates();
     }
 

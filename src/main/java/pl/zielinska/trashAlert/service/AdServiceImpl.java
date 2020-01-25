@@ -6,9 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.zielinska.trashAlert.dao.AdRepository;
 import pl.zielinska.trashAlert.entity.Ad;
-import pl.zielinska.trashAlert.entity.geoJSON.GeoJSON;
+import pl.zielinska.trashAlert.entity.geoJSON.GeoJSONCollection;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,11 +33,11 @@ public class AdServiceImpl implements AdService{
     }
 
     @Override
-    public List<GeoJSON> getAllCoordinates() throws JsonProcessingException {
+    public GeoJSONCollection getAllCoordinates() throws JsonProcessingException {
         List<Ad> allAds = findAll();
-        List<GeoJSON> coordinates = new ArrayList<>();
+        GeoJSONCollection coordinates = new GeoJSONCollection();
         for (Ad ad : allAds) {
-            coordinates.add(new GeoJSON(ad));
+            coordinates.addFeature(ad);
         }
         return coordinates;
     }
