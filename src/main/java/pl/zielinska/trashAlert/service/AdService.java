@@ -1,5 +1,6 @@
 package pl.zielinska.trashAlert.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import pl.zielinska.trashAlert.entity.Ad;
 import pl.zielinska.trashAlert.entity.geoJSON.GeoJSON;
 
@@ -9,5 +10,6 @@ public interface AdService {
 
     List<Ad> findAll();
     Ad findByAuthor();
-    List<GeoJSON> getAllCoordinates();
+    Ad findById(int id);
+    List<GeoJSON> getAllCoordinates() throws JsonProcessingException;
 }
