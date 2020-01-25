@@ -1,4 +1,11 @@
 #mapid 
 { 
-	height: 600px; 
+	height: 600px;
+	width: auto;
+}
+
+.img-fluid {
+    height: 600px;
+    width: auto;
+    opacity: 0.6;
 }

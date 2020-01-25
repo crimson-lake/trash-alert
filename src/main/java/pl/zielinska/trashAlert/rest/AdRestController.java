@@ -3,7 +3,6 @@ package pl.zielinska.trashAlert.rest;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,8 +21,7 @@ public class AdRestController {
     @Autowired
     private AdService adService;
 
-    @GetMapping(produces = {MediaType.APPLICATION_XML_VALUE,
-                            MediaType.APPLICATION_JSON_VALUE})
+    @GetMapping
     public List<Ad> findAll() {
         return adService.findAll();
     }

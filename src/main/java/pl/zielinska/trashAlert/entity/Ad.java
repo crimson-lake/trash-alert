@@ -1,6 +1,6 @@
 package pl.zielinska.trashAlert.entity;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -32,10 +32,10 @@ public class Ad {
     @Column(name = "created")
     private Date created;
 
-    @JsonManagedReference
+    @JsonBackReference
     @ManyToOne( fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id")
-    private User author;
+    private User adAuthor;
 
     @OneToMany( fetch = FetchType.LAZY,
                 cascade = CascadeType.ALL,
