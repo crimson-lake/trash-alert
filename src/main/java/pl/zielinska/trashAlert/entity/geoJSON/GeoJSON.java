@@ -31,7 +31,7 @@ public class GeoJSON {
 
     public GeoJSON(Ad ad) throws JsonProcessingException {
         this.properties.put("title", ad.getTitle());
-        this.properties.put("link", "/trash-resque/api/ads/" + ad.getId());
+        this.properties.put("id", "" + ad.getId());
         this.properties.put("address", ad.getStreet() + ", " + ad.getCity());
 
         RestTemplate restTemplate = new RestTemplate();
