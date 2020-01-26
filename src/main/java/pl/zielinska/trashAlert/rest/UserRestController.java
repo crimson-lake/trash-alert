@@ -32,10 +32,10 @@ public class UserRestController {
         return userService.findByUsername(username);
     }
 
-    @GetMapping(path = "/ads",
+    @GetMapping(path = "/{username}/ads",
                 produces = {MediaType.APPLICATION_JSON_VALUE,
                             MediaType.APPLICATION_XML_VALUE})
-    public Set<Ad> usersAds(@RequestParam String username) {
+    public Set<Ad> usersAds(@PathVariable("username") String username) {
         return userService.usersAds(username);
     }
 

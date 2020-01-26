@@ -28,6 +28,9 @@ public class Ad {
     @Column(name = "street")
     private String street;
 
+    @Column(name = "details")
+    private String details;
+
     @Temporal(TemporalType.DATE)
     @Column(name = "created")
     private Date created;
