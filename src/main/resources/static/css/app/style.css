@@ -4,8 +4,19 @@
 	width: auto;
 }
 
-.img-fluid {
+.img-fluid
+{
     height: 600px;
     width: auto;
     opacity: 0.6;
+}
+
+.red
+{
+    color: #e62e00;
+}
+
+.popup:hover
+{
+    cursor: pointer;
 }

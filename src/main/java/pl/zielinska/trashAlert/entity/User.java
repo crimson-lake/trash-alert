@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name="users")
+@Table(name="users_data")
 @NoArgsConstructor @AllArgsConstructor @Builder @Data
 @EqualsAndHashCode(of = {"id", "username", "firstName", "lastName", "email"})
 public class User {
