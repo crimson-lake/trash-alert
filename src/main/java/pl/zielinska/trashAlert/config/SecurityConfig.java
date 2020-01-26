@@ -27,8 +27,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/").authenticated()
                 .antMatchers("/api/ads/geoinfo").permitAll()
-                .and().formLogin();
-
+                .and().formLogin()
+                .and().logout();
     }
 
 }
