@@ -11,5 +11,6 @@ public interface AdService {
     List<Ad> findAll();
     Ad findByAuthor();
     Ad findById(int id);
+    void save(Ad theAd);
     GeoJSONCollection getAllCoordinates() throws JsonProcessingException;
 }

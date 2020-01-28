@@ -28,6 +28,11 @@ public class AdServiceImpl implements AdService{
     }
 
     @Override
+    public void save(Ad theAd) {
+        adRepository.save(theAd);
+    }
+
+    @Override
     public Ad findByAuthor() {
         return null;
     }
