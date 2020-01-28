@@ -1,5 +1,7 @@
 
 <!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:th="http://www.thymeleaf.org">
 <html>
 	<head>
 		<title>Trash Alert</title>
@@ -38,7 +40,7 @@
 				</div>
 				<div class="col-md-4 p-0 text-center justify-content-center">
 					<div id="board">
-						<img src="visual/background.png" class="img-fluid">
+						<img th:src=@{/visual/background.png} class="img-fluid">
 					</div>
 				</div>
 			</div>

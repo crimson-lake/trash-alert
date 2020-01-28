@@ -41,4 +41,9 @@ public class User {
                 mappedBy = "author")
     @Singular private Set<Comment> comments = new HashSet<>();
 
+    public void addNewAd(Ad theAd) {
+        ads.add(theAd);
+        theAd.setAdAuthor(this);
+    }
+
 }

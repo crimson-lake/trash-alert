@@ -12,7 +12,7 @@ public class SecurityController {
 
     @GetMapping(path = "info/username")
     @ResponseBody
-    public String currentUserNameSimple(HttpServletRequest request) {
+    public String currentUserName(HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
         return principal.getName();
     }

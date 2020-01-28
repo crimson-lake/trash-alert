@@ -1,6 +1,7 @@
 package pl.zielinska.trashAlert.rest;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -11,6 +12,7 @@ import pl.zielinska.trashAlert.service.UserService;
 import java.util.List;
 import java.util.Set;
 
+@Slf4j
 @RestController
 @RequestMapping("/api/users")
 @AllArgsConstructor
@@ -45,6 +47,15 @@ public class UserRestController {
         theUser.setId(0);
         userService.save(theUser);
         return theUser;
+    }
+
+    @PostMapping(path = "/{username}/ad-new")
+    public Ad addNewAd(@RequestBody Ad theAd, @PathVariable("username") String username) {
+        User theUser = userService.findByUsername(username);
+        theAd.setId(0);
+        theUser.addNewAd(theAd);
+        userService.save(theUser);
+        return theAd;
     }
 
     @PutMapping(consumes = {MediaType.APPLICATION_XML_VALUE,
