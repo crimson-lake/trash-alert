@@ -1,7 +1,7 @@
 
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-	  xmlns:th="http://www.thymeleaf.org">
+>
 <html>
 	<head>
 		<title>Trash Alert</title>
@@ -17,7 +17,7 @@
 	<body>
 
 		<nav id="mainNavbar" class="navbar navbar-light bg-light py-0 fixed-top">
-			<a href="#" class="navbar-brand">TRASH <i class="fas fa-trash-restore-alt red"></i> ALERT</a>
+			<a onclick="showAbout()" class="navbar-brand hover">TRASH <i class="fas fa-trash-restore-alt red"></i> ALERT</a>
 			<ul class="nav d-flex justify-content-end">
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle red" data-toggle="dropdown" href="#"><i class="far fa-user"></i></a>
@@ -40,7 +40,6 @@
 				</div>
 				<div class="col-md-4 p-0 text-center justify-content-center">
 					<div id="board">
-						<img th:src=@{/visual/background.png} class="img-fluid">
 					</div>
 				</div>
 			</div>
@@ -50,6 +49,7 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 	<script>
+		showAbout();
 		var mymap = L.map('mapid').setView([50.06, 19.93], 13);
 
 		L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
