@@ -1,10 +1,10 @@
-package pl.zielinska.trashAlert.entity.geoJSON;
+package pl.zielinska.trashAlert.domain.geoJSON;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.zielinska.trashAlert.entity.Ad;
+import pl.zielinska.trashAlert.domain.Ad;
 
 import java.util.ArrayList;
 import java.util.List;

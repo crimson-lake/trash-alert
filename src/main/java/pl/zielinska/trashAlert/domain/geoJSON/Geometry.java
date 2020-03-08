@@ -1,4 +1,4 @@
-package pl.zielinska.trashAlert.entity.geoJSON;
+package pl.zielinska.trashAlert.domain.geoJSON;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;

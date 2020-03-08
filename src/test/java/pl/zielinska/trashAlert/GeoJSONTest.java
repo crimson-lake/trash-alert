@@ -5,9 +5,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import pl.zielinska.trashAlert.dao.AdRepository;
-import pl.zielinska.trashAlert.entity.Ad;
-import pl.zielinska.trashAlert.entity.geoJSON.GeoJSON;
-import pl.zielinska.trashAlert.entity.geoJSON.GeoJSONCollection;
+import pl.zielinska.trashAlert.domain.Ad;
+import pl.zielinska.trashAlert.domain.geoJSON.GeoJSON;
+import pl.zielinska.trashAlert.domain.geoJSON.GeoJSONCollection;
 import pl.zielinska.trashAlert.service.AdService;
 
 import java.util.logging.Logger;

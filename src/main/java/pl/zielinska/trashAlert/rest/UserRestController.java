@@ -3,10 +3,9 @@ package pl.zielinska.trashAlert.rest;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import pl.zielinska.trashAlert.entity.Ad;
-import pl.zielinska.trashAlert.entity.User;
+import pl.zielinska.trashAlert.domain.Ad;
+import pl.zielinska.trashAlert.domain.User;
 import pl.zielinska.trashAlert.service.UserService;
 
 import java.util.List;
@@ -21,28 +20,22 @@ public class UserRestController {
     @Autowired
     private UserService userService;
 
-    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE,
-                            MediaType.APPLICATION_XML_VALUE})
+    @GetMapping
     public List<User> findAll() {
         return userService.findAll();
     }
 
-    @GetMapping(path = "/{username}",
-                produces = {MediaType.APPLICATION_JSON_VALUE,
-                            MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(path = "/{username}")
     public User find(@PathVariable("username") String username) {
         return userService.findByUsername(username);
     }
 
-    @GetMapping(path = "/{username}/ads",
-                produces = {MediaType.APPLICATION_JSON_VALUE,
-                            MediaType.APPLICATION_XML_VALUE})
+    @GetMapping(path = "/{username}/ads")
     public Set<Ad> usersAds(@PathVariable("username") String username) {
         return userService.usersAds(username);
     }
 
-    @PostMapping(consumes = {MediaType.APPLICATION_JSON_VALUE,
-                             MediaType.APPLICATION_XML_VALUE})
+    @PostMapping
     public User addUser(@RequestBody User theUser) {
         theUser.setId(0);
         userService.save(theUser);
@@ -58,8 +51,7 @@ public class UserRestController {
         return theAd;
     }
 
-    @PutMapping(consumes = {MediaType.APPLICATION_XML_VALUE,
-                            MediaType.APPLICATION_JSON_VALUE})
+    @PutMapping
     public User updateUser(@RequestBody User theUser) {
         userService.save(theUser);
         return theUser;

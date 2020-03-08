@@ -1,4 +1,4 @@
-package pl.zielinska.trashAlert.entity;
+package pl.zielinska.trashAlert.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
