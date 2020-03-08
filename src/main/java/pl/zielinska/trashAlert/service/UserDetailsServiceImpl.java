@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import pl.zielinska.trashAlert.dao.UserRepository;
-import pl.zielinska.trashAlert.entity.User;
+import pl.zielinska.trashAlert.domain.User;
 
 @Slf4j
 @Service

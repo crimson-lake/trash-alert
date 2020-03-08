@@ -1,9 +1,11 @@
-package pl.zielinska.trashAlert.entity;
+package pl.zielinska.trashAlert.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
+import pl.zielinska.trashAlert.validation.Adress;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -13,26 +15,25 @@ import java.util.Set;
 @Table(name="ads")
 @NoArgsConstructor @AllArgsConstructor @Builder @Data
 @EqualsAndHashCode(of = {"id", "title", "city", "street", "created"})
+@Adress
 public class Ad {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "title")
+    @NotBlank
     private String title;
 
-    @Column(name = "city")
+    @NotBlank
     private String city;
 
-    @Column(name = "street")
+    @NotBlank
     private String street;
 
-    @Column(name = "details")
     private String details;
 
     @Temporal(TemporalType.DATE)
-    @Column(name = "created")
     private Date created;
 
     @JsonBackReference

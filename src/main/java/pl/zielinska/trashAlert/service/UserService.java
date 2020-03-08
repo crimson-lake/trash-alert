@@ -1,7 +1,7 @@
 package pl.zielinska.trashAlert.service;
 
-import pl.zielinska.trashAlert.entity.Ad;
-import pl.zielinska.trashAlert.entity.User;
+import pl.zielinska.trashAlert.domain.Ad;
+import pl.zielinska.trashAlert.domain.User;
 
 import java.util.List;
 import java.util.Set;

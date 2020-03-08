@@ -1,8 +1,8 @@
 package pl.zielinska.trashAlert.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import pl.zielinska.trashAlert.entity.Ad;
-import pl.zielinska.trashAlert.entity.geoJSON.GeoJSONCollection;
+import pl.zielinska.trashAlert.domain.Ad;
+import pl.zielinska.trashAlert.domain.geoJSON.GeoJSONCollection;
 
 import java.util.List;
 

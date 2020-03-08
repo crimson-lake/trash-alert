@@ -1,15 +1,17 @@
 package pl.zielinska.trashAlert.service;
 
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.zielinska.trashAlert.dao.UserRepository;
-import pl.zielinska.trashAlert.entity.Ad;
-import pl.zielinska.trashAlert.entity.User;
+import pl.zielinska.trashAlert.domain.Ad;
+import pl.zielinska.trashAlert.domain.User;
 
 import java.util.List;
 import java.util.Set;
 
+@Slf4j
 @Service
 @AllArgsConstructor
 public class UserServiceImpl implements UserService {

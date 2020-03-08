@@ -1,4 +1,4 @@
-package pl.zielinska.trashAlert.entity;
+package pl.zielinska.trashAlert.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -8,6 +8,8 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
@@ -21,23 +23,25 @@ public class User implements UserDetails {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
     private int id;
 
-    @Column(name = "username")
+    @NotBlank
     private String username;
 
+    @NotBlank
     @JsonIgnore
-    @Column(name = "password")
     private String password;
 
+    @NotBlank
     @Column(name = "first_name")
     private String firstName;
 
+    @NotBlank
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "email")
+    @Email
+    @NotBlank
     private String email;
 
     @JsonIgnore

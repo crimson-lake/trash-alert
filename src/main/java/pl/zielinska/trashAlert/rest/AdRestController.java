@@ -7,8 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.zielinska.trashAlert.entity.Ad;
-import pl.zielinska.trashAlert.entity.geoJSON.GeoJSONCollection;
+import pl.zielinska.trashAlert.domain.Ad;
+import pl.zielinska.trashAlert.domain.geoJSON.GeoJSONCollection;
 import pl.zielinska.trashAlert.service.AdService;
 
 import java.util.List;

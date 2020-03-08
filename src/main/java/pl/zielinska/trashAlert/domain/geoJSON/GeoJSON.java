@@ -1,4 +1,4 @@
-package pl.zielinska.trashAlert.entity.geoJSON;
+package pl.zielinska.trashAlert.domain.geoJSON;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -10,7 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import pl.zielinska.trashAlert.entity.Ad;
+import pl.zielinska.trashAlert.domain.Ad;
 
 import java.net.URI;
 import java.util.HashMap;

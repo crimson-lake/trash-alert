@@ -1,13 +1,17 @@
 package pl.zielinska.trashAlert;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import pl.zielinska.trashAlert.dao.UserRepository;
-import pl.zielinska.trashAlert.entity.User;
+import pl.zielinska.trashAlert.domain.User;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@Slf4j
 @SpringBootTest
 class TrashAlertApplicationTests {
 
@@ -38,6 +42,8 @@ class TrashAlertApplicationTests {
 	@Test
 	void testReadUser() {
 		User user = userRepository.findByUsername(testUsername);
+		user.getAds();
+		user.getComments();
 		assertNotNull(user);
 		assertEquals(testUsername, user.getUsername());
 		assertEquals(testFirstName, user.getFirstName());
@@ -61,6 +67,12 @@ class TrashAlertApplicationTests {
 		User user = userRepository.findByUsername(testUsername);
 		userRepository.delete(user);
 		assertNull(userRepository.findByUsername(testUsername));
+	}
+
+	@Test
+	void generatePassword() {
+		PasswordEncoder encoder = new BCryptPasswordEncoder();
+		log.info(encoder.encode("123456"));
 	}
 
 }
