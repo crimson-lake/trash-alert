@@ -35,7 +35,7 @@ public class GeoJSON {
         this.properties.put("address", ad.getStreet() + ", " + ad.getCity());
 
         RestTemplate restTemplate = new RestTemplate();
-        URI targetUrl= UriComponentsBuilder.fromUriString("https://nominatim.openstreetmap.org")
+        URI targetUrl = UriComponentsBuilder.fromUriString("https://nominatim.openstreetmap.org")
                 .path("search")
                 .queryParam("q", ad.getStreet() + "+" + ad.getCity())
                 .queryParam("format", "geojson")

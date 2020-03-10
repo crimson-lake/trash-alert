@@ -6,10 +6,10 @@ import pl.zielinska.trashAlert.domain.geoJSON.GeoJSON;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class AdressValidator implements ConstraintValidator<Adress, Ad> {
+public class AddressValidator implements ConstraintValidator<Address, Ad> {
 
     @Override
-    public void initialize(Adress constraintAnnotation) {}
+    public void initialize(Address constraintAnnotation) {}
 
     @Override
     public boolean isValid(Ad ad, ConstraintValidatorContext constraintValidatorContext) {

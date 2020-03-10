@@ -2,7 +2,7 @@ package pl.zielinska.trashAlert.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
-import pl.zielinska.trashAlert.validation.Adress;
+import pl.zielinska.trashAlert.validation.Address;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -15,7 +15,7 @@ import java.util.Set;
 @Table(name="ads")
 @NoArgsConstructor @AllArgsConstructor @Builder @Data
 @EqualsAndHashCode(of = {"id", "title", "city", "street", "created"})
-@Adress
+@Address
 public class Ad {
 
     @Id
