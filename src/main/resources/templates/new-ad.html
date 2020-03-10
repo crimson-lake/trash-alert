@@ -29,6 +29,7 @@
             <li class="nav-item px-3"><div class="nav-link" id="username"></div></li>
         </ul>
     </nav>
+
     <section class="container-fluid content">
         <div class="row my-5 py-3">
             <div class="col-md-3"></div>
@@ -37,6 +38,7 @@
                     <div class="form-group">
                         <label for="title">Title</label>
                         <input type="text" class="form-control" id="title" placeholder="title"  th:field="*{title}">
+                        <p class="error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
                     </div>
                     <div class="form-group">
                         <label for="details">Description</label>
@@ -45,11 +47,14 @@
                     <div class="form-group">
                         <label for="city">City</label>
                         <input type="text" class="form-control" id="city"  th:field="*{city}" placeholder="city">
+                        <p class="error" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></p>
                     </div>
                     <div class="form-group">
                         <label for="street">Street</label>
                         <input type="text" class="form-control" id="street"  th:field="*{street}" placeholder="street">
+                        <p class="error" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></p>
                     </div>
+                    <p class="error" th:if="${#fields.hasErrors('global')}" th:errors="*{global}"></p>
                     <button type="submit" class="btn btn-danger">Submit</button>
                 </form>
             </div>

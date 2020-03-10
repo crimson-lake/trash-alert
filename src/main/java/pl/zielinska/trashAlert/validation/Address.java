@@ -13,11 +13,11 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({ TYPE, ANNOTATION_TYPE })
 @Retention(RUNTIME)
-@Constraint(validatedBy = AdressValidator.class)
+@Constraint(validatedBy = AddressValidator.class)
 @Documented
-public @interface Adress {
+public @interface Address {
 
-    String message() default "Invalid adress";
+    String message() default "Invalid address";
 
     Class<?>[] groups() default { };
 
