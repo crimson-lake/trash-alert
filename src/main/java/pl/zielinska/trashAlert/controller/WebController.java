@@ -14,19 +14,19 @@ import pl.zielinska.trashAlert.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
-import java.util.Date;
+import java.time.LocalDateTime;
 
 @Slf4j
 @Controller
 public class WebController {
 
+    @Autowired
+    private UserService userService;
+
     @InitBinder
     public void initBinder(WebDataBinder binder) {
         binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
     }
-
-    @Autowired
-    private UserService userService;
 
     @RequestMapping("/")
     public String home() {
@@ -42,10 +42,10 @@ public class WebController {
     @PostMapping("/new-ad")
     public String newAd(@Valid @ModelAttribute("newAd") Ad theAd, BindingResult bindingResult, HttpServletRequest request) {
         if (bindingResult.hasErrors()) {
-            log.debug("Form has errors");
+            log.debug("New ad form has errors");
             return "new-ad";
         }
-        theAd.setCreated(new Date());
+        theAd.setCreated(LocalDateTime.now());
         log.debug(theAd.toString());
 
         final String activeUser = request.getUserPrincipal().getName();
