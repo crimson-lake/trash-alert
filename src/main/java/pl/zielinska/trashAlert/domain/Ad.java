@@ -6,7 +6,8 @@ import pl.zielinska.trashAlert.validation.Address;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -33,8 +34,7 @@ public class Ad {
 
     private String details;
 
-    @Temporal(TemporalType.DATE)
-    private Date created;
+    private LocalDateTime created;
 
     @JsonBackReference
     @ManyToOne( fetch = FetchType.LAZY)
@@ -56,5 +56,10 @@ public class Ad {
                 joinColumns = @JoinColumn(name = "ad_id"),
                 inverseJoinColumns = @JoinColumn(name = "tag_id"))
     @Singular private Set<Tag> tags = new HashSet<>();
+
+    public String getFormattedDate() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        return created.format(formatter);
+    }
 
 }
