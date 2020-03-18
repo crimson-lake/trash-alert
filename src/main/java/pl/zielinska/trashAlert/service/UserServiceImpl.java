@@ -35,6 +35,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    @Override
     public void save(User theUser) {
         userRepository.save(theUser);
     }
@@ -58,4 +63,22 @@ public class UserServiceImpl implements UserService {
                 .build();
         return userRepository.save(userAccount);
     }
+
+    @Override
+    public boolean usernameAvailable(String name) {
+        if (findByUsername(name) == null) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public boolean emailAvailable(String email) {
+        if (findByEmail(email) == null) {
+            return true;
+        }
+        return false;
+    }
+
+
 }
