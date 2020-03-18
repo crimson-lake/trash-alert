@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pl.zielinska.trashAlert.DTO.UserDto;
 import pl.zielinska.trashAlert.domain.Ad;
 import pl.zielinska.trashAlert.domain.User;
 import pl.zielinska.trashAlert.service.UserService;
@@ -36,10 +37,8 @@ public class UserRestController {
     }
 
     @PostMapping
-    public User addUser(@RequestBody User theUser) {
-        theUser.setId(0);
-        userService.save(theUser);
-        return theUser;
+    public User addUser(@RequestBody UserDto theUser) {
+        return userService.registerNewUserAccount(theUser);
     }
 
     @PostMapping(path = "/{username}/ad-new")

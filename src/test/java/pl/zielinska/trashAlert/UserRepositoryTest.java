@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
 @SpringBootTest
-class TrashAlertApplicationTests {
+class UserRepositoryTest {
 
 	@Autowired
 	private UserRepository userRepository;
@@ -22,6 +22,7 @@ class TrashAlertApplicationTests {
 	private final String testFirstName = "Patryk";
 	private final String testLastName = "Trynk";
 	private final String testEmail = "pt@outlook.com";
+	private final String testPassword = "123456";
 
 	@Test
 	void contextLoads() {
@@ -34,6 +35,9 @@ class TrashAlertApplicationTests {
 						.firstName(testFirstName)
 						.lastName(testLastName)
 						.email(testEmail)
+						.password(testPassword)
+						.authority("USER")
+						.enabled(true)
 						.build();
 
 		userRepository.save(user);
