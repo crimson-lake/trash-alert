@@ -6,7 +6,7 @@ import pl.zielinska.trashAlert.service.UserService;
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class EmailValidator implements ConstraintValidator<UniqueUsername, String> {
+public class EmailValidator implements ConstraintValidator<UniqueEmail, String> {
 
     @Autowired
     private UserService userService;
