@@ -11,7 +11,10 @@ public interface UserService {
 
     List<User> findAll();
     User findByUsername(String username);
+    User findByEmail(String email);
     void save(User theUser);
     Set<Ad> usersAds(String username);
     User registerNewUserAccount(UserDto userDto);
+    boolean usernameAvailable(String name);
+    boolean emailAvailable(String email);
 }

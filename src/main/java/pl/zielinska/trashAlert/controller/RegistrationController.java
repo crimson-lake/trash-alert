@@ -44,4 +44,6 @@ public class RegistrationController {
         log.debug("New user has been registered");
         return "redirect:/login";
     }
+
+
 }
