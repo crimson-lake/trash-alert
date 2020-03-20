@@ -4,6 +4,11 @@
 	width: auto;
 }
 
+.body-img
+{
+    background-color: #ffe6e6;
+}
+
 .img-fluid
 {
     height: 600px;
@@ -26,4 +31,9 @@
     color: #e62e00;
     font-weight: bold;
     text-align: center;
+}
+
+.login-form
+{
+    padding-top: 10%;
 }
