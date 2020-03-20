@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/general.html :: headerfiles"></th:block>
+</head>
+<body>
+<section class="container-fluid content">
+    <div class="row my-5 py-3">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <form th:action="@{/login}" method="post">
+                <p th:if="${loginError}" class="error">Bad credentials</p>
+                <div class="form-group">
+                    <label for="username">Username</label>:
+                    <input class="form-control" type="text" id="username" name="username" autofocus="autofocus" />
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>:
+                    <input class="form-control" type="password" id="password" name="password" />
+                </div>
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-success">Log in</button>
+                    <a class="btn btn-info" role="button" href="/trash-resque/register">Register</a>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</section>
+    <footer th:insert="fragments/general.html :: footer"> </footer>
+</body>
+</html>
