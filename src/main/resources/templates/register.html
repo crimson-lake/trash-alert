@@ -14,43 +14,48 @@
             </div>
             <form method="POST" th:object="${newUser}">
                 <hr>
-                <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" placeholder="username"  th:field="*{username}">
-                    <p class="error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="username">Username</label>
+                        <input type="text" class="form-control" th:classappend="${#fields.hasErrors('username')} ? is-invalid : ''" id="username" placeholder="username"  th:field="*{username}" autofocus="autofocus">
+                        <small class="form-text red" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>
+                    </div>
+                    <div class="form-group col-md-8">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" th:classappend="${#fields.hasErrors('email')} ? is-invalid : ''" id="email"  th:field="*{email}" placeholder="email">
+                        <small class="form-text red" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="firstName">First name</label>
-                    <input type="text" class="form-control" id="firstName"  th:field="*{firstName}" placeholder="first name">
-                    <p class="error" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></p>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="firstName">First name</label>
+                        <input type="text" class="form-control" th:classappend="${#fields.hasErrors('firstName')} ? is-invalid : ''" id="firstName"  th:field="*{firstName}" placeholder="first name">
+                        <small class="form-text red" th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></small>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="lastName">Last name</label>
+                        <input type="text" class="form-control" th:classappend="${#fields.hasErrors('lastName')} ? is-invalid : ''" id="lastName"  th:field="*{lastName}" placeholder="last name">
+                        <small class="form-text red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></small>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="lastName">Last name</label>
-                    <input type="text" class="form-control" id="lastName"  th:field="*{lastName}" placeholder="last name">
-                    <p class="error" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></p>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" th:classappend="${#fields.hasErrors('password')} ? is-invalid : ''" id="password"  th:field="*{password}" placeholder="password">
+                        <small class="form-text red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label for="confirmPassword">Confirm password</label>
+                        <input type="password" class="form-control" th:classappend="${#fields.hasErrors('confirmPassword')} ? is-invalid : ''" id="confirmPassword"  th:field="*{confirmPassword}" placeholder="confirm password">
+                        <small class="form-text red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="text" class="form-control" id="email"  th:field="*{email}" placeholder="email">
-                    <p class="error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="text" class="form-control" id="password"  th:field="*{password}" placeholder="password">
-                    <p class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
-                </div>
-
-                <div class="form-group">
-                    <label for="confirmPassword">Confirm password</label>
-                    <input type="text" class="form-control" id="confirmPassword"  th:field="*{confirmPassword}" placeholder="confirm password">
-                    <p class="error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
-                </div>
-
-                <p class="error" th:if="${#fields.hasErrors('global')}" th:errors="*{global}"></p>
+                <p class="alert alert-warning" th:if="${#fields.hasErrors('global')}" th:errors="*{global}"></p>
 
                 <hr>
                 <div class="d-flex justify-content-center py-3">
