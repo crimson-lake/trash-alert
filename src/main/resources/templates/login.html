@@ -15,7 +15,7 @@
             </div>
             <form th:action="@{/login}" method="post">
                 <hr>
-                <p th:if="${loginError}" class="error">Bad credentials</p>
+                <p th:if="${loginError}" class="alert alert-warning">Bad credentials</p>
                 <div class="form-group">
                     <label for="username">Username</label>:
                     <input class="form-control" type="text" id="username" name="username" autofocus="autofocus" />

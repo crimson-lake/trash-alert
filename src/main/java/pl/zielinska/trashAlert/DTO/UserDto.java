@@ -26,6 +26,10 @@ public class UserDto {
     @Length(min=6)
     private String password;
 
+    @NotBlank
+    @Length(min=6)
+    private String confirmPassword;
+
     @Email
     @NotBlank
     @UniqueEmail
