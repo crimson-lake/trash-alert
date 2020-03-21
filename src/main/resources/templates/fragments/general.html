@@ -15,18 +15,42 @@
 </head>
 <body>
 
-    <nav th:fragment="navbar" id="mainNavbar" class="navbar navbar-light bg-light py-0 fixed-top">
-        <a onclick="showAbout()" class="navbar-brand hover">TRASH <i class="fas fa-trash-restore-alt red"></i> ALERT</a>
+    <nav th:fragment="navbar"
+         id="mainNavbar"
+         class="navbar navbar-light bg-light py-0 fixed-top">
+        <a onclick="showAbout()"
+           class="navbar-brand hover">
+            <span>TRASH </span>
+            <i class="fas fa-trash-restore-alt red"></i>
+            <span> ALERT</span>
+        </a>
         <ul class="nav d-flex justify-content-end">
             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle red" data-toggle="dropdown" href="#"><i class="far fa-user"></i></a>
+                <a class="nav-link dropdown-toggle red"
+                   data-toggle="dropdown"
+                   href="#">
+                    <i class="far fa-user"></i>
+                </a>
+
                 <div class="dropdown-menu">
-                    <a class="dropdown-item hover" href="/trash-resque/new-ad">new ad
-                        <i class="fas fa-plus red"></i></a>
-                    <a class="dropdown-item hover" onclick="displayUsersAds()">my ads <i class="fas fa-couch red"></i></a>
+                    <a class="dropdown-item hover"
+                       href="/trash-resque/new-ad">
+                        <i class="fas fa-plus red"> </i>
+                        <span th:text="#{navbar.new.ad}"></span>
+                    </a>
+                    <a class="dropdown-item hover"
+                       onclick="displayUsersAds()">
+                        <i class="fas fa-couch red"></i>
+                        <span th:text="#{navbar.my.ads}"></span>
+                    </a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/trash-resque/logout">logout <i class="fas fa-sign-out-alt red"></i></a>
+                    <a class="dropdown-item"
+                       href="/trash-resque/logout">
+                        <i class="fas fa-sign-out-alt red"></i>
+                        <span th:text="#{navbar.logout}"></span>
+                    </a>
                 </div>
+
             </li>
             <li class="nav-item px-3"><div class="nav-link" id="username"></div></li>
         </ul>

@@ -14,41 +14,80 @@
             <div class="col-md-6 border border-secondary bg-white">
 
                 <div class="d-flex justify-content-between py-3">
-                    <h3><i class="fas fa-trash-restore-alt"></i> New junk</h3>
+                    <h3>
+                        <i class="fas fa-trash-restore-alt"></i>
+                        <span th:text="#{new.ad.title}"></span>
+                    </h3>
                 </div>
                 <form method="POST" th:object="${newAd}">
                     <hr>
                     <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" class="form-control" th:classappend="${#fields.hasErrors('title')} ? is-invalid : ''" id="title" placeholder="title"  th:field="*{title}" autofocus="autofocus">
-                        <small class="form-text red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></small>
+                        <label for="title"
+                               th:text="#{general.title}"></label>
+                        <input id="title"
+                               type="text"
+                               class="form-control"
+                               th:classappend="${#fields.hasErrors('title')} ? is-invalid : ''"
+                               th:field="*{title}"
+                               autofocus="autofocus">
+                        <small class="form-text red"
+                               th:if="${#fields.hasErrors('title')}"
+                               th:errors="*{title}">
+                        </small>
                     </div>
 
                     <div class="form-group">
-                        <label for="details">Description</label>
-                        <textarea class="form-control" id="details" rows="3"  th:field="*{details}"></textarea>
+                        <label for="details"
+                               th:text="#{general.details}"></label>
+                        <textarea id="details"
+                                  class="form-control"
+                                  rows="3"
+                                  th:field="*{details}">
+                        </textarea>
                     </div>
 
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="city">City</label>
-                            <input type="text" class="form-control" th:classappend="${#fields.hasErrors('city') or #fields.hasErrors('global')} ? is-invalid : ''" id="city"  th:field="*{city}" placeholder="city">
-                            <small class="form-text red" th:if="${#fields.hasErrors('city')}" th:errors="*{city}"></small>
+                            <label for="city"
+                                   th:text="#{general.city}"></label>
+                            <input id="city"
+                                   type="text"
+                                   class="form-control"
+                                   th:classappend="${#fields.hasErrors('city') or #fields.hasErrors('global')} ? is-invalid : ''"
+                                   th:field="*{city}">
+                            <small class="form-text red"
+                                   th:if="${#fields.hasErrors('city')}"
+                                   th:errors="*{city}"></small>
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label for="street">Street</label>
-                            <input type="text" class="form-control" th:classappend="${#fields.hasErrors('street') or #fields.hasErrors('global')} ? is-invalid : ''" id="street"  th:field="*{street}" placeholder="street">
-                            <small class="form-text red" th:if="${#fields.hasErrors('street')}" th:errors="*{street}"></small>
+                            <label for="street"
+                                   th:text="#{general.street}"></label>
+                            <input id="street"
+                                   type="text"
+                                   class="form-control"
+                                   th:classappend="${#fields.hasErrors('street') or #fields.hasErrors('global')} ? is-invalid : ''"
+                                   th:field="*{street}">
+                            <small class="form-text red"
+                                   th:if="${#fields.hasErrors('street')}"
+                                   th:errors="*{street}">
+                            </small>
                         </div>
                     </div>
 
-                    <p class="alert alert-warning" th:if="${#fields.hasErrors('global')}" th:errors="*{global}"></p>
+                    <p class="alert alert-warning"
+                       th:if="${#fields.hasErrors('global')}"
+                       th:errors="*{global}"></p>
 
                     <hr>
                     <div class="d-flex justify-content-center py-3">
-                        <a class="btn btn-danger mx-2" role="button" href="/trash-resque">Cancel</a>
-                        <button type="submit" class="btn btn-success mx-2">Submit</button>
+                        <a class="btn btn-danger mx-2"
+                           role="button"
+                           href="/trash-resque"
+                           th:text="#{general.button.cancel}"></a>
+                        <button type="submit"
+                                class="btn btn-success mx-2"
+                                th:text="#{general.button.submit}"></button>
                     </div>
                 </form>
 

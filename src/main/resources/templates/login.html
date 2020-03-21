@@ -9,30 +9,53 @@
     <div class="row login-form">
         <div class="col-md-4"></div>
         <div class="col-md-4 border border-secondary bg-white">
+
             <div class="d-flex justify-content-between py-3">
-                <h3><i class="far fa-user"></i> Login</h3>
-                <a class="btn btn-danger" role="button" href="/trash-resque/register">Register</a>
+                <h3>
+                    <i class="far fa-user"></i>
+                    <span th:text="#{login.page.title}"></span>
+                </h3>
+                <a class="btn btn-danger"
+                   role="button"
+                   href="/trash-resque/register"
+                   th:text="#{general.button.register}"></a>
             </div>
+
             <form th:action="@{/login}" method="post">
                 <hr>
-                <p th:if="${loginError}" class="alert alert-warning">Bad credentials</p>
+                <p th:if="${loginError}"
+                   class="alert alert-warning"
+                   th:text="#{validation.bad.credentials}"></p>
                 <div class="form-group">
-                    <label for="username">Username</label>:
-                    <input class="form-control" type="text" id="username" name="username" autofocus="autofocus" />
+                    <label for="username"
+                           th:text="#{general.username}"></label>:
+                    <input id="username"
+                           class="form-control"
+                           type="text"
+                           name="username"
+                           autofocus="autofocus" />
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>:
-                    <input class="form-control" type="password" id="password" name="password" />
+                    <label for="password"
+                           th:text="#{general.password}"></label>:
+                    <input id="password"
+                           class="form-control"
+                           type="password"
+                           name="password"/>
                 </div>
                 <hr>
                 <div class="d-flex justify-content-center py-3">
-                    <button type="submit" class="btn btn-success px-3">Log in</button>
+                    <button type="submit"
+                            class="btn btn-success px-3"
+                            th:text="#{general.button.login}"></button>
                 </div>
             </form>
+
         </div>
         <div class="col-md-4"></div>
     </div>
 </section>
-    <footer class="fixed-bottom" th:insert="fragments/general.html :: footer"> </footer>
+    <footer class="fixed-bottom"
+            th:insert="fragments/general.html :: footer"></footer>
 </body>
 </html>
