@@ -29,7 +29,8 @@
                                class="form-control"
                                th:classappend="${#fields.hasErrors('title')} ? is-invalid : ''"
                                th:field="*{title}"
-                               autofocus="autofocus">
+                               autofocus="autofocus"
+                               required>
                         <small class="form-text red"
                                th:if="${#fields.hasErrors('title')}"
                                th:errors="*{title}">
@@ -54,7 +55,8 @@
                                    type="text"
                                    class="form-control"
                                    th:classappend="${#fields.hasErrors('city') or #fields.hasErrors('global')} ? is-invalid : ''"
-                                   th:field="*{city}">
+                                   th:field="*{city}"
+                                   required>
                             <small class="form-text red"
                                    th:if="${#fields.hasErrors('city')}"
                                    th:errors="*{city}"></small>
@@ -67,7 +69,8 @@
                                    type="text"
                                    class="form-control"
                                    th:classappend="${#fields.hasErrors('street') or #fields.hasErrors('global')} ? is-invalid : ''"
-                                   th:field="*{street}">
+                                   th:field="*{street}"
+                                   required>
                             <small class="form-text red"
                                    th:if="${#fields.hasErrors('street')}"
                                    th:errors="*{street}">

@@ -2,12 +2,13 @@ package pl.zielinska.trashAlert.controller;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import pl.zielinska.trashAlert.domain.Ad;
 import pl.zielinska.trashAlert.domain.User;
 import pl.zielinska.trashAlert.service.UserService;
@@ -22,11 +23,6 @@ public class WebController {
 
     @Autowired
     private UserService userService;
-
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        binder.registerCustomEditor(String.class, new StringTrimmerEditor(true));
-    }
 
     @RequestMapping("/")
     public String home() {

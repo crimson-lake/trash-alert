@@ -27,7 +27,8 @@
                                class="form-control"
                                th:classappend="${#fields.hasErrors('username')} ? is-invalid : ''"
                                th:field="*{username}"
-                               autofocus="autofocus">
+                               autofocus="autofocus"
+                               required>
                         <small class="form-text red"
                                th:if="${#fields.hasErrors('username')}"
                                th:errors="*{username}">
@@ -40,7 +41,8 @@
                                type="email"
                                class="form-control"
                                th:classappend="${#fields.hasErrors('email')} ? is-invalid : ''"
-                               th:field="*{email}">
+                               th:field="*{email}"
+                               required>
                         <small class="form-text red"
                                th:if="${#fields.hasErrors('email')}"
                                th:errors="*{email}">
@@ -56,7 +58,8 @@
                                type="text"
                                class="form-control"
                                th:classappend="${#fields.hasErrors('firstName')} ? is-invalid : ''"
-                               th:field="*{firstName}">
+                               th:field="*{firstName}"
+                               required>
                         <small class="form-text red"
                                th:if="${#fields.hasErrors('firstName')}"
                                th:errors="*{firstName}">
@@ -69,7 +72,8 @@
                                type="text"
                                class="form-control"
                                th:classappend="${#fields.hasErrors('lastName')} ? is-invalid : ''"
-                               th:field="*{lastName}">
+                               th:field="*{lastName}"
+                               required>
                         <small class="form-text red"
                                th:if="${#fields.hasErrors('lastName')}"
                                th:errors="*{lastName}">
@@ -85,7 +89,8 @@
                                type="password"
                                class="form-control"
                                th:classappend="${#fields.hasErrors('password')} ? is-invalid : ''"
-                               th:field="*{password}">
+                               th:field="*{password}"
+                               required>
                         <small class="form-text red"
                                th:if="${#fields.hasErrors('password')}"
                                th:errors="*{password}">
@@ -98,7 +103,8 @@
                                type="password"
                                class="form-control"
                                th:classappend="${#fields.hasErrors('confirmPassword')} ? is-invalid : ''"
-                               th:field="*{confirmPassword}">
+                               th:field="*{confirmPassword}"
+                               required>
                         <small class="form-text red"
                                th:if="${#fields.hasErrors('password')}"
                                th:errors="*{password}">
