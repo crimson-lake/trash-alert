@@ -34,4 +34,6 @@ public class UserDto {
     @NotBlank
     @UniqueEmail
     private String email;
+
+    private String recaptcha;
 }

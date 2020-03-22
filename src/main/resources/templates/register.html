@@ -3,6 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <th:block th:include="fragments/general.html :: headerfiles"></th:block>
+    <script src='https://www.google.com/recaptcha/api.js'></script>
 </head>
 <body class="body-img">
 <section class="container-fluid content">
@@ -115,6 +116,17 @@
                 <p class="alert alert-warning"
                    th:if="${#fields.hasErrors('global')}"
                    th:errors="*{global}"></p>
+
+                <hr>
+                <div class="form-group d-flex justify-content-between">
+                    <div class="g-recaptcha"
+                         data-sitekey="6LfVHeMUAAAAAN__P8rBTsfM9nZrMWUFkHW1PTY1">
+                    </div>
+                    <p class="alert alert-warning px-3"
+                           th:if="${#fields.hasErrors('recaptcha')}"
+                           th:text="#{validation.recaptcha}">
+                    </p>
+                </div>
 
                 <hr>
                 <div class="d-flex justify-content-center py-3">
