@@ -32,6 +32,15 @@ public class GeoServiceImpl implements GeoService, InitializingBean {
         return coordinates;
     }
 
+    @Override
+    public void adNewCoordinates(Ad theAd) {
+        try {
+            coordinates.addFeature(theAd);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+
     private GeoJSONCollection getAllCoordinates() throws JsonProcessingException {
         List<Ad> allAds = adRepository.findAll();
         GeoJSONCollection coordinates = new GeoJSONCollection();

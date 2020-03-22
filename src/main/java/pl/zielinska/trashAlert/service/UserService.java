@@ -13,6 +13,7 @@ public interface UserService {
     User findByUsername(String username);
     User findByEmail(String email);
     void save(User theUser);
+    void bindAdWithUser(User theUser, Ad theAd);
     Set<Ad> usersAds(String username);
     User registerNewUserAccount(UserDto userDto);
     boolean usernameAvailable(String name);
