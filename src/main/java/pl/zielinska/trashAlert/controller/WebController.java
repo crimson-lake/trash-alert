@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.zielinska.trashAlert.domain.Ad;
 import pl.zielinska.trashAlert.domain.User;
+import pl.zielinska.trashAlert.service.AdService;
 import pl.zielinska.trashAlert.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,8 +25,12 @@ public class WebController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AdService adService;
+
     @RequestMapping("/")
-    public String home() {
+    public String home(Model model, HttpServletRequest request) {
+        model.addAttribute("username", request.getUserPrincipal().getName());
         return "index";
     }
 
