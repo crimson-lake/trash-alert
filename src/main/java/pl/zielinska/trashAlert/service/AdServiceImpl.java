@@ -1,12 +1,10 @@
 package pl.zielinska.trashAlert.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.zielinska.trashAlert.dao.AdRepository;
 import pl.zielinska.trashAlert.domain.Ad;
-import pl.zielinska.trashAlert.domain.geoJSON.GeoJSONCollection;
 
 import java.util.List;
 
@@ -37,13 +35,4 @@ public class AdServiceImpl implements AdService{
         return null;
     }
 
-    @Override
-    public GeoJSONCollection getAllCoordinates() throws JsonProcessingException {
-        List<Ad> allAds = findAll();
-        GeoJSONCollection coordinates = new GeoJSONCollection();
-        for (Ad ad : allAds) {
-            coordinates.addFeature(ad);
-        }
-        return coordinates;
-    }
 }
