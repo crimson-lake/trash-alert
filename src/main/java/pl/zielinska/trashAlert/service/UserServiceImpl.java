@@ -45,6 +45,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    public void bindAdWithUser(User theUser, Ad theAd) {
+        theUser.addNewAd(theAd);
+        save(theUser);
+    }
+
+    @Override
     public Set<Ad> usersAds(String username) {
         User user = userRepository.findByUsername(username);
         return user.getAds();
