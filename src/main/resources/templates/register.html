@@ -119,13 +119,13 @@
 
                 <hr>
                 <div class="form-group d-flex justify-content-between">
+                    <p class="alert alert-warning"
+                       th:if="${#fields.hasErrors('recaptcha')}"
+                       th:text="#{validation.recaptcha}">
+                    </p>
                     <div class="g-recaptcha"
                          data-sitekey="6LfVHeMUAAAAAN__P8rBTsfM9nZrMWUFkHW1PTY1">
                     </div>
-                    <p class="alert alert-warning px-3"
-                           th:if="${#fields.hasErrors('recaptcha')}"
-                           th:text="#{validation.recaptcha}">
-                    </p>
                 </div>
 
                 <hr>

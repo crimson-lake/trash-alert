@@ -2,6 +2,7 @@ package pl.zielinska.trashAlert.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
+import pl.zielinska.trashAlert.DTO.AdDto;
 import pl.zielinska.trashAlert.validation.Address;
 
 import javax.persistence.*;
@@ -58,8 +59,18 @@ public class Ad {
     @Singular private Set<Tag> tags = new HashSet<>();
 
     public String getFormattedDate() {
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
         return created.format(formatter);
+    }
+
+    public AdDto toDto() {
+        return AdDto.builder()
+                .title(this.title)
+                .details(this.details == null ? "" : this.details)
+                .city(this.city)
+                .street(this.street)
+                .created(getFormattedDate())
+                .build();
     }
 
 }

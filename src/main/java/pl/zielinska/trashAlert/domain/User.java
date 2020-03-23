@@ -1,11 +1,11 @@
 package pl.zielinska.trashAlert.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import pl.zielinska.trashAlert.DTO.UserDto;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -29,7 +29,6 @@ public class User implements UserDetails {
     private String username;
 
     @NotBlank
-    @JsonIgnore
     private String password;
 
     @NotBlank
@@ -44,15 +43,12 @@ public class User implements UserDetails {
     @NotBlank
     private String email;
 
-    @JsonIgnore
     @Column(name = "enabled")
     private boolean enabled;
 
-    @JsonIgnore
     @Column(name = "authority")
     private String authority;
 
-    @JsonBackReference
     @OneToMany( fetch=FetchType.LAZY,
                 cascade=CascadeType.ALL,
                 mappedBy = "adAuthor")
@@ -95,5 +91,14 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return enabled;
+    }
+
+    public UserDto toDto() {
+        return UserDto.builder()
+                .username(this.username)
+                .firstName(this.firstName)
+                .lastName(this.lastName)
+                .email(this.email)
+                .build();
     }
 }
