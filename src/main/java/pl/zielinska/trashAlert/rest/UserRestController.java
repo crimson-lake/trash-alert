@@ -4,13 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pl.zielinska.trashAlert.DTO.AdDto;
 import pl.zielinska.trashAlert.DTO.UserDto;
 import pl.zielinska.trashAlert.domain.Ad;
 import pl.zielinska.trashAlert.domain.User;
+import pl.zielinska.trashAlert.service.AdService;
+import pl.zielinska.trashAlert.service.GeoService;
 import pl.zielinska.trashAlert.service.UserService;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -21,19 +25,33 @@ public class UserRestController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AdService adService;
+
+    @Autowired
+    private GeoService geoService;
+
     @GetMapping
-    public List<User> findAll() {
-        return userService.findAll();
+    public List<UserDto> findAll() {
+        return userService
+                .findAll()
+                .stream()
+                .map(User::toDto)
+                .collect(Collectors.toList());
     }
 
     @GetMapping(path = "/{username}")
-    public User find(@PathVariable("username") String username) {
-        return userService.findByUsername(username);
+    public UserDto find(@PathVariable("username") String username) {
+        return userService.findByUsername(username).toDto();
     }
 
     @GetMapping(path = "/{username}/ads")
-    public Set<Ad> usersAds(@PathVariable("username") String username) {
-        return userService.usersAds(username);
+    public Set<AdDto> usersAds(@PathVariable("username") String username) {
+        return userService
+                .usersAds(username)
+                .stream()
+                .map(Ad::toDto)
+                .collect(Collectors.toSet());
     }
 
     @PostMapping
@@ -42,18 +60,13 @@ public class UserRestController {
     }
 
     @PostMapping(path = "/{username}/ad-new")
-    public Ad addNewAd(@RequestBody Ad theAd, @PathVariable("username") String username) {
+    public Ad addNewAd(@RequestBody AdDto adDto, @PathVariable("username") String username) {
         User theUser = userService.findByUsername(username);
-        theAd.setId(0);
-        theUser.addNewAd(theAd);
-        userService.save(theUser);
-        return theAd;
-    }
+        Ad theAd = adService.publishNewAd(adDto, theUser);
 
-    @PutMapping
-    public User updateUser(@RequestBody User theUser) {
-        userService.save(theUser);
-        return theUser;
+        userService.bindAdWithUser(theUser, theAd);
+        geoService.adNewCoordinates(theAd);
+        return theAd;
     }
 
 }
