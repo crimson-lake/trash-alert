@@ -1,6 +1,6 @@
 #mapid 
 { 
-	height: 600px;
+	height: 550px;
 	width: auto;
 }
 
@@ -36,4 +36,16 @@
 .login-form
 {
     padding-top: 10%;
+}
+
+.city-filter
+{
+    padding-bottom: 1em;
+    font-size: 1.2em;
+}
+
+.city-filter:hover
+{
+    cursor: pointer;
+    color: #e62e00;
 }

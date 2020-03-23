@@ -10,9 +10,17 @@
 
 	<nav th:insert="fragments/general.html :: navbar"> </nav>
 
-	<section class="container-fluid content">
-		<div class="row my-5">
+	<section class="container-fluid content pt-5">
+		<div class="row">
 			<div class="col-md-8">
+				<div class="d-flex justify-content-around">
+					<div class="city-filter" th:text="#{city.all}" onclick="changeView([51.55, 19.08], 6)"></div>
+					<div class="city-filter" th:text="#{city.warsaw}" onclick="changeView([52.23, 21.02], 12)"></div>
+					<div class="city-filter" th:text="#{city.cracow}" onclick="changeView([50.06, 19.93], 12)"></div>
+					<div class="city-filter" th:text="#{city.3city}" onclick="changeView([54.44, 18.59], 11)"></div>
+					<div class="city-filter" th:text="#{city.wroclaw}" onclick="changeView([51.10, 17.03], 12)"></div>
+					<div class="city-filter" th:text="#{city.poznan}" onclick="changeView([52.41, 16.93], 12)"></div>
+				</div>
 				<div id="mapid"></div>
 			</div>
 			<div class="col-md-4 p-0 text-center justify-content-center">
