@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import pl.zielinska.trashAlert.TestVal;
 import pl.zielinska.trashAlert.domain.User;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -17,12 +18,6 @@ class UserRepositoryTest {
 	@Autowired
 	private UserRepository userRepository;
 
-	private final String testUsername = "patick";
-	private final String testFirstName = "Patryk";
-	private final String testLastName = "Trynk";
-	private final String testEmail = "pt@outlook.com";
-	private final String testPassword = "123456";
-
 	@Test
 	void contextLoads() {
 	}
@@ -30,11 +25,11 @@ class UserRepositoryTest {
 	@Test
 	void testCreateUser() {
 		User user = User.builder()
-						.username(testUsername)
-						.firstName(testFirstName)
-						.lastName(testLastName)
-						.email(testEmail)
-						.password(testPassword)
+						.username(TestVal.TEST_USERNAME)
+						.firstName(TestVal.TEST_FIRST_NAME)
+						.lastName(TestVal.TEST_LAST_NAME)
+						.email(TestVal.TEST_EMAIL)
+						.password(TestVal.TEST_PASSWORD)
 						.authority("USER")
 						.enabled(true)
 						.build();
@@ -44,32 +39,32 @@ class UserRepositoryTest {
 
 	@Test
 	void testReadUser() {
-		User user = userRepository.findByUsername(testUsername);
+		User user = userRepository.findByUsername(TestVal.TEST_USERNAME);
 		user.getAds();
 		user.getComments();
 		assertNotNull(user);
-		assertEquals(testUsername, user.getUsername());
-		assertEquals(testFirstName, user.getFirstName());
-		assertEquals(testLastName, user.getLastName());
-		assertEquals(testEmail, user.getEmail());
+		assertEquals(TestVal.TEST_USERNAME, user.getUsername());
+		assertEquals(TestVal.TEST_FIRST_NAME, user.getFirstName());
+		assertEquals(TestVal.TEST_LAST_NAME, user.getLastName());
+		assertEquals(TestVal.TEST_EMAIL, user.getEmail());
 	}
 
 	@Test
 	void testUpdateUser() {
-		User user = userRepository.findByUsername(testUsername);
-		String updatedEmail = "newTestEmail@protonmail.com";
+		User user = userRepository.findByUsername(TestVal.TEST_USERNAME);
+		String updatedEmail = "newTEST_EMAIL@protonmail.com";
 		user.setEmail(updatedEmail);
 		userRepository.save(user);
 
-		user = userRepository.findByUsername(testUsername);
+		user = userRepository.findByUsername(TestVal.TEST_USERNAME);
 		assertEquals(updatedEmail, user.getEmail());
 	}
 
 	@Test
 	void testDeleteUser() {
-		User user = userRepository.findByUsername(testUsername);
+		User user = userRepository.findByUsername(TestVal.TEST_USERNAME);
 		userRepository.delete(user);
-		assertNull(userRepository.findByUsername(testUsername));
+		assertNull(userRepository.findByUsername(TestVal.TEST_USERNAME));
 	}
 
 	@Test
