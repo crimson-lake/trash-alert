@@ -33,8 +33,9 @@ public class NewAdController {
 
 
     @GetMapping("/new-ad")
-    public String newAd(Model model) {
-        model.addAttribute("newAd", new Ad());
+    public String newAd(Model model, HttpServletRequest request) {
+        model.addAttribute("newAd", new AdDto());
+        model.addAttribute("username", request.getUserPrincipal().getName());
         return "new-ad";
     }
 

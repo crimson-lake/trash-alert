@@ -6,6 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
+import pl.zielinska.trashAlert.domain.City;
 import pl.zielinska.trashAlert.validation.UniqueEmail;
 import pl.zielinska.trashAlert.validation.UniqueUsername;
 
@@ -37,6 +38,8 @@ public class UserDto {
     @Length(min=6)
     @JsonIgnore
     private String confirmPassword;
+
+    private City defaultCity;
 
     @Email
     @NotBlank
