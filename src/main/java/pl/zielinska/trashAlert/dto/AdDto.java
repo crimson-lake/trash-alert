@@ -1,4 +1,4 @@
-package pl.zielinska.trashAlert.DTO;
+package pl.zielinska.trashAlert.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

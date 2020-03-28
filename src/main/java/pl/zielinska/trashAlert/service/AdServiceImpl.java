@@ -3,10 +3,10 @@ package pl.zielinska.trashAlert.service;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.zielinska.trashAlert.DTO.AdDto;
 import pl.zielinska.trashAlert.dao.AdRepository;
 import pl.zielinska.trashAlert.domain.Ad;
 import pl.zielinska.trashAlert.domain.User;
+import pl.zielinska.trashAlert.dto.AdDto;
 
 import java.time.LocalDateTime;
 import java.util.List;

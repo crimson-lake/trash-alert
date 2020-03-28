@@ -5,10 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.zielinska.trashAlert.DTO.UserDto;
 import pl.zielinska.trashAlert.dao.UserRepository;
 import pl.zielinska.trashAlert.domain.Ad;
 import pl.zielinska.trashAlert.domain.User;
+import pl.zielinska.trashAlert.dto.UserDto;
 
 import java.util.List;
 import java.util.Set;
