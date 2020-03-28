@@ -2,7 +2,7 @@ package pl.zielinska.trashAlert.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
-import pl.zielinska.trashAlert.DTO.AdDto;
+import pl.zielinska.trashAlert.dto.AdDto;
 import pl.zielinska.trashAlert.validation.Address;
 
 import javax.persistence.*;
@@ -38,7 +38,7 @@ public class Ad {
     private LocalDateTime created;
 
     @JsonBackReference
-    @ManyToOne( fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id")
     private User adAuthor;
 
@@ -61,6 +61,11 @@ public class Ad {
     public String getFormattedDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
         return created.format(formatter);
+    }
+
+    public void setAdAuthor(User theUser) {
+        this.adAuthor = theUser;
+        theUser.addNewAd(this);
     }
 
     public AdDto toDto() {
