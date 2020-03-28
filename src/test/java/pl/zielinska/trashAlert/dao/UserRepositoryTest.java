@@ -1,4 +1,4 @@
-package pl.zielinska.trashAlert;
+package pl.zielinska.trashAlert.dao;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import pl.zielinska.trashAlert.dao.UserRepository;
 import pl.zielinska.trashAlert.domain.User;
 
 import static org.junit.jupiter.api.Assertions.*;
