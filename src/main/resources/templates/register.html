@@ -82,6 +82,19 @@
                     </div>
                 </div>
 
+                <div class="form-group">
+                    <label for="defaultCity"
+                           th:text="#{general.defaultCity}"></label>
+                    <select id="defaultCity"
+                            name="defaultCity"
+                            class="form-control"
+                            th:field="*{defaultCity}"
+                            required>
+                        <option th:each="city : ${T(pl.zielinska.trashAlert.domain.City).values()}"
+                                th:value="${city}" th:text="#{${city.getName()}}"></option>
+                    </select>
+                </div>
+
                 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="password"

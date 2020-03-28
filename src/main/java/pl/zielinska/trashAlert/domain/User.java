@@ -43,6 +43,10 @@ public class User implements UserDetails {
     @NotBlank
     private String email;
 
+    @Enumerated(EnumType.STRING)
+    @Column(name = "default_city")
+    private City defaultCity;
+
     @Column(name = "enabled")
     private boolean enabled;
 
@@ -93,12 +97,21 @@ public class User implements UserDetails {
         return enabled;
     }
 
+    public void setDefaultCity(City city) {
+        this.defaultCity = city == null ? City.ALL : city;
+    }
+
+    public City getDefaultCity() {
+        return this.defaultCity == null ? City.ALL : this.defaultCity;
+    }
+
     public UserDto toDto() {
         return UserDto.builder()
                 .username(this.username)
                 .firstName(this.firstName)
                 .lastName(this.lastName)
                 .email(this.email)
+                .defaultCity(this.defaultCity)
                 .build();
     }
 }

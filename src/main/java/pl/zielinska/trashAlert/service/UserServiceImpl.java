@@ -63,6 +63,7 @@ public class UserServiceImpl implements UserService {
                 .firstName(userDto.getFirstName())
                 .lastName(userDto.getLastName())
                 .email(userDto.getEmail())
+                .defaultCity(userDto.getDefaultCity())
                 .password(passwordEncoder.encode(userDto.getPassword()))
                 .authority("USER")
                 .enabled(true)
