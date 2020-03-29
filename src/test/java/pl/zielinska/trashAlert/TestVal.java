@@ -19,4 +19,6 @@ public class TestVal {
     public static final String TEST_CITY = "Kraków";
     public static final String TEST_STREET = "Barska";
     public static final LocalDateTime TEST_TIME = LocalDateTime.now();
+
+    public static final String INVALID_EMAIL = "invalid_email";
 }

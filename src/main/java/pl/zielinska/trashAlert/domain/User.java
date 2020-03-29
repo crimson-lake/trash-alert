@@ -2,6 +2,7 @@ package pl.zielinska.trashAlert.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -26,6 +27,7 @@ public class User implements UserDetails {
     private int id;
 
     @NotBlank
+    @Length(min=6)
     private String username;
 
     @NotBlank
@@ -65,7 +67,9 @@ public class User implements UserDetails {
 
     public void addNewAd(Ad theAd) {
         ads.add(theAd);
-        theAd.setAdAuthor(this);
+        if (!theAd.getAdAuthor().equals(this)) {
+            theAd.setAdAuthor(this);
+        }
     }
 
     @JsonIgnore

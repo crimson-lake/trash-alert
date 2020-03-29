@@ -65,7 +65,9 @@ public class Ad {
 
     public void setAdAuthor(User theUser) {
         this.adAuthor = theUser;
-        theUser.addNewAd(this);
+        if (!theUser.getAds().contains(this)) {
+            theUser.addNewAd(this);
+        }
     }
 
     public AdDto toDto() {
