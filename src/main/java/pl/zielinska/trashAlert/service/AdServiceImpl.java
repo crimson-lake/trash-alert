@@ -10,6 +10,7 @@ import pl.zielinska.trashAlert.dto.AdDto;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -21,6 +22,15 @@ public class AdServiceImpl implements AdService{
     @Override
     public List<Ad> findAll() {
         return adRepository.findAll();
+    }
+
+    @Override
+    public List<AdDto> findAllDto() {
+        return adRepository
+                .findAll()
+                .stream()
+                .map(Ad::toDto)
+                .collect(Collectors.toList());
     }
 
     @Override

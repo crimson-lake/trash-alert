@@ -12,6 +12,8 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 public class AdDto {
 
+    private int id;
+
     @NotBlank
     private String title;
 

@@ -72,6 +72,7 @@ public class Ad {
 
     public AdDto toDto() {
         return AdDto.builder()
+                .id(this.id)
                 .title(this.title)
                 .details(this.details == null ? "" : this.details)
                 .city(this.city)
