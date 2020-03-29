@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:th="http://www.thymeleaf.org">
@@ -12,14 +11,23 @@
 
 	<section class="container-fluid content pt-5">
 		<div class="row">
-			<div class="col-md-8">
+			<div class="col-md-7">
 				<div id="mapid"></div>
 			</div>
-			<div class="col-md-4 p-0 text-center justify-content-center">
-				<div id="board">
-					<h3 th:text="#{general.about}"></h3>
-					<p th:text="#{about.text}"></p>
-				</div>
+			<div class="col-md-5 p-0 text-center justify-content-center">
+					<div id="board"
+                         th:each="ad : ${ads}">
+						<div>
+                            <h3 th:text="${ad.title}"
+                                class="hover"></h3>
+                            <div style="display: none;">
+                                <p class="px-2 d-flex justify-content-end"
+                                   th:text="${ad.created}"></p>
+                                <p th:text="${ad.details}"></p>
+                            </div>
+                            <hr>
+                        </div>
+					</div>
 			</div>
 		</div>
 	</section>

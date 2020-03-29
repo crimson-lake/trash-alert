@@ -1,6 +1,6 @@
 #mapid 
 { 
-	height: 550px;
+	height: 600px;
 	width: auto;
 }
 
@@ -24,6 +24,7 @@
 .hover:hover
 {
     cursor: pointer;
+    color: #e62e00;
 }
 
 .error

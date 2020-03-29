@@ -6,12 +6,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import pl.zielinska.trashAlert.domain.Ad;
 import pl.zielinska.trashAlert.dto.AdDto;
 import pl.zielinska.trashAlert.service.AdService;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/ads")
@@ -23,11 +21,7 @@ public class AdRestController {
 
     @GetMapping
     public List<AdDto> findAll() {
-        return adService
-                .findAll()
-                .stream()
-                .map(Ad::toDto)
-                .collect(Collectors.toList());
+        return adService.findAllDto();
     }
 
     @GetMapping(path = "/{id}")
