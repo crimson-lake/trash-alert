@@ -15,19 +15,29 @@
 				<div id="mapid"></div>
 			</div>
 			<div class="col-md-5 p-0 text-center justify-content-center">
-					<div id="board"
-                         th:each="ad : ${ads}">
-						<div>
-                            <h3 th:text="${ad.title}"
-                                class="hover"></h3>
-                            <div style="display: none;">
-                                <p class="px-2 d-flex justify-content-end"
-                                   th:text="${ad.created}"></p>
-                                <p th:text="${ad.details}"></p>
-                            </div>
-                            <hr>
+                <div id="board"
+                     th:each="ad : ${ads}">
+                    <div>
+                        <h3 th:text="${ad.title}"
+                            class="hover"
+                            th:onclick="'toggle(\'ad' + ${ad.id} + '\')'">
+                        </h3>
+                        <div style="display: none;"
+                             th:id="'ad' + ${ad.id}"
+                             class="p-2 border border-secondary">
+							<div class="p-2">
+								<p class="d-flex justify-content-end"
+								   th:text="'' + #{ad.created} + ': ' + ${ad.created}"></p>
+								<hr>
+								<p th:text="${ad.details}"></p>
+							</div>
+							<div class="py-3">
+								<button class="btn btn-info px-3"
+										th:text="#{general.more}"></button>
+							</div>
                         </div>
-					</div>
+                    </div>
+                </div>
 			</div>
 		</div>
 	</section>
