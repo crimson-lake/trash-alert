@@ -4,6 +4,11 @@
 	width: auto;
 }
 
+p
+{
+    font-size: 0.9em;
+}
+
 .body-img
 {
     background-color: #ffe6e6;
