@@ -17,7 +17,7 @@ function showMap(y, x, zoom) {
 		});
 
 		function onEachFeature(feature, layer) {
-			var popupContext = "<div class=\"hover h6\" onclick=\"toggle(ad" + feature.properties.id + ")\">";
+			var popupContext = "<div class=\"hover h6\" onclick=\"toggle(\'ad" + feature.properties.id + "\')\">";
 			popupContext += feature.properties.title + "<br>" + feature.properties.address + "</div>";
 			layer.bindPopup(popupContext);
 		}

@@ -25,8 +25,17 @@ function displayUsersAds() {
 function toggle(elementId) {
   var x = document.getElementById(elementId);
   if (x.style.display === "none") {
+    toggleAll();
     x.style.display = "block";
+    x.parentElement.scrollIntoViewIfNeeded();
   } else {
     x.style.display = "none";
   }
+};
+
+function toggleAll() {
+    var divs = document.getElementsByClassName("toggleable");
+    for (i = 0; i < divs.length; i++) {
+      divs[i].style.display = "none";
+    }
 };
