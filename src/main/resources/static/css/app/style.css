@@ -9,9 +9,14 @@ p
     font-size: 0.9em;
 }
 
+body
+{
+    word-wrap: break-word;
+}
+
 .body-img
 {
-    background-color: #ffe6e6;
+    background-color: #fffafa;
 }
 
 #board
