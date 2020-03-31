@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
-<html>
 <head>
     <th:block th:include="fragments/general.html :: headerfiles"></th:block>
 </head>
@@ -26,6 +25,7 @@
                                th:text="#{general.title}"></label>
                         <input id="title"
                                type="text"
+                               maxlength="50"
                                class="form-control"
                                th:classappend="${#fields.hasErrors('title')} ? is-invalid : ''"
                                th:field="*{title}"
@@ -53,6 +53,7 @@
                                    th:text="#{general.city}"></label>
                             <input id="city"
                                    type="text"
+                                   maxlength="50"
                                    class="form-control"
                                    th:classappend="${#fields.hasErrors('city') or #fields.hasErrors('global')} ? is-invalid : ''"
                                    th:field="*{city}"
@@ -67,6 +68,7 @@
                                    th:text="#{general.street}"></label>
                             <input id="street"
                                    type="text"
+                                   maxlength="50"
                                    class="form-control"
                                    th:classappend="${#fields.hasErrors('street') or #fields.hasErrors('global')} ? is-invalid : ''"
                                    th:field="*{street}"

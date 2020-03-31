@@ -10,7 +10,6 @@ public interface AdService {
 
     List<Ad> findAll();
     List<AdDto> findAllDto();
-    Ad findByAuthor();
     Ad findById(int id);
     void save(Ad theAd);
     Ad publishNewAd(AdDto adDto, User user);

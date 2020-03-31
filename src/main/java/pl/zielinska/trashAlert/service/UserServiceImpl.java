@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 import pl.zielinska.trashAlert.dao.UserRepository;
 import pl.zielinska.trashAlert.domain.Ad;
 import pl.zielinska.trashAlert.domain.User;
+import pl.zielinska.trashAlert.dto.AdDto;
 import pl.zielinska.trashAlert.dto.UserDto;
 
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -51,9 +53,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Set<Ad> usersAds(String username) {
+    public Set<AdDto> usersAdsDto(String username) {
         User user = userRepository.findByUsername(username);
-        return user.getAds();
+        return user
+                .getAds()
+                .stream()
+                .map(Ad::toDto)
+                .collect(Collectors.toSet());
     }
 
     @Override

@@ -56,9 +56,4 @@ public class AdServiceImpl implements AdService{
         return adRepository.save(newAd);
     }
 
-    @Override
-    public Ad findByAuthor() {
-        return null;
-    }
-
 }

@@ -14,11 +14,11 @@ p
     background-color: #ffe6e6;
 }
 
-.img-fluid
+#board
 {
     height: 600px;
     width: auto;
-    opacity: 0.6;
+    overflow: auto;
 }
 
 .red

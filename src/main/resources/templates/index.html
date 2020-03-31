@@ -14,17 +14,19 @@
 			<div class="col-md-7">
 				<div id="mapid"></div>
 			</div>
-			<div class="col-md-5 p-0 text-center justify-content-center">
-                <div id="board"
-                     th:each="ad : ${ads}">
-                    <div>
-                        <h3 th:text="${ad.title}"
-                            class="hover"
-                            th:onclick="'toggle(\'ad' + ${ad.id} + '\')'">
-                        </h3>
+			<div class="col-md-5 p-2 text-center justify-content-center"
+				 id="board">
+                <div th:each="ad : ${ads}">
+                    <div class="border bg-white my-2">
+						<div class="p-2">
+							<h3 th:text="${ad.title}"
+								class="hover"
+								th:onclick="'toggle(\'ad' + ${ad.id} + '\')'">
+							</h3>
+						</div>
                         <div style="display: none;"
                              th:id="'ad' + ${ad.id}"
-                             class="p-2 border border-secondary">
+                             class="p-2">
 							<div class="p-2">
 								<p class="d-flex justify-content-end"
 								   th:text="'' + #{ad.created} + ': ' + ${ad.created}"></p>
@@ -32,8 +34,11 @@
 								<p th:text="${ad.details}"></p>
 							</div>
 							<div class="py-3">
+								<button class="btn btn-danger px-3"
+										th:text="#{general.button.cancel}"
+										th:onclick="'toggle(\'ad' + ${ad.id} + '\')'"></button>
 								<button class="btn btn-info px-3"
-										th:text="#{general.more}"></button>
+										th:text="#{general.button.more}"></button>
 							</div>
                         </div>
                     </div>
