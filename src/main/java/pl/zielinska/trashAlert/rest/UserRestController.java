@@ -47,11 +47,7 @@ public class UserRestController {
 
     @GetMapping(path = "/{username}/ads")
     public Set<AdDto> usersAds(@PathVariable("username") String username) {
-        return userService
-                .usersAds(username)
-                .stream()
-                .map(Ad::toDto)
-                .collect(Collectors.toSet());
+        return userService.usersAdsDto(username);
     }
 
     @PostMapping

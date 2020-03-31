@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/general.html :: headerfiles"></th:block>
+</head>
+<body class="body-img">
+    <nav th:insert="fragments/general.html :: navbar"> </nav>
+
+    <section class="container-fluid content pt-5">
+        <div class="row my-5 py-3">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 border border-secondary bg-white">
+                <div th:each="ad : ${myads}">
+                    <div class="border bg-white my-2">
+                        <div class="p-2">
+                            <h3 th:text="${ad.title}"
+                                class="hover"
+                                th:onclick="'toggle(\'ad' + ${ad.id} + '\')'">
+                            </h3>
+                        </div>
+                        <div style="display: none;"
+                             th:id="'ad' + ${ad.id}"
+                             class="p-2">
+                            <div class="p-2">
+                                <p class="d-flex justify-content-end"
+                                   th:text="'' + #{ad.created} + ': ' + ${ad.created}"></p>
+                                <hr>
+                                <p th:text="${ad.details}"></p>
+                            </div>
+                            <div class="py-3">
+                                <button class="btn btn-danger px-3"
+                                        th:text="#{general.button.cancel}"
+                                        th:onclick="'toggle(\'ad' + ${ad.id} + '\')'"></button>
+                                <button class="btn btn-info px-3"
+                                        th:text="#{general.button.more}"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </section>
+
+    <footer class="fixed-bottom"
+            th:insert="fragments/general.html :: footer"></footer>
+</body>
+</html>

@@ -24,9 +24,9 @@
          class="navbar navbar-light bg-light py-0 fixed-top">
         <a onclick=""
            class="navbar-brand hover">
-            <span>TRASH </span>
+            <span th:text="#{logo.part1}"> </span>
             <i class="fas fa-trash-restore-alt red"></i>
-            <span> ALERT</span>
+            <span th:text="#{logo.part2}"> </span>
         </a>
         <ul class="nav d-flex justify-content-end">
             <li class="nav-item dropdown">
@@ -43,7 +43,7 @@
                         <span th:text="#{navbar.new.ad}"></span>
                     </a>
                     <a class="dropdown-item hover"
-                       onclick="displayUsersAds()">
+                       href="/trash-resque/my-ads">
                         <i class="fas fa-couch red"></i>
                         <span th:text="#{navbar.my.ads}"></span>
                     </a>
