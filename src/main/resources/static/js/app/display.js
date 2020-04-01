@@ -30,7 +30,7 @@ function toggle(elementId) {
     x.parentElement.scrollIntoViewIfNeeded();
   } else {
     x.style.display = "none";
-    mymap.zoomOut();
+    mymap.zoomOut(0.8, {animate: true});
   }
 };
 

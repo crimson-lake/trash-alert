@@ -38,7 +38,8 @@
 										th:onclick="'toggle(\'ad' + ${ad.id} + '\'); cleanPopup();'">
 									<i class="fas fa-chevron-up"></i>
 								</button>
-								<button class="btn btn-success px-3">
+								<button class="btn btn-success px-3"
+										th:onclick="'firePopup(\'' + ${ad.id} + '\')'">
 									<i class="fas fa-map-marked-alt"></i>
 								</button>
 							</div>
