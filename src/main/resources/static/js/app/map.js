@@ -1,4 +1,5 @@
 var mymap;
+var markers = new Map();
 function showMap(y, x, zoom) {
 		mymap = L.map('mapid').setView([y, x], zoom);
 
@@ -18,6 +19,7 @@ function showMap(y, x, zoom) {
 
 		function onEachFeature(feature, layer) {
 			var popupContext = "<div>" + feature.properties.address + "</div>";
+			markers.set(feature.properties.id, layer);
 			layer.bindPopup(popupContext, {closeButton: false, className: "popup"})
 			     .on('click', function(e){
 			        mymap.flyTo(e.latlng, 15);
@@ -42,4 +44,9 @@ function changeView(y, x, zoom) {
 
 function cleanPopup() {
     mymap.closePopup();
-}
+};
+
+function firePopup(id) {
+    markers.get(id).openPopup();
+    mymap.zoomIn(0.8, {animate: true})
+};
