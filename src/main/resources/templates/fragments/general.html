@@ -22,7 +22,7 @@
     <nav th:fragment="navbar"
          id="mainNavbar"
          class="navbar navbar-light bg-light py-0 fixed-top">
-        <a href="/trash-resque"
+        <a th:href="@{/}"
            class="navbar-brand hover">
             <span th:text="#{logo.part1}"> </span>
             <i class="fas fa-trash-restore-alt red"></i>
@@ -38,18 +38,18 @@
 
                 <div class="dropdown-menu">
                     <a class="dropdown-item hover"
-                       href="/trash-resque/new-ad">
+                       th:href="@{/new-ad}">
                         <i class="fas fa-plus red"> </i>
                         <span th:text="#{navbar.new.ad}"></span>
                     </a>
                     <a class="dropdown-item hover"
-                       href="/trash-resque/my-ads">
+                       th:href="@{/my-ads}">
                         <i class="fas fa-couch red"></i>
                         <span th:text="#{navbar.my.ads}"></span>
                     </a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item"
-                       href="/trash-resque/logout">
+                       th:href="@{/logout}">
                         <i class="fas fa-sign-out-alt red"></i>
                         <span th:text="#{navbar.logout}"></span>
                     </a>
