@@ -35,7 +35,7 @@
 							</div>
 							<div class="py-3">
 								<button class="btn btn-danger px-3"
-										th:onclick="'toggle(\'ad' + ${ad.id} + '\')'">
+										th:onclick="'toggle(\'ad' + ${ad.id} + '\'); cleanPopup();'">
 									<i class="fas fa-chevron-up"></i>
 								</button>
 								<button class="btn btn-success px-3">

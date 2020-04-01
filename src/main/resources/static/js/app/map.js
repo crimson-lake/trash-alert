@@ -39,3 +39,7 @@ function changeView(y, x, zoom) {
     mymap.flyTo([y, x], zoom);
     console.log("change view")
 };
+
+function cleanPopup() {
+    mymap.closePopup();
+}
