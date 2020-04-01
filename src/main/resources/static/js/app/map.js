@@ -17,15 +17,18 @@ function showMap(y, x, zoom) {
 		});
 
 		function onEachFeature(feature, layer) {
-			var popupContext = "<div class=\"hover h6\" onclick=\"toggle(\'ad" + feature.properties.id + "\')\">";
-			popupContext += feature.properties.title + "<br>" + feature.properties.address + "</div>";
-			layer.bindPopup(popupContext);
+			var popupContext = "<div>" + feature.properties.address + "</div>";
+			layer.bindPopup(popupContext, {closeButton: false, className: "popup"})
+			     .on('click', function(e){
+			        mymap.flyTo(e.latlng, 15);
+			        toggle("ad" + feature.properties.id);
+			     });
 		}
 
 		$.get("/trash-resque/api/ads/geoinfo", function(data) {
 			L.geoJSON(data, {
 				pointToLayer: function (feature, latlng) {
-					return L.marker(latlng, {icon: chair});
+					return L.marker(latlng, {icon: chair, riseOnHover: true});
 				},
 				onEachFeature: onEachFeature
 			}).addTo(mymap);
