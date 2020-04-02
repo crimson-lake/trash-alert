@@ -21,7 +21,7 @@
 						<div class="p-2">
 							<h3 th:text="${ad.title}"
 								class="hover"
-								th:onclick="'toggle(\'ad' + ${ad.id} + '\')'">
+								th:onclick="'firePopup(\'' + ${ad.id} + '\'); toggle(\'ad' + ${ad.id} + '\');'">
 							</h3>
 						</div>
                         <div style="display: none;"
@@ -35,12 +35,8 @@
 							</div>
 							<div class="py-3">
 								<button class="btn btn-danger px-3"
-										th:onclick="'toggle(\'ad' + ${ad.id} + '\'); cleanPopup();'">
+										th:onclick="'toggle(\'ad' + ${ad.id} + '\')'">
 									<i class="fas fa-chevron-up"></i>
-								</button>
-								<button class="btn btn-success px-3"
-										th:onclick="'firePopup(\'' + ${ad.id} + '\')'">
-									<i class="fas fa-map-marked-alt"></i>
 								</button>
 							</div>
                         </div>

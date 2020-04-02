@@ -1,6 +1,11 @@
 var mymap;
+var defaultView;
+var defaultZoom;
+var layers = new Map();
 var markers = new Map();
 function showMap(y, x, zoom) {
+        defaultView = [y, x];
+        defaultZoom = zoom;
 		mymap = L.map('mapid').setView([y, x], zoom);
 
 		L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
@@ -19,7 +24,7 @@ function showMap(y, x, zoom) {
 
 		function onEachFeature(feature, layer) {
 			var popupContext = "<div>" + feature.properties.address + "</div>";
-			markers.set(feature.properties.id, layer);
+			layers.set(feature.properties.id, layer);
 			layer.bindPopup(popupContext, {closeButton: false, className: "popup"})
 			     .on('click', function(e){
 			        mymap.flyTo(e.latlng, 15);
@@ -30,6 +35,7 @@ function showMap(y, x, zoom) {
 		$.get("/trash-resque/api/ads/geoinfo", function(data) {
 			L.geoJSON(data, {
 				pointToLayer: function (feature, latlng) {
+                    markers.set(feature.properties.id, latlng);
 					return L.marker(latlng, {icon: chair, riseOnHover: true});
 				},
 				onEachFeature: onEachFeature
@@ -42,11 +48,51 @@ function changeView(y, x, zoom) {
     console.log("change view")
 };
 
-function cleanPopup() {
-    mymap.closePopup();
+function firePopup(id) {
+    mymap.flyTo(markers.get(id), 15);
+    layers.get(id).openPopup();
 };
 
-function firePopup(id) {
-    markers.get(id).openPopup();
-    mymap.zoomIn(0.8, {animate: true})
+function display(id, elementId) {
+    $.get("/trash-resque/api/ads/" + id, function(data){
+        var adHTML = "<h3 class=\"hover\">" + data.title + "</h3>";
+        adHTML += "<hr>"
+        adHTML += "<p class=\"px-2 d-flex justify-content-end\">created: " + data.created + " </p>";
+        adHTML += "<p>" + data.details + "</p>";
+        document.getElementById("board" + elementId).innerHTML = adHTML;
+    });
+};
+
+function displayUsersAds() {
+    $.get("/trash-resque/info/username", function(username) {
+        $.get("/trash-resque/api/users/" + username + "/ads", function(data) {
+            var adsHTML = "";
+            for (i=0; i<data.length; i++) {
+                adsHTML += "<div id=\"board" + i + "\">"
+                adsHTML += "<h3 class=\"hover\" onclick=\"display(" + data[i].id + ", " + i + ")\">"
+                adsHTML += data[i].title + "</h3></div><hr>";
+            }
+            document.getElementById("board").innerHTML = adsHTML;
+        });
+     });
+};
+
+function toggle(elementId) {
+  var x = document.getElementById(elementId);
+  if (x.style.display === "none") {
+    toggleAll();
+    x.style.display = "block";
+    x.parentElement.scrollIntoViewIfNeeded();
+  } else {
+    x.style.display = "none";
+    mymap.closePopup();
+    mymap.flyTo(defaultView, defaultZoom);
+  }
+};
+
+function toggleAll() {
+    var divs = document.getElementsByClassName("toggleable");
+    for (i = 0; i < divs.length; i++) {
+      divs[i].style.display = "none";
+    }
 };
