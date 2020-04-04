@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import pl.zielinska.trashAlert.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 
 @Controller
 public class MyAdsController {
@@ -16,8 +17,11 @@ public class MyAdsController {
 
     @GetMapping("/my-ads")
     public String showMyAds(Model model, HttpServletRequest request) {
-        final String activeUser = request.getUserPrincipal().getName();
-
+        Principal principal = request.getUserPrincipal();
+        if (principal == null) {
+            return "login";
+        }
+        String activeUser = principal.getName();
         model.addAttribute("username", activeUser);
         model.addAttribute("myads", userService.usersAdsDto(activeUser));
         return "my-ads";

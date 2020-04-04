@@ -9,6 +9,7 @@ import pl.zielinska.trashAlert.service.AdService;
 import pl.zielinska.trashAlert.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.security.Principal;
 
 @Controller
 public class WebController {
@@ -21,11 +22,11 @@ public class WebController {
 
     @RequestMapping("/")
     public String home(Model model, HttpServletRequest request) {
-        final User activeUser = userService
-                .findByUsername(request
-                    .getUserPrincipal()
-                    .getName());
-
+        Principal principal = request.getUserPrincipal();
+        if (principal == null) {
+            return "login";
+        }
+        final User activeUser = userService.findByUsername(principal.getName());
         model.addAttribute("username", activeUser.getUsername());
         model.addAttribute("city", activeUser.getDefaultCity());
         model.addAttribute("ads", adService.findAllDto());
