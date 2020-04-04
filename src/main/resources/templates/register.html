@@ -22,6 +22,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-4">
                         <label for="username"
+                               maxlength="20"
                                th:text="#{general.username}"></label>
                         <input id="username"
                                type="text"
@@ -96,32 +97,47 @@
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="password"
-                               th:text="#{general.password}"></label>
-                        <input id="password"
-                               type="password"
-                               class="form-control"
-                               th:classappend="${#fields.hasErrors('password')} ? is-invalid : ''"
-                               th:field="*{password}"
-                               required>
-                        <small class="form-text red"
-                               th:if="${#fields.hasErrors('password')}"
-                               th:errors="*{password}">
-                        </small>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="password"
+                                   th:text="#{general.password}"></label>
+                            <input id="password"
+                                   type="password"
+                                   maxlength="20"
+                                   class="form-control"
+                                   th:classappend="${#fields.hasErrors('password') or #fields.hasErrors('global')} ? is-invalid : ''"
+                                   th:field="*{password}"
+                                   required>
+                            <small class="form-text red"
+                                   th:if="${#fields.hasErrors('password')}"
+                                   th:errors="*{password}">
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirmPassword"
+                                   th:text="#{general.confirm.password}"></label>
+                            <input id="confirmPassword"
+                                   type="password"
+                                   maxlength="20"
+                                   class="form-control"
+                                   th:classappend="${#fields.hasErrors('confirmPassword') or #fields.hasErrors('global')} ? is-invalid : ''"
+                                   th:field="*{confirmPassword}"
+                                   required>
+                            <small class="form-text red"
+                                   th:if="${#fields.hasErrors('password')}"
+                                   th:errors="*{password}">
+                            </small>
+                        </div>
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="confirmPassword"
-                               th:text="#{general.confirm.password}"></label>
-                        <input id="confirmPassword"
-                               type="password"
-                               class="form-control"
-                               th:classappend="${#fields.hasErrors('confirmPassword')} ? is-invalid : ''"
-                               th:field="*{confirmPassword}"
-                               required>
+                        <label for="recaptcha"> </label>
+                        <div class="g-recaptcha"
+                             id="recaptcha"
+                             data-sitekey="6LfVHeMUAAAAAN__P8rBTsfM9nZrMWUFkHW1PTY1">
+                        </div>
                         <small class="form-text red"
-                               th:if="${#fields.hasErrors('password')}"
-                               th:errors="*{password}">
+                               th:if="${#fields.hasErrors('recaptcha')}"
+                               th:text="#{validation.recaptcha}">
                         </small>
                     </div>
                 </div>
@@ -129,17 +145,6 @@
                 <p class="alert alert-warning"
                    th:if="${#fields.hasErrors('global')}"
                    th:errors="*{global}"></p>
-
-                <hr>
-                <div class="form-group d-flex justify-content-between">
-                    <p class="alert alert-warning"
-                       th:if="${#fields.hasErrors('recaptcha')}"
-                       th:text="#{validation.recaptcha}">
-                    </p>
-                    <div class="g-recaptcha"
-                         data-sitekey="6LfVHeMUAAAAAN__P8rBTsfM9nZrMWUFkHW1PTY1">
-                    </div>
-                </div>
 
                 <hr>
                 <div class="d-flex justify-content-center py-3">
