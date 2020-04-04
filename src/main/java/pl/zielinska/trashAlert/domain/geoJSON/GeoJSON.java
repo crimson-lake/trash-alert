@@ -34,17 +34,7 @@ public class GeoJSON {
         this.properties.put("id", "" + ad.getId());
         this.properties.put("address", ad.getStreet() + ", " + ad.getCity());
 
-        RestTemplate restTemplate = new RestTemplate();
-        URI targetUrl = UriComponentsBuilder.fromUriString("https://nominatim.openstreetmap.org")
-                .path("search")
-                .queryParam("q", ad.getStreet() + "+" + ad.getCity())
-                .queryParam("format", "geojson")
-                .build()
-                .toUri();
-
-        ResponseEntity<String> response = restTemplate.getForEntity(
-                        targetUrl,
-                        String.class);
+        ResponseEntity<String> response = getResponseFor(ad.getCity(), ad.getStreet());
 
         ObjectMapper mapper = new ObjectMapper();
         JsonNode geometryNode = mapper
@@ -55,6 +45,20 @@ public class GeoJSON {
         geometry = mapper.treeToValue(geometryNode, Geometry.class);
 
         log.info(geometry.toString());
+    }
+
+    public static ResponseEntity<String> getResponseFor(String city, String street) {
+        RestTemplate restTemplate = new RestTemplate();
+        URI targetUrl = UriComponentsBuilder.fromUriString("https://nominatim.openstreetmap.org")
+                .path("search")
+                .queryParam("q", city + "+" + street)
+                .queryParam("format", "geojson")
+                .build()
+                .toUri();
+
+        return restTemplate.getForEntity(
+                targetUrl,
+                String.class);
     }
 
 }
