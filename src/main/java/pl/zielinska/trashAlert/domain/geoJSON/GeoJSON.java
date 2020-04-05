@@ -13,6 +13,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import pl.zielinska.trashAlert.domain.Ad;
 
 import java.net.URI;
+import java.nio.charset.Charset;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -53,6 +54,7 @@ public class GeoJSON {
                 .path("search")
                 .queryParam("q", city + "+" + street)
                 .queryParam("format", "geojson")
+                .encode(Charset.forName("UTF8"))
                 .build()
                 .toUri();
 
