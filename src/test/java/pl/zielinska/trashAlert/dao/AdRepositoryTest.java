@@ -1,9 +1,12 @@
 package pl.zielinska.trashAlert.dao;
 
 import lombok.extern.slf4j.Slf4j;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.context.junit4.SpringRunner;
 import pl.zielinska.trashAlert.TestVal;
 import pl.zielinska.trashAlert.domain.Ad;
 import pl.zielinska.trashAlert.domain.User;
@@ -11,8 +14,12 @@ import pl.zielinska.trashAlert.domain.User;
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
-@SpringBootTest
+@RunWith(SpringRunner.class)
+@DataJpaTest
 public class AdRepositoryTest {
+
+    @Autowired
+    private TestEntityManager entityManager;
 
     @Autowired
     private AdRepository adRepository;
@@ -31,8 +38,10 @@ public class AdRepositoryTest {
             .build();
 
     @Test
-    void createAdTest() {
-        userRepository.save(testUser);
+    public void createAdTest() {
+        entityManager.persist(testUser);
+        entityManager.flush();
+
         Ad ad = Ad.builder()
                 .title(TestVal.TEST_TITLE)
                 .city(TestVal.TEST_CITY)
@@ -43,19 +52,24 @@ public class AdRepositoryTest {
 
         assertNotNull(ad.getAdAuthor());
         assertEquals(testUser, ad.getAdAuthor());
-        adRepository.save(ad);
+
+        entityManager.persist(ad);
+        entityManager.flush();
     }
 
     @Test
-    void findByAdAuthorTest() {
+    public void findByAdAuthorTest() {
         User user = userRepository.findByUsername(TestVal.TEST_USERNAME);
         assertNotNull(adRepository.findByAdAuthor(user));
     }
 
     @Test
-    void deleteUserWithAdTest() {
+    public void deleteUserWithAdTest() {
+        entityManager.persistAndFlush(testUser);
         User user = userRepository.findByUsername(TestVal.TEST_USERNAME);
-        userRepository.delete(user);
+        assertNotNull(user);
+
+        entityManager.remove(user);
         assertNull(userRepository.findByUsername(TestVal.TEST_USERNAME));
         assertEquals(0, adRepository.findByAdAuthor(user).size());
     }
