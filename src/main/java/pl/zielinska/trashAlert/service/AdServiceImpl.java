@@ -1,6 +1,7 @@
 package pl.zielinska.trashAlert.service;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.zielinska.trashAlert.dao.AdRepository;
@@ -13,7 +14,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@AllArgsConstructor
+@AllArgsConstructor @NoArgsConstructor
 public class AdServiceImpl implements AdService{
 
     @Autowired
@@ -34,7 +35,7 @@ public class AdServiceImpl implements AdService{
     }
 
     @Override
-    public Ad findById(int id) {
+    public Ad findById(int id) { //TODO Optional
         return adRepository.findById(id).get();
     }
 
