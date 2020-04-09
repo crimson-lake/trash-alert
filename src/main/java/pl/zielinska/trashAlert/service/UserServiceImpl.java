@@ -1,6 +1,7 @@
 package pl.zielinska.trashAlert.service;
 
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-@AllArgsConstructor
+@AllArgsConstructor @NoArgsConstructor
 public class UserServiceImpl implements UserService {
 
     @Autowired

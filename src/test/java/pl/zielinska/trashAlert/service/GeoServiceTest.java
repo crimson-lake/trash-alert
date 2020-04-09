@@ -22,10 +22,10 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class GeoServiceTest {
 
     @TestConfiguration
-    static class EmployeeServiceImplTestContextConfiguration {
+    static class GeoServiceImplTestContextConfiguration {
 
         @Bean
-        public GeoService employeeService() {
+        public GeoService geoService() {
             return new GeoServiceImpl();
         }
     }
