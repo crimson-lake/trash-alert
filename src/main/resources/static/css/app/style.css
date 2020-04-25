@@ -1,0 +1,75 @@
+#mapid 
+{ 
+	height: 600px;
+	width: auto;
+}
+
+p
+{
+    font-size: 0.9em;
+}
+
+h3
+{
+    font-weight: normal;
+}
+
+body
+{
+    word-wrap: break-word;
+}
+
+.body-img
+{
+    background-color: #fffafa;
+}
+
+#board
+{
+    height: 600px;
+    width: auto;
+    overflow: auto;
+}
+
+.red
+{
+    color: #e62e00;
+}
+
+.hover:hover
+{
+    cursor: pointer;
+    color: #e62e00;
+}
+
+.error
+{
+    color: #e62e00;
+    font-weight: bold;
+    text-align: center;
+}
+
+.login-form
+{
+    padding-top: 10%;
+}
+
+.city-filter
+{
+    padding-bottom: 1em;
+    font-size: 1.2em;
+}
+
+.city-filter:hover
+{
+    cursor: pointer;
+    color: #e62e00;
+}
+
+.popup .leaflet-popup-tip,
+.popup .leaflet-popup-content-wrapper
+{
+    background: #00a393;
+    color: #ffffff;
+    font-size: 1.5em;
+}

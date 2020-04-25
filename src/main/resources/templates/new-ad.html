@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/general.html :: headerfiles"></th:block>
+</head>
+<body class="body-img">
+    <nav th:insert="fragments/general.html :: navbar"> </nav>
+
+    <section class="container-fluid content">
+        <div class="row my-5 py-3">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 border border-secondary bg-white">
+
+                <div class="d-flex justify-content-between py-3">
+                    <h3>
+                        <i class="fas fa-trash-restore-alt"></i>
+                        <span th:text="#{new.ad.title}"></span>
+                    </h3>
+                </div>
+                <form method="POST" th:object="${newAd}">
+                    <hr>
+                    <div class="form-group">
+                        <label for="title"
+                               th:text="#{general.title}"></label>
+                        <input id="title"
+                               type="text"
+                               maxlength="50"
+                               class="form-control"
+                               th:classappend="${#fields.hasErrors('title')} ? is-invalid : ''"
+                               th:field="*{title}"
+                               autofocus="autofocus"
+                               required>
+                        <small class="form-text red"
+                               th:if="${#fields.hasErrors('title')}"
+                               th:errors="*{title}">
+                        </small>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="details"
+                               th:text="#{general.details}"></label>
+                        <textarea id="details"
+                                  class="form-control"
+                                  rows="3"
+                                  th:field="*{details}">
+                        </textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="city"
+                                   th:text="#{general.city}"></label>
+                            <input id="city"
+                                   type="text"
+                                   maxlength="50"
+                                   class="form-control"
+                                   th:classappend="${#fields.hasErrors('city') or #fields.hasErrors('global')} ? is-invalid : ''"
+                                   th:field="*{city}"
+                                   required>
+                            <small class="form-text red"
+                                   th:if="${#fields.hasErrors('city')}"
+                                   th:errors="*{city}"></small>
+                        </div>
+
+                        <div class="form-group col-md-6">
+                            <label for="street"
+                                   th:text="#{general.street}"></label>
+                            <input id="street"
+                                   type="text"
+                                   maxlength="50"
+                                   class="form-control"
+                                   th:classappend="${#fields.hasErrors('street') or #fields.hasErrors('global')} ? is-invalid : ''"
+                                   th:field="*{street}"
+                                   required>
+                            <small class="form-text red"
+                                   th:if="${#fields.hasErrors('street')}"
+                                   th:errors="*{street}">
+                            </small>
+                        </div>
+                    </div>
+
+                    <p class="alert alert-warning"
+                       th:if="${#fields.hasErrors('global')}"
+                       th:errors="*{global}"></p>
+
+                    <hr>
+                    <div class="d-flex justify-content-center py-3">
+                        <a class="btn btn-danger mx-2"
+                           role="button"
+                           th:href="@{/}"
+                           th:text="#{general.button.cancel}"></a>
+                        <button type="submit"
+                                class="btn btn-success mx-2"
+                                th:text="#{general.button.submit}"></button>
+                    </div>
+                </form>
+
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </section>
+
+    <footer th:insert="fragments/general.html :: footer"> </footer>
+
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script>
+    	displayUsername();
+</script>
+</body>
+</html>

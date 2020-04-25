@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <th:block th:include="fragments/general.html :: headerfiles"></th:block>
+</head>
+<body class="body-img">
+    <nav th:insert="fragments/general.html :: navbar"> </nav>
+
+    <section class="container-fluid content pt-5">
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-5 text-center border border-secondary bg-white">
+                <div th:each="ad : ${myads}">
+                    <div class="border bg-white my-2">
+                        <div class="p-2">
+                            <h3 th:text="${ad.title}"
+                                class="hover"
+                                th:onclick="'toggle(\'ad' + ${ad.id} + '\')'">
+                            </h3>
+                        </div>
+                        <div style="display: none;"
+                             th:id="'ad' + ${ad.id}"
+                             class="p-2">
+                            <div class="d-flex justify-content-center py-3">
+                                <button class="btn btn-danger mx-2"
+                                        th:text="#{general.button.delete}"
+                                        th:onclick="'toggle(\'ad' + ${ad.id} + '\')'"></button>
+                                <button class="btn btn-success mx-2"
+                                        th:text="#{general.button.edit}"></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-5"></div>
+            <div class="col-md-1"></div>
+        </div>
+    </section>
+
+    <footer th:insert="fragments/general.html :: footer"></footer>
+</body>
+</html>
