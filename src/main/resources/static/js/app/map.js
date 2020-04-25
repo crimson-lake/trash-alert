@@ -11,8 +11,8 @@ function showMap(y, x, zoom) {
 		L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
 	    	attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
 	    	maxZoom: 18,
-	    	id: 'mapbox/streets-v11',
-	    	accessToken: 'pk.eyJ1IjoiY3JpbXNvbi1sYWtlIiwiYSI6ImNrNXB4NG9naDAxYWgza3Awc3U4dGRhYWoifQ.aFqMq_YpgGn7KZC8KlLnew'
+	    	id: 'crimson-lake/ck8vwz7ur2qyj1jsy5g1w0bpj',
+	    	accessToken: 'pk.eyJ1IjoiY3JpbXNvbi1sYWtlIiwiYSI6ImNrNXB4MHl0eTBzMjUzbW5ydmkxOW9jNjMifQ.bytLrO4_qkCOQqMSSKEn_A'
 		}).addTo(mymap);
 
 		var chair = L.icon({

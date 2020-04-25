@@ -56,7 +56,7 @@ public class Ad {
                 inverseJoinColumns = @JoinColumn(name = "tag_id"))
     @Singular private Set<Tag> tags = new HashSet<>();
 
-    public String getFormattedDate() {
+    private String getFormattedDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
         return created.format(formatter);
     }
