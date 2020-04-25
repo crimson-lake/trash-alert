@@ -1,4 +1,4 @@
-package pl.zielinska.trashAlert.utils;
+package pl.zielinska.trashAlert.util;
 
 
 import java.util.HashMap;

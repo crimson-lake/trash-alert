@@ -1,4 +1,4 @@
-package pl.zielinska.trashAlert.config;
+package pl.zielinska.web.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

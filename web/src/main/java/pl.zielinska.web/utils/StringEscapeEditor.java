@@ -1,4 +1,4 @@
-package pl.zielinska.trashAlert.utils;
+package pl.zielinska.web.utils;
 
 
 import org.jsoup.Jsoup;
