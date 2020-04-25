@@ -1,10 +1,11 @@
-package pl.zielinska.trashAlert.controller;
+package pl.zielinska.web.controller;
 
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.InitBinder;
-import pl.zielinska.trashAlert.utils.StringEscapeEditor;
+import pl.zielinska.web.utils.StringEscapeEditor;
+
 
 @ControllerAdvice
 public class GlobalControllerAdvice {

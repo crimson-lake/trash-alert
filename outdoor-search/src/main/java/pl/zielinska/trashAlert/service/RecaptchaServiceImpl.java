@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import pl.zielinska.trashAlert.utils.RecaptchaUtil;
+import pl.zielinska.trashAlert.util.RecaptchaUtil;
 
 import java.util.HashMap;
 import java.util.List;

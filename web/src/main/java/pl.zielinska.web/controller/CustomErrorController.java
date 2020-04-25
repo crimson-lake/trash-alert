@@ -1,4 +1,4 @@
-package pl.zielinska.trashAlert.controller;
+package pl.zielinska.web.controller;
 
 import org.springframework.boot.web.servlet.error.ErrorController;
 import org.springframework.stereotype.Controller;
