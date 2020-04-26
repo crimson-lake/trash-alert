@@ -25,18 +25,33 @@
                     <img th:src="@{/visual/map.svg}" alt="Map icon"/>
                 </a>
                 <h3 th:text="#{mainpage.outdoor.search.title}"></h3>
+                <p th:text="#{mainpage.outdoor.search.text}"></p>
+                <a  class="d-block button-violet py-1 my-2"
+                    th:href="@{/outdoor-search}"
+                    th:text="#{mainpage.outdoor.search.button}">
+                </a>
             </div>
             <div class="col-md-4">
                 <a th:href="@{/outdoor-search}">
                     <img th:src="@{/visual/wallet.svg}" alt="Wallet icon"/>
                 </a>
                 <h3 th:text="#{mainpage.store.title}"></h3>
+                <p th:text="#{mainpage.store.text}"></p>
+                <a  class="d-block button-violet py-1 my-2"
+                    th:href="@{/outdoor-search}"
+                    th:text="#{mainpage.store.button}">
+                </a>
             </div>
             <div class="col-md-4">
                 <a th:href="@{/outdoor-search}">
                     <img th:src="@{/visual/armchair.svg}" alt="Armchair icon"/>
                 </a>
                 <h3 th:text="#{mainpage.articles.title}"></h3>
+                <p th:text="#{mainpage.articles.text}"></p>
+                <a class="d-block button-violet py-1 my-2"
+                   th:href="@{/outdoor-search}"
+                   th:text="#{mainpage.articles.button}">
+                </a>
             </div>
         </div>
     </section>
