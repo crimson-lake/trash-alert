@@ -91,7 +91,7 @@
                             class="form-control"
                             th:field="*{defaultCity}"
                             required>
-                        <option th:each="city : ${T(pl.zielinska.trashAlert.domain.City).values()}"
+                        <option th:each="city : ${T(pl.zielinska.outdoor.domain.City).values()}"
                                 th:value="${city}" th:text="#{${city.getName()}}"></option>
                     </select>
                 </div>
