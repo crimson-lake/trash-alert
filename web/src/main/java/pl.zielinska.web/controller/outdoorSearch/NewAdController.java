@@ -18,6 +18,7 @@ import pl.zielinska.outdoor.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.security.Principal;
 
 @Slf4j
 @Controller
@@ -35,6 +36,10 @@ public class NewAdController {
 
     @GetMapping("/outdoor-search/new-ad")
     public String newAd(Model model, HttpServletRequest request) {
+        Principal principal = request.getUserPrincipal();
+        if (principal == null) {
+            return "login";
+        }
         model.addAttribute("newAd", new AdDto());
         model.addAttribute("username", request.getUserPrincipal().getName());
         return "new-ad";

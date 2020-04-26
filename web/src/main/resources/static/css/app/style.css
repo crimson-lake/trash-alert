@@ -4,19 +4,51 @@
 	width: auto;
 }
 
+
+body
+{
+    word-wrap: break-word;
+}
+
 p
 {
     font-size: 0.9em;
 }
 
-h3
+.jumbotron
 {
-    font-weight: normal;
+    background-color: #fad3cc;
+    font-family: 'Poppins', sans-serif;
 }
 
-body
+.jumbotron h1
 {
-    word-wrap: break-word;
+    font-weight: 900;
+}
+
+.jumbotron p
+{
+    color: #5c5c5c;
+}
+
+.jumbotron .btn-primary
+{
+    background-color: #0a727e;
+    border-color: #0a727e;
+    font-weight: 500;
+}
+
+#main-page-choices img
+{
+    height: 250px;
+    width: auto;
+    margin-bottom: 15px;
+}
+
+h3
+{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
 }
 
 .body-img
@@ -71,5 +103,12 @@ body
 {
     background: #00a393;
     color: #ffffff;
+    font-size: 1.5em;
+}
+
+.navbar-brand
+{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 900;
     font-size: 1.5em;
 }
