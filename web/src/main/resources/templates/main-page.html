@@ -5,6 +5,41 @@
     <th:block th:include="fragments/general.html :: headerfiles"></th:block>
 </head>
 <body>
-    <h1>HELLO</h1>
+    <nav th:insert="fragments/general.html :: navbar"></nav>
+    <section id="main-page-jumbotron" class="container">
+        <div class="jumbotron text-center">
+            <h1 class="display-4 pt-4"
+                th:text="#{mainpage.jumbotron.title}"></h1>
+            <p class="lead"
+               th:text="#{mainpage.jumbotron.subtitle}"></p>
+            <a class="btn btn-primary btn-lg"
+               href="#main-page-choices"
+               role="button"
+               th:text="#{mainpage.jumbotron.button}"></a>
+        </div>
+    </section>
+    <section id="main-page-choices" class="container">
+        <div class="row text-center">
+            <div class="col-md-4">
+                <a th:href="@{/outdoor-search}">
+                    <img th:src="@{/visual/map.svg}" alt="Map icon"/>
+                </a>
+                <h3 th:text="#{mainpage.outdoor.search.title}"></h3>
+            </div>
+            <div class="col-md-4">
+                <a th:href="@{/outdoor-search}">
+                    <img th:src="@{/visual/wallet.svg}" alt="Wallet icon"/>
+                </a>
+                <h3 th:text="#{mainpage.store.title}"></h3>
+            </div>
+            <div class="col-md-4">
+                <a th:href="@{/outdoor-search}">
+                    <img th:src="@{/visual/armchair.svg}" alt="Armchair icon"/>
+                </a>
+                <h3 th:text="#{mainpage.articles.title}"></h3>
+            </div>
+        </div>
+    </section>
+    <footer th:insert="fragments/general.html :: footer"> </footer>
 </body>
 </html>
