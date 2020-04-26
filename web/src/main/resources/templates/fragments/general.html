@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin=""/>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/app/style.css">
+    <link rel="stylesheet" th:href="@{/css/app/style.css}">
     <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew==" crossorigin=""></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="js/app/map.js"></script>
+    <script th:src="@{/js/app/map.js}"></script>
 </head>
 <body>
 
@@ -37,12 +37,12 @@
 
                 <div class="dropdown-menu">
                     <a class="dropdown-item hover"
-                       th:href="@{/new-ad}">
+                       th:href="@{/outdoor-search/new-ad}">
                         <i class="fas fa-plus red"> </i>
                         <span th:text="#{navbar.new.ad}"></span>
                     </a>
                     <a class="dropdown-item hover"
-                       th:href="@{/my-ads}">
+                       th:href="@{/outdoor-search/my-ads}">
                         <i class="fas fa-couch red"></i>
                         <span th:text="#{navbar.my.ads}"></span>
                     </a>

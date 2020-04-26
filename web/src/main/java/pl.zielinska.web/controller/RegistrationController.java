@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import pl.zielinska.trashAlert.dto.UserDto;
-import pl.zielinska.trashAlert.service.RecaptchaService;
-import pl.zielinska.trashAlert.service.UserService;
+import pl.zielinska.outdoor.dto.UserDto;
+import pl.zielinska.outdoor.service.RecaptchaService;
+import pl.zielinska.outdoor.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;

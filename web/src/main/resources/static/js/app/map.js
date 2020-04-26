@@ -32,7 +32,7 @@ function showMap(y, x, zoom) {
 			     });
 		}
 
-		$.get("/trash-resque/api/ads/geoinfo", function(data) {
+		$.get("/type190-200/api/ads/geoinfo", function(data) {
 			L.geoJSON(data, {
 				pointToLayer: function (feature, latlng) {
                     markers.set(feature.properties.id, latlng);
@@ -54,7 +54,7 @@ function firePopup(id) {
 };
 
 function display(id, elementId) {
-    $.get("/trash-resque/api/ads/" + id, function(data){
+    $.get("/type190-200/api/ads/" + id, function(data){
         var adHTML = "<h3 class=\"hover\">" + data.title + "</h3>";
         adHTML += "<hr>"
         adHTML += "<p class=\"px-2 d-flex justify-content-end\">created: " + data.created + " </p>";
@@ -64,8 +64,8 @@ function display(id, elementId) {
 };
 
 function displayUsersAds() {
-    $.get("/trash-resque/info/username", function(username) {
-        $.get("/trash-resque/api/users/" + username + "/ads", function(data) {
+    $.get("/type190-200/info/username", function(username) {
+        $.get("/type190-200/api/users/" + username + "/ads", function(data) {
             var adsHTML = "";
             for (i=0; i<data.length; i++) {
                 adsHTML += "<div id=\"board" + i + "\">"
