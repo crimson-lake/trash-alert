@@ -1,6 +1,6 @@
 #mapid 
 { 
-	height: 600px;
+	height: 560px;
 	width: auto;
 }
 
@@ -8,6 +8,7 @@
 body
 {
     word-wrap: break-word;
+    font-family: 'Poppins', sans-serif;
 }
 
 p
@@ -15,10 +16,14 @@ p
     font-size: 0.9em;
 }
 
+.content-map-page
+{
+    margin-top: 92px;
+}
+
 .jumbotron
 {
     background-color: #fad3cc;
-    font-family: 'Poppins', sans-serif;
 }
 
 .jumbotron h1
@@ -47,7 +52,6 @@ p
 
 #main-page-choices p
 {
-    font-family: 'Poppins', sans-serif;
     font-weight: 500;
     font-size: 1.5em;
     color: #5c5c5c;
@@ -57,7 +61,6 @@ p
 .button-violet
 {
     background-color: #8a0967;
-    font-family: 'Poppins', sans-serif;
     font-weight: 500;
     color: white;
     font-size: 1.2em;
@@ -75,7 +78,6 @@ p
 
 #main-page-choices h3
 {
-    font-family: 'Poppins', sans-serif;
     font-weight: 800;
 }
 
@@ -129,22 +131,57 @@ p
 .popup .leaflet-popup-tip,
 .popup .leaflet-popup-content-wrapper
 {
-    background: #00a393;
+    background: #0a727e;
     color: #ffffff;
     font-size: 1.5em;
 }
 
 .navbar-brand
 {
-    font-family: 'Poppins', sans-serif;
     font-weight: 900;
     font-size: 1.5em;
 }
 
 .nav-link
 {
-    font-family: 'Poppins', sans-serif;
     font-weight: 900;
     font-size: 1.2em;
     color: #8a0967;
+}
+
+#location-menu button
+{
+    font-weight: 800;
+    color: white;
+}
+
+#location-menu button:hover
+{
+    cursor: pointer;
+}
+
+#location-menu button:nth-of-type(2n)
+{
+    background-color: #fad3cc;
+    border: 2px solid #fad3cc;
+}
+
+#location-menu button:nth-of-type(2n):hover
+{
+    background-color: white;
+    color: #fad3cc;
+
+}
+
+#location-menu button:nth-of-type(2n+1)
+{
+    background-color: #d43a3a;
+    border: 2px solid #d43a3a;
+}
+
+#location-menu button:nth-of-type(2n+1):hover
+{
+    background-color: white;
+    color: #d43a3a;
+
 }

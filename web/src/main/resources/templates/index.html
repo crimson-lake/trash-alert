@@ -5,24 +5,28 @@
 	<head>
 		<th:block th:include="fragments/general.html :: headerfiles"></th:block>
 	</head>
-	<body class="body-img">
+	<body>
 
 	<nav th:insert="fragments/general.html :: navbar"> </nav>
 
-	<section class="container content pt-5">
+	<section class="container fixed-top pt-5">
+		<div id="location-menu" class="btn-group d-flex justify-content-end">
+			<button class="py-2 px-4 m-0">HOME</button>
+			<button class="py-2 px-4 m-0">WORK</button>
+		</div>
+	</section>
+
+	<section class="container content-map-page">
 		<div class="row">
-			<div class="col-md-7">
-				<div id="mapid"></div>
-			</div>
 			<div class="col-md-5 p-2 text-center justify-content-center"
 				 id="board">
                 <div th:each="ad : ${ads}">
                     <div class="border bg-white my-2">
 						<div class="p-2">
-							<h3 th:text="${ad.title}"
+							<h4 th:text="${ad.title}"
 								class="hover"
 								th:onclick="'firePopup(\'' + ${ad.id} + '\'); toggle(\'ad' + ${ad.id} + '\');'">
-							</h3>
+							</h4>
 						</div>
                         <div style="display: none;"
                              th:id="'ad' + ${ad.id}"
@@ -42,6 +46,9 @@
                         </div>
                     </div>
                 </div>
+			</div>
+			<div class="col-md-7">
+				<div id="mapid"></div>
 			</div>
 		</div>
 	</section>
