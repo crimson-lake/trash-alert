@@ -4,6 +4,12 @@
 	width: auto;
 }
 
+#board
+{
+    height: 560px;
+    width: auto;
+    overflow: auto;
+}
 
 body
 {
@@ -61,17 +67,26 @@ p
 .button-violet
 {
     background-color: #8a0967;
+    border: 2px solid #8a0967;
     font-weight: 500;
     color: white;
     font-size: 1.2em;
 
 }
 
+.btn-violet-outline
+{
+    background-color: white;
+    border: 2px solid #8a0967;
+    font-weight: 500;
+    text-decoration: none;
+    color: #8a0967;
+}
+
 .button-violet:hover
 {
     background-color: white;
     font-weight: 500;
-    border: 2px solid #8a0967;
     text-decoration: none;
     color: #8a0967;
 }
@@ -84,13 +99,6 @@ p
 .body-img
 {
     background-color: #fffafa;
-}
-
-#board
-{
-    height: 600px;
-    width: auto;
-    overflow: auto;
 }
 
 .red
@@ -162,15 +170,14 @@ p
 
 #location-menu button:nth-of-type(2n)
 {
-    background-color: #fad3cc;
-    border: 2px solid #fad3cc;
+    background-color: #9D6E72;
+    border: 2px solid #9D6E72;
 }
 
 #location-menu button:nth-of-type(2n):hover
 {
-    background-color: white;
-    color: #fad3cc;
-
+    color: #9D6E72;
+    background-color: transparent;
 }
 
 #location-menu button:nth-of-type(2n+1)
@@ -181,7 +188,14 @@ p
 
 #location-menu button:nth-of-type(2n+1):hover
 {
-    background-color: white;
     color: #d43a3a;
+    background-color: transparent;
 
+}
+
+.add
+{
+    background-color: #fffafa;
+    border: 1px solid #5c5c5c;
+    color: #5c5c5c;
 }
