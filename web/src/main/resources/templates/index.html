@@ -9,10 +9,10 @@
 
 	<nav th:insert="fragments/general.html :: navbar"> </nav>
 
-	<section class="container fixed-top pt-5">
-		<div id="location-menu" class="btn-group d-flex justify-content-end">
-			<button class="py-2 px-4 m-0">HOME</button>
-			<button class="py-2 px-4 m-0">WORK</button>
+	<section class="container fixed-top mt-5">
+		<div id="location-menu" role="group" class="btn-group d-flex justify-content-end">
+			<button type="button" class="py-2 px-4 m-0">HOME</button>
+			<button type="button" class="py-2 px-4 m-0">WORK</button>
 		</div>
 	</section>
 
@@ -20,13 +20,29 @@
 		<div class="row">
 			<div class="col-md-5 p-2 text-center justify-content-center"
 				 id="board">
+				<div class="d-flex justify-content-start">
+					<div class="dropdown">
+						<button class="btn-violet-outline dropdown-toggle py-2 px-4 m-0"
+								type="button"
+								data-toggle="dropdown"
+								aria-haspopup="true"
+								aria-expanded="false"
+								th:text="#{general.sort}">
+						</button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<button class="dropdown-item">Action</button>
+							<button class="dropdown-item">Another action</button>
+							<button class="dropdown-item">Something else here</button>
+						</div>
+					</div>
+				</div>
                 <div th:each="ad : ${ads}">
-                    <div class="border bg-white my-2">
+                    <div class="add my-2">
 						<div class="p-2">
-							<h4 th:text="${ad.title}"
+							<h5 th:text="${ad.title}"
 								class="hover"
 								th:onclick="'firePopup(\'' + ${ad.id} + '\'); toggle(\'ad' + ${ad.id} + '\');'">
-							</h4>
+							</h5>
 						</div>
                         <div style="display: none;"
                              th:id="'ad' + ${ad.id}"
