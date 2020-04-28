@@ -6,6 +6,7 @@ import pl.zielinska.outdoor.dto.AdDto;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
@@ -56,6 +57,11 @@ public class Ad {
                 inverseJoinColumns = @JoinColumn(name = "tag_id"))
     @Singular private Set<Tag> tags = new HashSet<>();
 
+    @NotNull
+    @OneToOne(  fetch = FetchType.LAZY,
+                cascade = CascadeType.ALL)
+    private Coordinates coordinates;
+
     private String getFormattedDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
         return created.format(formatter);
@@ -66,6 +72,10 @@ public class Ad {
         if (!theUser.getAds().contains(this)) {
             theUser.addNewAd(this);
         }
+    }
+
+    public void setCoordinates() {
+
     }
 
     public AdDto toDto() {
