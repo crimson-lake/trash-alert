@@ -18,7 +18,7 @@ public class GeoJSONCollection {
     @JsonProperty("features")
     private List<GeoJSON> features = new ArrayList<>();
 
-    public void addFeature(Ad ad) throws JsonProcessingException {
+    public void addFeature(Ad ad) {
         features.add(new GeoJSON(ad));
     }
 }
