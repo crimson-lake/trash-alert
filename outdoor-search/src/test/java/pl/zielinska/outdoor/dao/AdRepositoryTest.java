@@ -9,6 +9,7 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.zielinska.outdoor.TestVal;
 import pl.zielinska.outdoor.domain.Ad;
+import pl.zielinska.outdoor.domain.Coordinates;
 import pl.zielinska.outdoor.domain.User;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -72,5 +73,25 @@ public class AdRepositoryTest {
         entityManager.remove(user);
         assertNull(userRepository.findByUsername(TestVal.TEST_USERNAME));
         assertEquals(0, adRepository.findByAdAuthor(user).size());
+    }
+
+    @Test
+    public void coordinatesPersistingTest() {
+        entityManager.persistAndFlush(testUser);
+        Coordinates xy = new Coordinates(0, TestVal.TEST_COORDINATES_X, TestVal.TEST_COORDINATES_Y);
+        Ad ad = Ad.builder()
+                .title(TestVal.TEST_TITLE)
+                .city(TestVal.TEST_CITY)
+                .street(TestVal.TEST_STREET)
+                .created(TestVal.TEST_TIME)
+                .adAuthor(testUser)
+                .coordinates(xy)
+                .build();
+        assertNotNull(ad.getCoordinates());
+        entityManager.persistAndFlush(ad);
+
+        Ad persistedAd = adRepository.findAll().get(0);
+        assertNotNull(persistedAd);
+        assertNotNull(persistedAd.getCoordinates());
     }
 }

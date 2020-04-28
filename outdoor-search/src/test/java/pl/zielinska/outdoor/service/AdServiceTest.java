@@ -1,5 +1,6 @@
 package pl.zielinska.outdoor.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -115,13 +116,13 @@ public class AdServiceTest {
     }
 
     @Test
-    public void publishNewAd() {
+    public void publishNewAd() throws JsonProcessingException {
         AdDto adDto = spy(testAd.toDto());
         adService.publishNewAd(adDto, testUser);
         Mockito.verify(adDto, times(1)).getTitle();
-        Mockito.verify(adDto, times(1)).getCity();
+        Mockito.verify(adDto, times(2)).getCity();
         Mockito.verify(adDto, times(1)).getDetails();
-        Mockito.verify(adDto, times(1)).getStreet();
+        Mockito.verify(adDto, times(2)).getStreet();
         Mockito.verify(adRepository, times(1)).save(any());
     }
 }
