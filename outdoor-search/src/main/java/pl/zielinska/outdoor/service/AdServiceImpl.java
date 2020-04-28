@@ -1,13 +1,16 @@
 package pl.zielinska.outdoor.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.zielinska.outdoor.dao.AdRepository;
 import pl.zielinska.outdoor.domain.Ad;
+import pl.zielinska.outdoor.domain.Coordinates;
 import pl.zielinska.outdoor.domain.User;
 import pl.zielinska.outdoor.dto.AdDto;
+import pl.zielinska.outdoor.util.CoordinatesUtil;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -45,7 +48,9 @@ public class AdServiceImpl implements AdService{
     }
 
     @Override
-    public Ad publishNewAd(AdDto adDto, User user) {
+    public Ad publishNewAd(AdDto adDto, User user) throws JsonProcessingException {
+        final Coordinates xy = CoordinatesUtil.translateAdressToCoordinates(adDto.getCity(), adDto.getStreet());
+
         Ad newAd = Ad.builder()
                         .title(adDto.getTitle())
                         .details(adDto.getDetails())
@@ -53,6 +58,7 @@ public class AdServiceImpl implements AdService{
                         .street(adDto.getStreet())
                         .created(LocalDateTime.now())
                         .adAuthor(user)
+                        .coordinates(xy)
                         .build();
         return adRepository.save(newAd);
     }

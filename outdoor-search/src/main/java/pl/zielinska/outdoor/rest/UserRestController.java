@@ -1,5 +1,6 @@
 package pl.zielinska.outdoor.rest;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,7 +57,7 @@ public class UserRestController {
     }
 
     @PostMapping(path = "/{username}/ad-new")
-    public Ad addNewAd(@RequestBody AdDto adDto, @PathVariable("username") String username) {
+    public Ad addNewAd(@RequestBody AdDto adDto, @PathVariable("username") String username) throws JsonProcessingException {
         User theUser = userService.findByUsername(username);
         Ad theAd = adService.publishNewAd(adDto, theUser);
 

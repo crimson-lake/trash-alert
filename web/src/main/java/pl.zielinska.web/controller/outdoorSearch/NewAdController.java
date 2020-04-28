@@ -1,5 +1,6 @@
 package pl.zielinska.web.controller.outdoorSearch;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -46,7 +47,7 @@ public class NewAdController {
     }
 
     @PostMapping("/outdoor-search/new-ad")
-    public String newAd(@Valid @ModelAttribute("newAd") AdDto adDto, BindingResult bindingResult, HttpServletRequest request) {
+    public String newAd(@Valid @ModelAttribute("newAd") AdDto adDto, BindingResult bindingResult, HttpServletRequest request) throws JsonProcessingException {
         if (bindingResult.hasErrors()) {
             log.debug("New ad form has errors");
             return "new-ad";
