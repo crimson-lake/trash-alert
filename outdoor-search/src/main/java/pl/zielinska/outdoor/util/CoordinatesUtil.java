@@ -3,6 +3,7 @@ package pl.zielinska.outdoor.util;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -11,6 +12,7 @@ import pl.zielinska.outdoor.domain.Coordinates;
 import java.net.URI;
 import java.nio.charset.Charset;
 
+@Slf4j
 public class CoordinatesUtil {
 
     public static ResponseEntity<String> getResponseFor(String city, String street) {
@@ -30,6 +32,7 @@ public class CoordinatesUtil {
 
     public static Coordinates translateAdressToCoordinates(String city, String street) throws JsonProcessingException {
         ResponseEntity<String> response = CoordinatesUtil.getResponseFor(city, street);
+        log.debug("Translate adress to coordinates for {}, {}", city, street);
 
         ObjectMapper mapper = new ObjectMapper();
 

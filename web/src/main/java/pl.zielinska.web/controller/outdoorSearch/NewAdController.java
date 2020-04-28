@@ -9,7 +9,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import pl.zielinska.outdoor.domain.Ad;
 import pl.zielinska.outdoor.domain.User;
 import pl.zielinska.outdoor.dto.AdDto;
@@ -58,7 +57,6 @@ public class NewAdController {
         User theUser = userService.findByUsername(activeUser);
         Ad theAd = adService.publishNewAd(adDto, theUser);
         userService.bindAdWithUser(theUser, theAd);
-        geoService.adNewCoordinates(theAd);
 
         return "redirect:/";
     }

@@ -62,7 +62,6 @@ public class UserRestController {
         Ad theAd = adService.publishNewAd(adDto, theUser);
 
         userService.bindAdWithUser(theUser, theAd);
-        geoService.adNewCoordinates(theAd);
         return theAd;
     }
 
