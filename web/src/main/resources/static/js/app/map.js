@@ -82,11 +82,11 @@ function toggle(elementId) {
   if (x.style.display === "none") {
     toggleAll();
     x.style.display = "block";
-    x.parentElement.classList.add("active-add");
+    x.parentElement.classList.add("active-ad");
     x.parentElement.scrollIntoViewIfNeeded();
   } else {
     x.style.display = "none";
-    x.parentElement.classList.remove("active-add");
+    x.parentElement.classList.remove("active-ad");
     mymap.closePopup();
     mymap.flyTo(defaultView, defaultZoom);
   }
@@ -96,6 +96,6 @@ function toggleAll() {
     var divs = document.getElementsByClassName("toggleable");
     for (i = 0; i < divs.length; i++) {
       divs[i].style.display = "none";
-      divs[i].parentElement.classList.remove("active-add");
+      divs[i].parentElement.classList.remove("active-ad");
     }
 };
