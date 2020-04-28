@@ -1,12 +1,13 @@
 package pl.zielinska.outdoor.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.*;
 import pl.zielinska.outdoor.dto.AdDto;
+import pl.zielinska.outdoor.util.CoordinatesUtil;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashSet;
@@ -57,9 +58,9 @@ public class Ad {
                 inverseJoinColumns = @JoinColumn(name = "tag_id"))
     @Singular private Set<Tag> tags = new HashSet<>();
 
-    @NotNull
-    @OneToOne(  fetch = FetchType.LAZY,
+    @OneToOne(  fetch = FetchType.EAGER,
                 cascade = CascadeType.ALL)
+    @JoinColumn(name="coordinates_id")
     private Coordinates coordinates;
 
     private String getFormattedDate() {
@@ -67,15 +68,22 @@ public class Ad {
         return created.format(formatter);
     }
 
+    public Coordinates getCoordinates() {
+        if (coordinates == null) {
+            try {
+                coordinates = CoordinatesUtil.translateAdressToCoordinates(city, street);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+        }
+        return coordinates;
+    }
+
     public void setAdAuthor(User theUser) {
         this.adAuthor = theUser;
         if (!theUser.getAds().contains(this)) {
             theUser.addNewAd(this);
         }
-    }
-
-    public void setCoordinates() {
-
     }
 
     public AdDto toDto() {
@@ -88,5 +96,4 @@ public class Ad {
                 .created(getFormattedDate())
                 .build();
     }
-
 }
