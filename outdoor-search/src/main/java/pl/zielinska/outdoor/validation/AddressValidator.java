@@ -6,6 +6,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.ResponseEntity;
 import pl.zielinska.outdoor.domain.geoJSON.GeoJSON;
 import pl.zielinska.outdoor.dto.AdDto;
+import pl.zielinska.outdoor.util.CoordinatesUtil;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -17,7 +18,7 @@ public class AddressValidator implements ConstraintValidator<Address, AdDto> {
 
     @Override
     public boolean isValid(AdDto ad, ConstraintValidatorContext constraintValidatorContext) {
-        ResponseEntity<String> response = GeoJSON.getResponseFor(ad.getCity(), ad.getStreet());
+        ResponseEntity<String> response = CoordinatesUtil.getResponseFor(ad.getCity(), ad.getStreet());
         if (response.hasBody()) {
             try {
                 JsonNode features = new ObjectMapper()

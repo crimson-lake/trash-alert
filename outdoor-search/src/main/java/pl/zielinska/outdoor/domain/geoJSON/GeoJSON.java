@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import pl.zielinska.outdoor.domain.Ad;
+import pl.zielinska.outdoor.util.CoordinatesUtil;
 
 import java.net.URI;
 import java.nio.charset.Charset;
@@ -35,7 +36,7 @@ public class GeoJSON {
         this.properties.put("id", "" + ad.getId());
         this.properties.put("address", ad.getStreet() + ", " + ad.getCity());
 
-        ResponseEntity<String> response = getResponseFor(ad.getCity(), ad.getStreet());
+        ResponseEntity<String> response = CoordinatesUtil.getResponseFor(ad.getCity(), ad.getStreet());
 
         ObjectMapper mapper = new ObjectMapper();
         JsonNode geometryNode = mapper
@@ -46,21 +47,6 @@ public class GeoJSON {
         geometry = mapper.treeToValue(geometryNode, Geometry.class);
 
         log.info(geometry.toString());
-    }
-
-    public static ResponseEntity<String> getResponseFor(String city, String street) {
-        RestTemplate restTemplate = new RestTemplate();
-        URI targetUrl = UriComponentsBuilder.fromUriString("https://nominatim.openstreetmap.org")
-                .path("search")
-                .queryParam("q", city + "+" + street)
-                .queryParam("format", "geojson")
-                .encode(Charset.forName("UTF8"))
-                .build()
-                .toUri();
-
-        return restTemplate.getForEntity(
-                targetUrl,
-                String.class);
     }
 
 }
