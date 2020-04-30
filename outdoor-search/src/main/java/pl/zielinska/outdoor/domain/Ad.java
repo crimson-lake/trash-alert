@@ -58,7 +58,7 @@ public class Ad {
                 inverseJoinColumns = @JoinColumn(name = "tag_id"))
     @Singular private Set<Tag> tags = new HashSet<>();
 
-    @OneToOne(  fetch = FetchType.EAGER,
+    @OneToOne(  fetch = FetchType.LAZY,
                 cascade = CascadeType.ALL)
     @JoinColumn(name="coordinates_id")
     private Coordinates coordinates;

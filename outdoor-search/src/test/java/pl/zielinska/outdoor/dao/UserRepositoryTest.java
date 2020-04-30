@@ -37,7 +37,7 @@ public class UserRepositoryTest {
 	@Test
 	public void findByUsernameTest() {
 		entityManager.persistAndFlush(testUser);
-		User user = userRepository.findByUsername(TestVal.TEST_USERNAME);
+		User user = userRepository.findByUsername(TestVal.TEST_USERNAME).get();
 
 		assertNotNull(user);
 		assertEquals(TestVal.TEST_USERNAME, user.getUsername());
