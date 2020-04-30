@@ -6,6 +6,7 @@ import pl.zielinska.outdoor.dto.AdDto;
 import pl.zielinska.outdoor.dto.UserDto;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 
 public interface UserService {

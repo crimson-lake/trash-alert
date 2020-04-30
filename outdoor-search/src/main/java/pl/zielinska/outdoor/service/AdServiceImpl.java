@@ -10,6 +10,7 @@ import pl.zielinska.outdoor.domain.Ad;
 import pl.zielinska.outdoor.domain.Coordinates;
 import pl.zielinska.outdoor.domain.User;
 import pl.zielinska.outdoor.dto.AdDto;
+import pl.zielinska.outdoor.exception.NotFoundException;
 import pl.zielinska.outdoor.util.CoordinatesUtil;
 
 import java.time.LocalDateTime;
@@ -38,8 +39,10 @@ public class AdServiceImpl implements AdService{
     }
 
     @Override
-    public Ad findById(int id) { //TODO Optional
-        return adRepository.findById(id).get();
+    public Ad findById(int id) {
+        return adRepository
+                .findById(id)
+                .orElseThrow(() -> new NotFoundException("Ad not found."));
     }
 
     @Override

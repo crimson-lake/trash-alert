@@ -12,6 +12,8 @@ import pl.zielinska.outdoor.domain.Ad;
 import pl.zielinska.outdoor.domain.Coordinates;
 import pl.zielinska.outdoor.domain.User;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @Slf4j
@@ -60,19 +62,19 @@ public class AdRepositoryTest {
 
     @Test
     public void findByAdAuthorTest() {
-        User user = userRepository.findByUsername(TestVal.TEST_USERNAME);
-        assertNotNull(adRepository.findByAdAuthor(user));
+        Optional<User> user = userRepository.findByUsername(TestVal.TEST_USERNAME);
+        assertNotNull(adRepository.findByAdAuthor(user.get()));
     }
 
     @Test
     public void deleteUserWithAdTest() {
         entityManager.persistAndFlush(testUser);
-        User user = userRepository.findByUsername(TestVal.TEST_USERNAME);
+        Optional<User> user = userRepository.findByUsername(TestVal.TEST_USERNAME);
         assertNotNull(user);
 
         entityManager.remove(user);
         assertNull(userRepository.findByUsername(TestVal.TEST_USERNAME));
-        assertEquals(0, adRepository.findByAdAuthor(user).size());
+        assertEquals(0, adRepository.findByAdAuthor(user.get()).size());
     }
 
     @Test

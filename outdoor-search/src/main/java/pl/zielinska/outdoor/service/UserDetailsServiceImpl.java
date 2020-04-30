@@ -14,11 +14,11 @@ import pl.zielinska.outdoor.domain.User;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
-    private UserRepository userRepository;
+    private UserService userService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findByUsername(username);
+        User user = userService.findByUsername(username);
         log.info("Loading user by username");
         if (user != null) {
             return user;

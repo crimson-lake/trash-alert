@@ -17,10 +17,7 @@ import pl.zielinska.outdoor.domain.User;
 import pl.zielinska.outdoor.dto.AdDto;
 import pl.zielinska.outdoor.dto.UserDto;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -93,7 +90,7 @@ public class UserServiceTest {
     @Test
     public void findByUsernameTest() {
         Mockito.when(userRepository.findByUsername(TestVal.TEST_USERNAME))
-                .thenReturn(testUser);
+                .thenReturn(Optional.of(testUser));
         assertEquals(testUser, userService.findByUsername(TestVal.TEST_USERNAME));
         Mockito.verify(userRepository, times(1)).findByUsername(TestVal.TEST_USERNAME);
     }
@@ -107,7 +104,7 @@ public class UserServiceTest {
     @Test
     public void findByEmailTest() {
         Mockito.when(userRepository.findByEmail(TestVal.TEST_EMAIL))
-                .thenReturn(testUser);
+                .thenReturn(Optional.of(testUser));
         assertEquals(testUser, userService.findByEmail(TestVal.TEST_EMAIL));
         Mockito.verify(userRepository, times(1)).findByEmail(TestVal.TEST_EMAIL);
     }
@@ -136,7 +133,7 @@ public class UserServiceTest {
         adSet.add(testAd);
 
         Mockito.when(userRepository.findByUsername(TestVal.TEST_USERNAME))
-                .thenReturn(testUser);
+                .thenReturn(Optional.of(testUser));
         Mockito.when(testUser.getAds())
                 .thenReturn(adSet);
         Mockito.when(testAd.toDto())

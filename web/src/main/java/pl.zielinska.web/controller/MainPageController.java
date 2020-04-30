@@ -20,8 +20,7 @@ public class MainPageController {
     public String mainPage(Model model, HttpServletRequest request) {
         final Principal principal = request.getUserPrincipal();
         if (principal != null) {
-            final User activeUser = userService.findByUsername(principal.getName());
-            model.addAttribute("username", activeUser.getUsername());
+            model.addAttribute("username", principal.getName());
         }
         return "main-page";
     }

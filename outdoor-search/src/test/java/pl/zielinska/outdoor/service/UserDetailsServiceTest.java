@@ -14,6 +14,8 @@ import pl.zielinska.outdoor.TestVal;
 import pl.zielinska.outdoor.dao.UserRepository;
 import pl.zielinska.outdoor.domain.User;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
@@ -33,7 +35,7 @@ public class UserDetailsServiceTest {
     private UserDetailsService userDetailsService;
 
     @MockBean
-    private UserRepository userRepository;
+    private UserService userService;
 
     private User testUser = User.builder()
             .username(TestVal.TEST_USERNAME)
@@ -47,14 +49,14 @@ public class UserDetailsServiceTest {
 
     @Test
     public void loadUserByUsernameTest() {
-        Mockito.when(userRepository.findByUsername(TestVal.TEST_USERNAME))
+        Mockito.when(userService.findByUsername(TestVal.TEST_USERNAME))
                 .thenReturn(testUser);
         assertEquals(testUser, userDetailsService.loadUserByUsername(TestVal.TEST_USERNAME));
     }
 
     @Test(expected = UsernameNotFoundException.class)
     public void loadUserByUsernameExceptionTest() {
-        Mockito.when(userRepository.findByUsername(TestVal.TEST_USERNAME))
+        Mockito.when(userService.findByUsername(TestVal.TEST_USERNAME))
                 .thenReturn(null);
         assertEquals(testUser, userDetailsService.loadUserByUsername(TestVal.TEST_USERNAME));
     }

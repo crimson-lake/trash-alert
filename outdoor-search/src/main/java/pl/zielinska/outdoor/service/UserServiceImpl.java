@@ -11,8 +11,10 @@ import pl.zielinska.outdoor.domain.Ad;
 import pl.zielinska.outdoor.domain.User;
 import pl.zielinska.outdoor.dto.AdDto;
 import pl.zielinska.outdoor.dto.UserDto;
+import pl.zielinska.outdoor.exception.NotFoundException;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -34,12 +36,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+        return userRepository
+                .findByUsername(username)
+                .orElseThrow(() -> new NotFoundException("User not found."));
     }
 
     @Override
     public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
+        return userRepository
+                .findByEmail(email)
+                .orElseThrow(() -> new NotFoundException("User not found."));
     }
 
     @Override
@@ -55,7 +61,9 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Set<AdDto> usersAdsDto(String username) {
-        User user = userRepository.findByUsername(username);
+        User user = userRepository
+                        .findByUsername(username)
+                        .orElseThrow(() -> new NotFoundException("User not found."));
         return user
                 .getAds()
                 .stream()
@@ -80,18 +88,18 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public boolean usernameAvailable(String name) {
-        if (findByUsername(name) == null) {
-            return true;
+        if (userRepository.findByUsername(name).isPresent()) {
+            return false;
         }
-        return false;
+        return true;
     }
 
     @Override
     public boolean emailAvailable(String email) {
-        if (findByEmail(email) == null) {
-            return true;
+        if (userRepository.findByEmail(email).isPresent()) {
+            return false;
         }
-        return false;
+        return true;
     }
 
 
