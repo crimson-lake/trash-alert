@@ -42,8 +42,7 @@ public class AdRepositoryTest {
 
     @Test
     public void createAdTest() {
-        entityManager.persist(testUser);
-        entityManager.flush();
+        entityManager.persistAndFlush(testUser);
 
         Ad ad = Ad.builder()
                 .title(TestVal.TEST_TITLE)
@@ -51,19 +50,20 @@ public class AdRepositoryTest {
                 .street(TestVal.TEST_STREET)
                 .created(TestVal.TEST_TIME)
                 .adAuthor(testUser)
+                .coordinates(TestVal.TEST_COORDINATES)
                 .build();
 
         assertNotNull(ad.getAdAuthor());
         assertEquals(testUser, ad.getAdAuthor());
 
-        entityManager.persist(ad);
-        entityManager.flush();
+        entityManager.persistAndFlush(ad);
     }
 
     @Test
     public void findByAdAuthorTest() {
-        Optional<User> user = userRepository.findByUsername(TestVal.TEST_USERNAME);
-        assertNotNull(adRepository.findByAdAuthor(user.get()));
+        entityManager.persistAndFlush(testUser);
+        User user = userRepository.findByUsername(TestVal.TEST_USERNAME).get();
+        assertNotNull(adRepository.findByAdAuthor(user));
     }
 
     @Test
@@ -72,8 +72,8 @@ public class AdRepositoryTest {
         Optional<User> user = userRepository.findByUsername(TestVal.TEST_USERNAME);
         assertNotNull(user);
 
-        entityManager.remove(user);
-        assertNull(userRepository.findByUsername(TestVal.TEST_USERNAME));
+        entityManager.remove(user.get());
+        assertFalse(userRepository.findByUsername(TestVal.TEST_USERNAME).isPresent());
         assertEquals(0, adRepository.findByAdAuthor(user.get()).size());
     }
 

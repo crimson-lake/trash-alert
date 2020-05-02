@@ -4,7 +4,6 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.ResponseEntity;
-import pl.zielinska.outdoor.domain.geoJSON.GeoJSON;
 import pl.zielinska.outdoor.dto.AdDto;
 import pl.zielinska.outdoor.util.CoordinatesUtil;
 

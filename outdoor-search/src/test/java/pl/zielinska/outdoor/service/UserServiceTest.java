@@ -16,6 +16,7 @@ import pl.zielinska.outdoor.domain.Ad;
 import pl.zielinska.outdoor.domain.User;
 import pl.zielinska.outdoor.dto.AdDto;
 import pl.zielinska.outdoor.dto.UserDto;
+import pl.zielinska.outdoor.exception.NotFoundException;
 
 import java.util.*;
 
@@ -95,10 +96,10 @@ public class UserServiceTest {
         Mockito.verify(userRepository, times(1)).findByUsername(TestVal.TEST_USERNAME);
     }
 
-    @Test
+    @Test(expected = NotFoundException.class)
     public void findByUsernameInvalidUsernameTest() {
         final String INVALID_USERNAME = "invalid_username";
-        assertNull(userService.findByUsername(INVALID_USERNAME));
+        userService.findByUsername(INVALID_USERNAME);
     }
 
     @Test
@@ -161,29 +162,29 @@ public class UserServiceTest {
 
     @Test
     public void usernameAvailableTest() {
-        Mockito.when(userService.findByUsername(TestVal.TEST_USERNAME))
-                .thenReturn(testUser);
+        Mockito.when(userRepository.findByUsername(TestVal.TEST_USERNAME))
+                .thenReturn(Optional.of(testUser));
         assertEquals(false, userService.usernameAvailable(TestVal.TEST_USERNAME));
     }
 
     @Test
     public void usernameUnavailableTest() {
-        Mockito.when(userService.findByUsername(TestVal.TEST_USERNAME))
-                .thenReturn(null);
+        Mockito.when(userRepository.findByUsername(TestVal.TEST_USERNAME))
+                .thenReturn(Optional.ofNullable(null));
         assertEquals(true, userService.usernameAvailable(TestVal.TEST_USERNAME));
     }
 
     @Test
     public void emailAvailableTest() {
-        Mockito.when(userService.findByEmail(TestVal.TEST_EMAIL))
-                .thenReturn(testUser);
+        Mockito.when(userRepository.findByEmail(TestVal.TEST_EMAIL))
+                .thenReturn(Optional.of(testUser));
         assertEquals(false, userService.emailAvailable(TestVal.TEST_EMAIL));
     }
 
     @Test
     public void emailUnavailableTest() {
-        Mockito.when(userService.findByEmail(TestVal.TEST_EMAIL))
-                .thenReturn(null);
+        Mockito.when(userRepository.findByEmail(TestVal.TEST_EMAIL))
+                .thenReturn(Optional.ofNullable(null));
         assertEquals(true, userService.emailAvailable(TestVal.TEST_EMAIL));
     }
 }
