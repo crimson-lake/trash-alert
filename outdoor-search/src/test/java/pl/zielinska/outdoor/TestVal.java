@@ -1,5 +1,6 @@
 package pl.zielinska.outdoor;
 
+import pl.zielinska.outdoor.domain.Coordinates;
 import pl.zielinska.outdoor.domain.Tag;
 
 import java.time.LocalDateTime;
@@ -20,6 +21,7 @@ public class TestVal {
     public static final String TEST_STREET = "Włóczków 10";
     public static final double TEST_COORDINATES_X=19.924355;
     public static final double TEST_COORDINATES_Y=50.0554964;
+    public static final Coordinates TEST_COORDINATES = new Coordinates(0, TEST_COORDINATES_X, TEST_COORDINATES_Y);
 
     public static final LocalDateTime TEST_TIME = LocalDateTime.now();
 

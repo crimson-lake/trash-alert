@@ -1,7 +1,6 @@
-package pl.zielinska.outdoor.domain.geoJSON;
+package pl.zielinska.outdoor.geoJSON;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.zielinska.outdoor.domain.Ad;

@@ -14,7 +14,7 @@ import pl.zielinska.outdoor.TestVal;
 import pl.zielinska.outdoor.dao.AdRepository;
 import pl.zielinska.outdoor.domain.Ad;
 import pl.zielinska.outdoor.domain.User;
-import pl.zielinska.outdoor.domain.geoJSON.GeoJSONCollection;
+import pl.zielinska.outdoor.geoJSON.GeoJSONCollection;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 

@@ -63,20 +63,6 @@ function display(id, elementId) {
     });
 };
 
-function displayUsersAds() {
-    $.get("/type190-200/info/username", function(username) {
-        $.get("/type190-200/api/users/" + username + "/ads", function(data) {
-            var adsHTML = "";
-            for (i=0; i<data.length; i++) {
-                adsHTML += "<div id=\"board" + i + "\">"
-                adsHTML += "<h3 class=\"hover\" onclick=\"display(" + data[i].id + ", " + i + ")\">"
-                adsHTML += data[i].title + "</h3></div><hr>";
-            }
-            document.getElementById("board").innerHTML = adsHTML;
-        });
-     });
-};
-
 function toggle(elementId) {
   var x = document.getElementById(elementId);
   if (x.style.display === "none") {
