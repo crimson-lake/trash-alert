@@ -5,7 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.zielinska.outdoor.dao.UserRepository;
+import pl.zielinska.model.repository.UserRepository;
 import pl.zielinska.model.domain.Ad;
 import pl.zielinska.model.domain.User;
 import pl.zielinska.outdoor.dto.*;

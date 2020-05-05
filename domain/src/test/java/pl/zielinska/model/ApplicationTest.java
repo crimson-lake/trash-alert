@@ -1,4 +1,4 @@
-package pl.zielinska.outdoor;
+package pl.zielinska.model;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -10,10 +10,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 @EnableJpaRepositories(basePackages = {"pl.zielinska"})
 @EntityScan(basePackages = {"pl.zielinska"})
 @ComponentScan(basePackages = {"pl.zielinska"})
-public class TrashAlertApplicationTest {
+public class ApplicationTest {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TrashAlertApplicationTest.class, args);
+		SpringApplication.run(ApplicationTest.class, args);
 	}
 
 }

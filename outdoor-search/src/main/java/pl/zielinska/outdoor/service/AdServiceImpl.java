@@ -5,19 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.zielinska.outdoor.dao.AdRepository;
+import pl.zielinska.model.repository.AdRepository;
 import pl.zielinska.model.domain.Ad;
 import pl.zielinska.model.domain.Coordinates;
 import pl.zielinska.model.domain.User;
-import pl.zielinska.outdoor.dto.AdConverter;
 import pl.zielinska.outdoor.dto.AdDto;
 import pl.zielinska.outdoor.dto.ConverterDto;
 import pl.zielinska.outdoor.exception.NotFoundException;
 import pl.zielinska.model.util.CoordinatesUtil;
 
-import java.time.LocalDateTime;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor @NoArgsConstructor

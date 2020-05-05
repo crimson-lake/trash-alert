@@ -7,6 +7,7 @@ import pl.zielinska.model.domain.User;
 
 @Component
 public class UserConverter implements ConverterDto<User, UserDto> {
+
     @Autowired
     private PasswordEncoder passwordEncoder;
 

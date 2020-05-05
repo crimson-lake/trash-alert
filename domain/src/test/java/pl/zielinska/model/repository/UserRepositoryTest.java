@@ -1,17 +1,18 @@
-package pl.zielinska.outdoor.dao;
+package pl.zielinska.model.repository;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
-import pl.zielinska.outdoor.TestVal;
+import pl.zielinska.model.TestVal;
 import pl.zielinska.model.domain.User;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.Assert.assertNotNull;
+
 
 @Slf4j
 @RunWith(SpringRunner.class)
@@ -40,10 +41,10 @@ public class UserRepositoryTest {
 		User user = userRepository.findByUsername(TestVal.TEST_USERNAME).get();
 
 		assertNotNull(user);
-		assertEquals(TestVal.TEST_USERNAME, user.getUsername());
-		assertEquals(TestVal.TEST_FIRST_NAME, user.getFirstName());
-		assertEquals(TestVal.TEST_LAST_NAME, user.getLastName());
-		assertEquals(TestVal.TEST_EMAIL, user.getEmail());
+		Assertions.assertEquals(TestVal.TEST_USERNAME, user.getUsername());
+		Assertions.assertEquals(TestVal.TEST_FIRST_NAME, user.getFirstName());
+		Assertions.assertEquals(TestVal.TEST_LAST_NAME, user.getLastName());
+		Assertions.assertEquals(TestVal.TEST_EMAIL, user.getEmail());
 	}
 
 }

@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import pl.zielinska.outdoor.dao.AdRepository;
+import pl.zielinska.model.repository.AdRepository;
 import pl.zielinska.model.domain.Ad;
 import pl.zielinska.outdoor.geoJSON.GeoJSONCollection;
 

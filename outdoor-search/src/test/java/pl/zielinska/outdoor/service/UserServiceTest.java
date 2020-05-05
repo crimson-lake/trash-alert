@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.zielinska.outdoor.TestVal;
-import pl.zielinska.outdoor.dao.UserRepository;
+import pl.zielinska.model.repository.UserRepository;
 import pl.zielinska.model.domain.Ad;
 import pl.zielinska.model.domain.User;
 import pl.zielinska.outdoor.dto.AdDto;
