@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import pl.zielinska.outdoor.domain.Ad;
+import pl.zielinska.model.domain.Ad;
 
 import java.util.HashMap;
 import java.util.Map;

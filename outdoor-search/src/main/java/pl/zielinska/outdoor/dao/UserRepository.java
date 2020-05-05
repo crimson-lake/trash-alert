@@ -1,7 +1,7 @@
 package pl.zielinska.outdoor.dao;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import pl.zielinska.outdoor.domain.User;
+import pl.zielinska.model.domain.User;
 
 import java.util.Optional;
 

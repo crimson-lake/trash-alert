@@ -6,7 +6,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
-import pl.zielinska.outdoor.domain.City;
+import pl.zielinska.model.domain.City;
 import pl.zielinska.outdoor.validation.ConfirmedPassword;
 import pl.zielinska.outdoor.validation.UniqueEmail;
 import pl.zielinska.outdoor.validation.UniqueUsername;
@@ -18,7 +18,7 @@ import javax.validation.constraints.NotBlank;
 @NoArgsConstructor
 @AllArgsConstructor
 @ConfirmedPassword
-public class UserDto {
+public class UserDto implements Dto{
 
     @NotBlank
     @Length(min=6, max=20)

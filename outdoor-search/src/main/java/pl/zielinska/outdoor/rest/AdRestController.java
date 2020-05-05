@@ -26,7 +26,7 @@ public class AdRestController {
 
     @GetMapping(path = "/{id}")
     public AdDto findById(@PathVariable(name="id") int id) {
-        return adService.findById(id).toDto();
+        return adService.findByIdDto(id);
     }
 
 }
