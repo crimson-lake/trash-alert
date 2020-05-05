@@ -3,7 +3,7 @@ package pl.zielinska.outdoor.geoJSON;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.zielinska.outdoor.domain.Ad;
+import pl.zielinska.model.domain.Ad;
 
 import java.util.ArrayList;
 import java.util.List;

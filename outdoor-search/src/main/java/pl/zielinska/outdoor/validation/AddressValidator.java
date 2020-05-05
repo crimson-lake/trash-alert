@@ -5,7 +5,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.ResponseEntity;
 import pl.zielinska.outdoor.dto.AdDto;
-import pl.zielinska.outdoor.util.CoordinatesUtil;
+import pl.zielinska.model.util.CoordinatesUtil;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

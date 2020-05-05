@@ -6,8 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import pl.zielinska.outdoor.dao.UserRepository;
-import pl.zielinska.outdoor.domain.User;
+import pl.zielinska.model.domain.User;
 
 @Slf4j
 @Service

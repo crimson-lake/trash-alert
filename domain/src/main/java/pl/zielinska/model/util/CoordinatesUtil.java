@@ -1,4 +1,4 @@
-package pl.zielinska.outdoor.util;
+package pl.zielinska.model.util;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -7,7 +7,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-import pl.zielinska.outdoor.domain.Coordinates;
+import pl.zielinska.model.domain.Coordinates;
 
 import java.net.URI;
 import java.nio.charset.Charset;

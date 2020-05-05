@@ -5,17 +5,16 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import pl.zielinska.outdoor.domain.Ad;
-import pl.zielinska.outdoor.domain.User;
+import pl.zielinska.model.domain.Ad;
+import pl.zielinska.model.domain.User;
 import pl.zielinska.outdoor.dto.AdDto;
+import pl.zielinska.outdoor.dto.ConverterDto;
 import pl.zielinska.outdoor.dto.UserDto;
 import pl.zielinska.outdoor.service.AdService;
 import pl.zielinska.outdoor.service.GeoService;
 import pl.zielinska.outdoor.service.UserService;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -32,22 +31,21 @@ public class UserRestController {
     @Autowired
     private GeoService geoService;
 
+    @Autowired
+    private ConverterDto<User, UserDto> userConverter;
+
     @GetMapping
     public List<UserDto> findAll() {
-        return userService
-                .findAll()
-                .stream()
-                .map(User::toDto)
-                .collect(Collectors.toList());
+        return userConverter.createFromEntities(userService.findAll());
     }
 
     @GetMapping(path = "/{username}")
     public UserDto find(@PathVariable("username") String username) {
-        return userService.findByUsername(username).toDto();
+        return userConverter.createFrom(userService.findByUsername(username));
     }
 
     @GetMapping(path = "/{username}/ads")
-    public Set<AdDto> usersAds(@PathVariable("username") String username) {
+    public List<AdDto> usersAds(@PathVariable("username") String username) {
         return userService.usersAdsDto(username);
     }
 

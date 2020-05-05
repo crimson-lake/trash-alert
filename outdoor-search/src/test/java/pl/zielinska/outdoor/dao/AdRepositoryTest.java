@@ -8,9 +8,9 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.zielinska.outdoor.TestVal;
-import pl.zielinska.outdoor.domain.Ad;
-import pl.zielinska.outdoor.domain.Coordinates;
-import pl.zielinska.outdoor.domain.User;
+import pl.zielinska.model.domain.Ad;
+import pl.zielinska.model.domain.Coordinates;
+import pl.zielinska.model.domain.User;
 
 import java.util.Optional;
 

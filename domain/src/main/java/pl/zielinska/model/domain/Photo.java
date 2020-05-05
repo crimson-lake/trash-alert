@@ -1,4 +1,4 @@
-package pl.zielinska.outdoor.domain;
+package pl.zielinska.model.domain;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>pl.zielinska</groupId>
-            <artifactId>user-account</artifactId>
+            <artifactId>domain</artifactId>
             <version>1.0</version>
         </dependency>
     </dependencies>

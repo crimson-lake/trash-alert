@@ -11,10 +11,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.zielinska.outdoor.TestVal;
-import pl.zielinska.outdoor.dao.UserRepository;
-import pl.zielinska.outdoor.domain.User;
-
-import java.util.Optional;
+import pl.zielinska.model.domain.User;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -1,7 +1,7 @@
-package pl.zielinska.outdoor.domain;
+package pl.zielinska.model.domain;
 
 import org.junit.Test;
-import pl.zielinska.outdoor.TestVal;
+import pl.zielinska.model.TestVal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

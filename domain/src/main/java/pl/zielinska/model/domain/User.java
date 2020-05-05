@@ -1,12 +1,10 @@
-package pl.zielinska.outdoor.domain;
+package pl.zielinska.model.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-import pl.zielinska.outdoor.dto.UserDto;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -72,25 +70,21 @@ public class User implements UserDetails {
         }
     }
 
-    @JsonIgnore
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return Arrays.asList(new SimpleGrantedAuthority("USER"));
     }
 
-    @JsonIgnore
     @Override
     public boolean isAccountNonExpired() {
         return true;
     }
 
-    @JsonIgnore
     @Override
     public boolean isAccountNonLocked() {
         return true;
     }
 
-    @JsonIgnore
     @Override
     public boolean isCredentialsNonExpired() {
         return true;
@@ -107,15 +101,5 @@ public class User implements UserDetails {
 
     public City getDefaultCity() {
         return this.defaultCity == null ? City.ALL : this.defaultCity;
-    }
-
-    public UserDto toDto() {
-        return UserDto.builder()
-                .username(this.username)
-                .firstName(this.firstName)
-                .lastName(this.lastName)
-                .email(this.email)
-                .defaultCity(this.defaultCity)
-                .build();
     }
 }
