@@ -11,9 +11,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.zielinska.outdoor.TestVal;
-import pl.zielinska.outdoor.dao.AdRepository;
-import pl.zielinska.outdoor.domain.Ad;
-import pl.zielinska.outdoor.domain.User;
+import pl.zielinska.model.repository.AdRepository;
+import pl.zielinska.model.domain.Ad;
+import pl.zielinska.model.domain.User;
 import pl.zielinska.outdoor.geoJSON.GeoJSONCollection;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;

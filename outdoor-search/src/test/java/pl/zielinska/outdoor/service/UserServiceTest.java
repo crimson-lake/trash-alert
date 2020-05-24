@@ -11,17 +11,17 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.zielinska.outdoor.TestVal;
-import pl.zielinska.outdoor.dao.UserRepository;
-import pl.zielinska.outdoor.domain.Ad;
-import pl.zielinska.outdoor.domain.User;
+import pl.zielinska.model.repository.UserRepository;
+import pl.zielinska.model.domain.Ad;
+import pl.zielinska.model.domain.User;
 import pl.zielinska.outdoor.dto.AdDto;
+import pl.zielinska.outdoor.dto.ConverterDto;
 import pl.zielinska.outdoor.dto.UserDto;
 import pl.zielinska.outdoor.exception.NotFoundException;
 
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
@@ -47,6 +47,12 @@ public class UserServiceTest {
 
     @MockBean
     private PasswordEncoder encoder;
+
+    @MockBean
+    private ConverterDto<Ad, AdDto> adConverter;
+
+    @MockBean
+    private ConverterDto<User, UserDto> userConverter;
 
     private final int TEST_SIZE = 10;
 
@@ -137,26 +143,22 @@ public class UserServiceTest {
                 .thenReturn(Optional.of(testUser));
         Mockito.when(testUser.getAds())
                 .thenReturn(adSet);
-        Mockito.when(testAd.toDto())
+        Mockito.when(adConverter.createFrom(testAd))
                 .thenReturn(new AdDto());
 
         userService.usersAdsDto(TestVal.TEST_USERNAME);
 
         Mockito.verify(userRepository, times(1)).findByUsername(TestVal.TEST_USERNAME);
         Mockito.verify(testUser, times(1)).getAds();
-        Mockito.verify(testAd, times(1)).toDto();
+        Mockito.verify(adConverter, times(1)).createFromEntities(any());
     }
 
     @Test
     public void registerNewUserTest() {
         UserDto testUserDto = mock(UserDto.class);
+        Mockito.when(userConverter.createFrom(testUserDto)).thenReturn(testUser);
         userService.registerNewUserAccount(testUserDto);
-        Mockito.verify(testUserDto, times(1)).getUsername();
-        Mockito.verify(testUserDto, times(1)).getFirstName();
-        Mockito.verify(testUserDto, times(1)).getLastName();
-        Mockito.verify(testUserDto, times(1)).getEmail();
-        Mockito.verify(testUserDto, times(1)).getDefaultCity();
-        Mockito.verify(testUserDto, times(1)).getPassword();
+        Mockito.verify(userConverter, times(1)).createFrom(testUserDto);
         Mockito.verify(userRepository, times(1)).save(any(User.class));
     }
 

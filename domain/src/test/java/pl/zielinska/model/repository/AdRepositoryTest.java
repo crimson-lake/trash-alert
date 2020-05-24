@@ -1,4 +1,4 @@
-package pl.zielinska.outdoor.dao;
+package pl.zielinska.model.repository;
 
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
@@ -7,10 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
-import pl.zielinska.outdoor.TestVal;
-import pl.zielinska.outdoor.domain.Ad;
-import pl.zielinska.outdoor.domain.Coordinates;
-import pl.zielinska.outdoor.domain.User;
+import pl.zielinska.model.TestVal;
+import pl.zielinska.model.domain.Ad;
+import pl.zielinska.model.domain.Coordinates;
+import pl.zielinska.model.domain.User;
 
 import java.util.Optional;
 

@@ -5,8 +5,8 @@ import org.junit.Test;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import pl.zielinska.outdoor.TestVal;
-import pl.zielinska.outdoor.domain.Coordinates;
-import pl.zielinska.outdoor.util.CoordinatesUtil;
+import pl.zielinska.model.domain.Coordinates;
+import pl.zielinska.model.util.CoordinatesUtil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
