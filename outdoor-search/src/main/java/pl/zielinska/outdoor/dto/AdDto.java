@@ -13,7 +13,7 @@ import javax.validation.constraints.NotBlank;
 @Data @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AdDto {
+public class AdDto implements Dto {
 
     private int id;
 

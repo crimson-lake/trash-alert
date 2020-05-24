@@ -2,8 +2,8 @@ package pl.zielinska.outdoor.geoJSON;
 
 import org.junit.Test;
 import pl.zielinska.outdoor.TestVal;
-import pl.zielinska.outdoor.domain.Ad;
-import pl.zielinska.outdoor.domain.User;
+import pl.zielinska.model.domain.Ad;
+import pl.zielinska.model.domain.User;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;

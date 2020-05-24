@@ -11,10 +11,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.zielinska.outdoor.TestVal;
-import pl.zielinska.outdoor.dao.AdRepository;
-import pl.zielinska.outdoor.domain.Ad;
-import pl.zielinska.outdoor.domain.User;
+import pl.zielinska.model.repository.AdRepository;
+import pl.zielinska.model.domain.Ad;
+import pl.zielinska.model.domain.User;
 import pl.zielinska.outdoor.dto.AdDto;
+import pl.zielinska.outdoor.dto.ConverterDto;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,6 +44,9 @@ public class AdServiceTest {
 
     @MockBean
     private AdRepository adRepository;
+
+    @MockBean
+    private ConverterDto<Ad, AdDto> adConverter;
 
     private final int TEST_SIZE = 10;
 
@@ -92,12 +96,14 @@ public class AdServiceTest {
 
     @Test
     public void findAllTestDto() {
-        Mockito.when(adRepository.findAll())
-                .thenReturn(testAdsList);
+        List<AdDto> listDto = new ArrayList<>();
+        listDto.add(Mockito.mock(AdDto.class));
+        Mockito.when(adConverter.createFromEntities(any()))
+                .thenReturn(listDto);
 
         List<AdDto> testDto = adService.findAllDto();
-        assertEquals(TEST_SIZE, testDto.size());
-        Mockito.verify(adRepository, times(1)).findAll();
+        assertEquals(listDto, testDto);
+        Mockito.verify(adConverter, times(1)).createFromEntities(any());
     }
 
     @Test
@@ -117,12 +123,12 @@ public class AdServiceTest {
 
     @Test
     public void publishNewAd() throws JsonProcessingException {
-        AdDto adDto = spy(testAd.toDto());
+        AdDto adDto = spy(new AdDto());
+        Ad ad = Mockito.mock(Ad.class);
+        Mockito.when(adConverter.createFrom(adDto))
+                .thenReturn(ad);
         adService.publishNewAd(adDto, testUser);
-        Mockito.verify(adDto, times(1)).getTitle();
-        Mockito.verify(adDto, times(2)).getCity();
-        Mockito.verify(adDto, times(1)).getDetails();
-        Mockito.verify(adDto, times(2)).getStreet();
         Mockito.verify(adRepository, times(1)).save(any());
+        Mockito.verify(adConverter, times(1)).createFrom(adDto);
     }
 }

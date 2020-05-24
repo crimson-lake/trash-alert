@@ -1,4 +1,4 @@
-package pl.zielinska.outdoor;
+package pl.zielinska.model;
 
 import pl.zielinska.model.domain.Coordinates;
 import pl.zielinska.model.domain.Tag;

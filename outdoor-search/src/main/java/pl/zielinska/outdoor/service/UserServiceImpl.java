@@ -4,19 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import pl.zielinska.outdoor.dao.UserRepository;
-import pl.zielinska.outdoor.domain.Ad;
-import pl.zielinska.outdoor.domain.User;
-import pl.zielinska.outdoor.dto.AdDto;
-import pl.zielinska.outdoor.dto.UserDto;
+import pl.zielinska.model.repository.UserRepository;
+import pl.zielinska.model.domain.Ad;
+import pl.zielinska.model.domain.User;
+import pl.zielinska.outdoor.dto.*;
 import pl.zielinska.outdoor.exception.NotFoundException;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -27,7 +22,10 @@ public class UserServiceImpl implements UserService {
     private UserRepository userRepository;
 
     @Autowired
-    private PasswordEncoder passwordEncoder;
+    private ConverterDto<Ad, AdDto> adConverter;
+
+    @Autowired
+    private ConverterDto<User, UserDto> userConverter;
 
     @Override
     public List<User> findAll() {
@@ -60,30 +58,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public Set<AdDto> usersAdsDto(String username) {
+    public List<AdDto> usersAdsDto(String username) {
         User user = userRepository
                         .findByUsername(username)
                         .orElseThrow(() -> new NotFoundException("User not found."));
-        return user
-                .getAds()
-                .stream()
-                .map(Ad::toDto)
-                .collect(Collectors.toSet());
+        return adConverter.createFromEntities(user.getAds());
     }
 
     @Override
     public User registerNewUserAccount(UserDto userDto) {
-        User userAccount = User.builder()
-                .username(userDto.getUsername())
-                .firstName(userDto.getFirstName())
-                .lastName(userDto.getLastName())
-                .email(userDto.getEmail())
-                .defaultCity(userDto.getDefaultCity())
-                .password(passwordEncoder.encode(userDto.getPassword()))
-                .authority("USER")
-                .enabled(true)
-                .build();
-        return userRepository.save(userAccount);
+        User user = userConverter.createFrom(userDto);
+        user.setAuthority("USER");
+        user.setEnabled(true);
+        return userRepository.save(user);
     }
 
     @Override

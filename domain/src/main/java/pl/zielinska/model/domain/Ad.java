@@ -1,10 +1,9 @@
-package pl.zielinska.outdoor.domain;
+package pl.zielinska.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.*;
-import pl.zielinska.outdoor.dto.AdDto;
-import pl.zielinska.outdoor.util.CoordinatesUtil;
+import pl.zielinska.model.util.CoordinatesUtil;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
@@ -63,7 +62,7 @@ public class Ad {
     @JoinColumn(name="coordinates_id")
     private Coordinates coordinates;
 
-    private String getFormattedDate() {
+    public String getFormattedDate() {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
         return created.format(formatter);
     }
@@ -84,16 +83,5 @@ public class Ad {
         if (!theUser.getAds().contains(this)) {
             theUser.addNewAd(this);
         }
-    }
-
-    public AdDto toDto() {
-        return AdDto.builder()
-                .id(this.id)
-                .title(this.title)
-                .details(this.details == null ? "" : this.details)
-                .city(this.city)
-                .street(this.street)
-                .created(getFormattedDate())
-                .build();
     }
 }
