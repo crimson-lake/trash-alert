@@ -85,3 +85,11 @@ function toggleAll() {
       divs[i].parentElement.classList.remove("active-ad");
     }
 };
+
+function truncate(text) {
+    var maxLength = 100;
+    if (text.length > maxLength) {
+        text = text.substr(0,maxLength) + '...';
+    }
+    return text;
+};

@@ -1,6 +1,5 @@
 package pl.zielinska.model.domain;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.*;
 import pl.zielinska.model.util.CoordinatesUtil;
@@ -36,7 +35,6 @@ public class Ad {
 
     private LocalDateTime created;
 
-    @JsonBackReference
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "users_id")
     private User adAuthor;
@@ -44,18 +42,19 @@ public class Ad {
     @OneToMany( fetch = FetchType.LAZY,
                 cascade = CascadeType.ALL,
                 mappedBy = "author")
-    @Singular private Set<Comment> comments = new HashSet<>();
+    private Set<Comment> comments = new HashSet<>();
 
     @OneToMany( fetch = FetchType.LAZY,
                 cascade = CascadeType.ALL,
                 mappedBy = "adId")
-    @Singular private Set<Photo> photos = new HashSet<>();
+    private Set<Photo> photos = new HashSet<>();
 
-    @ManyToMany
+    @ManyToMany(fetch=FetchType.LAZY,
+                cascade=CascadeType.ALL)
     @JoinTable( name = "tags_linking_table",
                 joinColumns = @JoinColumn(name = "ad_id"),
                 inverseJoinColumns = @JoinColumn(name = "tag_id"))
-    @Singular private Set<Tag> tags = new HashSet<>();
+    private Set<Tag> tags;
 
     @OneToOne(  fetch = FetchType.LAZY,
                 cascade = CascadeType.ALL)
@@ -83,5 +82,13 @@ public class Ad {
         if (!theUser.getAds().contains(this)) {
             theUser.addNewAd(this);
         }
+    }
+
+    public void addTag(Tag tag) {
+        if (tags == null) {
+            tags = new HashSet<>();
+        }
+        tags.add(tag);
+        tag.addAd(this);
     }
 }

@@ -5,5 +5,5 @@ import pl.zielinska.model.domain.Tag;
 
 public interface TagRepository extends JpaRepository<Tag, Integer> {
 
-    Tag findByTag(String tag);
+    Tag findByName(String tag);
 }

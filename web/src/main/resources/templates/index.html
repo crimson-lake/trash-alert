@@ -52,10 +52,16 @@
 								   th:text="'' + #{ad.created} + ': ' + ${ad.created}"></p>
 								<hr>
 								<p th:text="${ad.details}"></p>
+								<div class="d-flex flex-row">
+									<div th:each="tag : ${ad.tags}">
+										<span class="tag p-2 mx-1"
+                                              th:text="${tag}"></span>
+									</div>
+								</div>
 							</div>
-							<div class="py-3">
+							<div class="py-3 d-flex justify-content-end">
                                 <button type="button"
-                                        class="btn btn-primary"
+                                        class="btn-violet-outline"
                                         th:text="#{general.button.more}"></button>
 							</div>
                         </div>
