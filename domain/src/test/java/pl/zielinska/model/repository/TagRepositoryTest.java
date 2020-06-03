@@ -23,16 +23,16 @@ public class TagRepositoryTest {
     private TagRepository tagRepository;
 
     @Test
-    public void findByTagNameTest() {
+    public void canFindTagByNameTest() {
         Tag testTag = Tag.builder()
-                .tag(TestVal.TEST_TAG_NAME)
+                .name(TestVal.TEST_TAG_NAME)
                 .build();
 
         entityManager.persistAndFlush(testTag);
 
-        Tag tag = tagRepository.findByTag(TestVal.TEST_TAG_NAME);
+        Tag tag = tagRepository.findByName(TestVal.TEST_TAG_NAME);
         assertNotNull(tag);
-        Assertions.assertEquals(TestVal.TEST_TAG_NAME, tag.getTag());
+        Assertions.assertEquals(TestVal.TEST_TAG_NAME, tag.getName());
     }
 
 }

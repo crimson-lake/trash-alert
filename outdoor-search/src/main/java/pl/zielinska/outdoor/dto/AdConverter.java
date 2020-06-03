@@ -2,8 +2,11 @@ package pl.zielinska.outdoor.dto;
 
 import org.springframework.stereotype.Component;
 import pl.zielinska.model.domain.Ad;
+import pl.zielinska.model.domain.Tag;
 
 import java.time.LocalDateTime;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 @Component
 public class AdConverter implements ConverterDto<Ad, AdDto> {
@@ -20,6 +23,11 @@ public class AdConverter implements ConverterDto<Ad, AdDto> {
 
     @Override
     public AdDto createFrom(Ad entity) {
+        Set<String> tags = entity.getTags()
+                .stream()
+                .map(Tag::getName)
+                .collect(Collectors.toSet());
+
         return AdDto.builder()
                 .id(entity.getId())
                 .title(entity.getTitle())
@@ -27,6 +35,7 @@ public class AdConverter implements ConverterDto<Ad, AdDto> {
                 .city(entity.getCity())
                 .street(entity.getStreet())
                 .created(entity.getFormattedDate())
+                .tags(tags)
                 .build();
     }
 
