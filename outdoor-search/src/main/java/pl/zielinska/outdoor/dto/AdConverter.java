@@ -26,6 +26,7 @@ public class AdConverter implements ConverterDto<Ad, AdDto> {
         Set<String> tags = entity.getTags()
                 .stream()
                 .map(Tag::getName)
+                .map(String::toLowerCase)
                 .collect(Collectors.toSet());
 
         return AdDto.builder()
