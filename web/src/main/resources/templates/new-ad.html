@@ -50,7 +50,12 @@
                     <div class="form-group">
                         <label for="tags"
                                th:text="#{general.tags}"></label>
-                        <input id="tags">
+                        <input id="tags"
+                               name="tags"
+                               type="text"
+                               th:value="*{tags}"
+                               class="form-control">
+
                     </div>
 
                     <div class="form-row">
