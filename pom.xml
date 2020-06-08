@@ -15,7 +15,6 @@
 	<modules>
         <module>domain</module>
         <module>outdoor-search</module>
-        <module>store</module>
         <module>web</module>
     </modules>
 
