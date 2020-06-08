@@ -47,6 +47,17 @@
                         </textarea>
                     </div>
 
+                    <div class="form-group">
+                        <label for="tags"
+                               th:text="#{general.tags}"></label>
+                        <input id="tags"
+                               name="tags"
+                               type="text"
+                               th:value="*{tags}"
+                               class="form-control">
+
+                    </div>
+
                     <div class="form-row">
                         <div class="form-group col-md-6">
                             <label for="city"

@@ -74,21 +74,33 @@ p
 
 }
 
-.btn-violet-outline
-{
-    background-color: white;
-    border: 2px solid #8a0967;
-    font-weight: 500;
-    text-decoration: none;
-    color: #8a0967;
-}
-
 .button-violet:hover
 {
     background-color: white;
     font-weight: 500;
     text-decoration: none;
     color: #8a0967;
+}
+
+.btn-violet-outline
+{
+    background-color: white;
+    border: 2px solid #8a0967;
+    border-radius: 20px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #8a0967;
+}
+
+.btn-violet-outline:hover
+{
+    background-color: #8a0967;
+    color: white;
+}
+
+.rounded
+{
+    border-radius: 15px;
 }
 
 #main-page-choices h3
@@ -196,9 +208,23 @@ p
 
 .ad
 {
-    background-color: #fffafa;
     border: 1px solid #5c5c5c;
     color: #5c5c5c;
+}
+
+.ad p
+{
+    overflow: auto;
+    max-height: 100px;
+}
+
+.tag
+{
+    background-color: #f5e0bd;
+    border: 2px solid #f5e0bd;
+    border-radius: 25px;
+    color: #ac4651;
+    font-size: 0.8em;
 }
 
 .active-ad

@@ -9,4 +9,5 @@ import java.util.List;
 public interface AdRepository extends JpaRepository<Ad, Integer> {
 
     List<Ad> findByAdAuthor(User theUser);
+    List<Ad> findByTagsName(String tag);
 }

@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import pl.zielinska.outdoor.validation.Address;
 
 import javax.validation.constraints.NotBlank;
+import java.util.Set;
 
 @Address
 @Data @Builder
@@ -32,4 +33,6 @@ public class AdDto implements Dto {
     private String created;
 
     private String details;
+
+    private Set<String> tags;
 }

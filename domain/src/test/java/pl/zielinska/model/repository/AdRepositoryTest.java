@@ -12,6 +12,7 @@ import pl.zielinska.model.domain.Ad;
 import pl.zielinska.model.domain.Coordinates;
 import pl.zielinska.model.domain.User;
 
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -41,7 +42,7 @@ public class AdRepositoryTest {
             .build();
 
     @Test
-    public void createAdTest() {
+    public void canCreateNewAdTest() {
         entityManager.persistAndFlush(testUser);
 
         Ad ad = Ad.builder()
@@ -60,14 +61,14 @@ public class AdRepositoryTest {
     }
 
     @Test
-    public void findByAdAuthorTest() {
+    public void canFindByAdAuthorTest() {
         entityManager.persistAndFlush(testUser);
         User user = userRepository.findByUsername(TestVal.TEST_USERNAME).get();
         assertNotNull(adRepository.findByAdAuthor(user));
     }
 
     @Test
-    public void deleteUserWithAdTest() {
+    public void canDeleteUserWithAdTest() {
         entityManager.persistAndFlush(testUser);
         Optional<User> user = userRepository.findByUsername(TestVal.TEST_USERNAME);
         assertNotNull(user);
@@ -95,5 +96,22 @@ public class AdRepositoryTest {
         Ad persistedAd = adRepository.findAll().get(0);
         assertNotNull(persistedAd);
         assertNotNull(persistedAd.getCoordinates());
+    }
+
+    @Test
+    public void canFindByTagNameTest() {
+        Ad ad = Ad.builder()
+                .title(TestVal.TEST_TITLE)
+                .city(TestVal.TEST_CITY)
+                .street(TestVal.TEST_STREET)
+                .adAuthor(testUser)
+                .created(TestVal.TEST_TIME)
+                .coordinates(TestVal.TEST_COORDINATES)
+                .build();
+
+        ad.addTag(TestVal.TEST_TAG);
+        entityManager.persistAndFlush(testUser);
+        List<Ad> testAd = adRepository.findByTagsName(TestVal.TEST_TAG.getName());
+        assertNotNull(testAd);
     }
 }
