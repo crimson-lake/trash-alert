@@ -9,7 +9,7 @@ import pl.zielinska.outdoor.dto.AdDto;
 import pl.zielinska.outdoor.service.AdService;
 
 @Controller
-public class AdController {
+public class AdModalController {
 
     @Autowired
     private AdService adService;

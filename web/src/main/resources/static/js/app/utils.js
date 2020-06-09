@@ -4,3 +4,9 @@ function openAdModal(id) {
         $("#adModal").modal("show");
     });
 };
+
+function sortAds(sortBy) {
+    $.get("/type190-200/outdoor-search/sort?sortBy= " + sortBy, function(data) {
+            $("#boardWithAds").replaceWith(data);
+        });
+}
