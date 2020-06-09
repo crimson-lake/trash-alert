@@ -14,6 +14,7 @@ public interface AdService {
     List<AdDto> findAllDto();
     List<AdDto> findAllDto(Sort sort);
     List<AdDto> findByTagsName(String name);
+    List<AdDto> findByTagsName(String name, Sort sort);
     Ad findById(int id);
     AdDto findByIdDto(int id);
     void save(Ad theAd);
