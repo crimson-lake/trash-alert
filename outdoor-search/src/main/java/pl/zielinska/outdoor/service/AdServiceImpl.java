@@ -48,6 +48,11 @@ public class AdServiceImpl implements AdService{
     }
 
     @Override
+    public List<AdDto> findByTagsName(String name, Sort sort) {
+        return adConverter.createFromEntities(adRepository.findByTagsName(name, sort));
+    }
+
+    @Override
     public Ad findById(int id) {
         return adRepository
                 .findById(id)
