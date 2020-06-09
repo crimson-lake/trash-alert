@@ -13,8 +13,10 @@
                 <div>
                     <div class="d-flex flex-row">
                         <div th:each="tag : ${ad.tags}">
-										<span class="tag p-1 mx-1"
-                                              th:text="'#' + ${tag}"></span>
+                            <span class="tag hover p-1 mx-1"
+                                  th:filterArg="${tag}"
+                                  th:onclick="javascript:filterAds(this.getAttribute('filterArg'));"
+                                  th:text="'#' + ${tag}"></span>
                         </div>
                     </div>
                 </div>

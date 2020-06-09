@@ -13,6 +13,7 @@ public interface AdService {
     List<Ad> findAll();
     List<AdDto> findAllDto();
     List<AdDto> findAllDto(Sort sort);
+    List<AdDto> findByTagsName(String name);
     Ad findById(int id);
     AdDto findByIdDto(int id);
     void save(Ad theAd);
