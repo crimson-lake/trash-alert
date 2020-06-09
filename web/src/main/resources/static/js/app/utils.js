@@ -10,3 +10,9 @@ function sortAds(sortBy) {
             $("#boardWithAds").replaceWith(data);
         });
 }
+
+function filterAds(filterBy) {
+    $.get("/type190-200/outdoor-search/filter?filterBy= " + filterBy, function(data) {
+            $("#boardWithAds").replaceWith(data);
+        });
+}

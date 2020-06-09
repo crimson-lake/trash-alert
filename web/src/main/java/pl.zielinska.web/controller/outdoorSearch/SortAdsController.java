@@ -12,14 +12,13 @@ import pl.zielinska.outdoor.service.AdService;
 
 @Slf4j
 @Controller
-public class SortingAdsController {
+public class SortAdsController {
 
     @Autowired
     private AdService adService;
 
     @GetMapping("/outdoor-search/sort")
     public String sortedAds(@RequestParam(name = "sortBy") String sortArg, Model model) {
-        log.info(sortArg);
         SortingArgument sortBy = SortingArgument.valueOf(sortArg);
         model.addAttribute("ads", adService.findAllDto(Sort.by(sortBy.getDirection(), sortBy.getArgument())));
         return "fragments/board :: board";
