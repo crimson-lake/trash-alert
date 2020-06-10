@@ -44,4 +44,14 @@ public class SortFilterAdsController {
         model.addAttribute("ads", filteredAds);
         return "fragments/board :: board";
     }
+
+    @GetMapping("/outdoor-search/clear")
+    public String clearFilters(Model model) {
+        if (sortBy == null) {
+            model.addAttribute("ads", adService.findAllDto());
+        } else {
+            model.addAttribute("ads", adService.findAllDto(sortBy));
+        }
+        return "fragments/board :: board";
+    }
 }
