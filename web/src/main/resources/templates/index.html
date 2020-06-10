@@ -20,7 +20,7 @@
 		<div class="row">
 			<div class="col-md-5 p-2 text-center justify-content-center"
 				 id="board">
-				<div class="d-flex justify-content-start">
+				<div class="d-flex justify-content-between">
 					<div class="dropdown">
 						<button class="btn-violet-outline dropdown-toggle py-2 px-4 m-0"
 								type="button"
@@ -36,6 +36,13 @@
 									th:onclick="javascript:sortAds(this.getAttribute('sortArg'));"
 									th:text="#{${sortOption.getText()}}"></button>
 						</div>
+					</div>
+					<div style="display: none;" id="clearFilter">
+						<button type="button"
+								class="tag hover"
+                                th:text="#{filter.clear}"
+								th:onclick="javascript:clearFilter();">
+						</button>
 					</div>
 				</div>
 					<div id="boardWithAds" th:replace="fragments/board.html :: board"></div>
