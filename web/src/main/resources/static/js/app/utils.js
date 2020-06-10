@@ -5,6 +5,13 @@ function openAdModal(id) {
     });
 };
 
+function openLocationModal() {
+    $.get("/type190-200/outdoor-search/new-location-form", function(data) {
+        $("#locationModalContainer").html(data);
+        $("#locationModal").modal("show");
+    });
+};
+
 function sortAds(sortBy) {
     $.get("/type190-200/outdoor-search/sort?sortBy= " + sortBy, function(data) {
             $("#boardWithAds").replaceWith(data);

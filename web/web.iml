@@ -35,7 +35,6 @@
     <orderEntry type="library" name="Maven: org.codehaus.woodstox:stax2-api:4.2" level="project" />
     <orderEntry type="library" name="Maven: com.fasterxml.woodstox:woodstox-core:6.0.2" level="project" />
     <orderEntry type="library" name="Maven: org.jsoup:jsoup:1.13.1" level="project" />
-    <orderEntry type="library" name="Maven: pl.zielinska:store:1.0" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-web:2.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter:2.2.2.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework.boot:spring-boot-starter-logging:2.2.2.RELEASE" level="project" />
