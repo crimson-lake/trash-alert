@@ -54,6 +54,11 @@ public class User implements UserDetails {
     private String authority;
 
     @OneToMany( fetch=FetchType.LAZY,
+            cascade=CascadeType.ALL)
+    @JoinColumn(name="user_id")
+    private Set<CustomLocation> localization = new HashSet<>();
+
+    @OneToMany( fetch=FetchType.LAZY,
                 cascade=CascadeType.ALL,
                 mappedBy = "adAuthor")
     @Singular private Set<Ad> ads = new HashSet<>();

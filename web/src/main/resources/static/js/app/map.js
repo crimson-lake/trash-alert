@@ -93,3 +93,7 @@ function truncate(text) {
     }
     return text;
 };
+
+function flyTo(x, y) {
+    mymap.flyTo([y, x], 17);
+}
