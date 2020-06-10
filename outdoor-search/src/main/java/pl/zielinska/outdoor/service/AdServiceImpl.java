@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import pl.zielinska.model.repository.AdRepository;
 import pl.zielinska.model.domain.Ad;
@@ -34,6 +35,21 @@ public class AdServiceImpl implements AdService{
     @Override
     public List<AdDto> findAllDto() {
         return adConverter.createFromEntities(adRepository.findAll());
+    }
+
+    @Override
+    public List<AdDto> findAllDto(Sort sort) {
+        return adConverter.createFromEntities(adRepository.findAll(sort));
+    }
+
+    @Override
+    public List<AdDto> findByTagsName(String name) {
+        return adConverter.createFromEntities(adRepository.findByTagsName(name));
+    }
+
+    @Override
+    public List<AdDto> findByTagsName(String name, Sort sort) {
+        return adConverter.createFromEntities(adRepository.findByTagsName(name, sort));
     }
 
     @Override
