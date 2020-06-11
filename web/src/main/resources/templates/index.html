@@ -20,8 +20,7 @@
 			</div>
 			<button type="button"
 					class="py-2 px-4 m-0"
-					onclick="openLocationModal()"
-					th:text="#{new.location}"></button>
+					onclick="openLocationModal()"><i class="fas fa-plus"> </i></button>
 		</div>
 	</section>
 
@@ -62,7 +61,11 @@
 		</div>
 	</section>
 	<div id="adModalContainer"></div>
-	<div id="locationModalContainer"></div>
+	<div id="locationModalContainer">
+		<th:block th:if="${error}">
+			<div th:insert="fragments/new-location.html :: locationModal"/>
+		</th:block>
+	</div>
 
 	<footer th:insert="fragments/general.html :: footer"> </footer>
 	<script th:inline="javascript" type="text/javascript">
@@ -78,5 +81,6 @@
 
 	/*]]>*/
 	</script>
+	<script>$("#locationModal").modal("show");</script>
 	</body>
 </html>
