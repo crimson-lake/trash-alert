@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 import pl.zielinska.model.domain.Coordinates;
+import pl.zielinska.model.domain.CustomLocation;
 
 import java.net.URI;
 import java.nio.charset.Charset;
@@ -47,5 +48,4 @@ public class CoordinatesUtil {
                 .y(geometryNode.get(1).doubleValue())
                 .build();
     }
-
 }

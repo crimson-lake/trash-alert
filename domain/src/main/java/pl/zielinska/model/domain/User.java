@@ -54,9 +54,9 @@ public class User implements UserDetails {
     private String authority;
 
     @OneToMany( fetch=FetchType.LAZY,
-            cascade=CascadeType.ALL)
-    @JoinColumn(name="user_id")
-    private Set<CustomLocation> localization = new HashSet<>();
+                cascade=CascadeType.ALL,
+                mappedBy="user")
+    private Set<CustomLocation> locations = new HashSet<>();
 
     @OneToMany( fetch=FetchType.LAZY,
                 cascade=CascadeType.ALL,
@@ -73,6 +73,11 @@ public class User implements UserDetails {
         if (!theAd.getAdAuthor().equals(this)) {
             theAd.setAdAuthor(this);
         }
+    }
+
+    public void addNewCustomLocation(CustomLocation location) {
+        location.setUser(this);
+        locations.add(location);
     }
 
     @Override

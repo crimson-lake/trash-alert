@@ -1,13 +1,16 @@
 package pl.zielinska.outdoor.service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pl.zielinska.model.domain.CustomLocation;
 import pl.zielinska.model.repository.UserRepository;
 import pl.zielinska.model.domain.Ad;
 import pl.zielinska.model.domain.User;
+import pl.zielinska.model.util.CoordinatesUtil;
 import pl.zielinska.outdoor.dto.*;
 import pl.zielinska.outdoor.exception.NotFoundException;
 
@@ -71,6 +74,14 @@ public class UserServiceImpl implements UserService {
         user.setAuthority("USER");
         user.setEnabled(true);
         return userRepository.save(user);
+    }
+
+    @Override
+    public void addNewLocationToUser(User user, LocationDto locationDto) throws JsonProcessingException {
+        CustomLocation newLocation = new CustomLocation(locationDto.getName(),
+                CoordinatesUtil.translateAdressToCoordinates(locationDto.getCity(), locationDto.getStreet()));
+        user.addNewCustomLocation(newLocation);
+        userRepository.save(user);
     }
 
     @Override

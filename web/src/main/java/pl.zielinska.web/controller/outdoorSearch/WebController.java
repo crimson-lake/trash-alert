@@ -28,7 +28,7 @@ public class WebController {
         }
         final User activeUser = userService.findByUsername(principal.getName());
         model.addAttribute("username", activeUser.getUsername());
-        model.addAttribute("locations", activeUser.getLocalization());
+        model.addAttribute("locations", activeUser.getLocations());
         model.addAttribute("city", activeUser.getDefaultCity());
         model.addAttribute("ads", adService.findAllDto());
         return "index";
