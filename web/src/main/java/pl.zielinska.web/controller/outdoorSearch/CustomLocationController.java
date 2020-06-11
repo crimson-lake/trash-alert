@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.zielinska.model.domain.User;
 import pl.zielinska.outdoor.dto.LocationDto;
+import pl.zielinska.outdoor.service.AdService;
 import pl.zielinska.outdoor.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +25,9 @@ public class CustomLocationController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private AdService adService;
+
     @GetMapping("/outdoor-search/new-location-form")
     public String newLocationForm(Model model) {
         model.addAttribute("newLocation", new LocationDto());
@@ -33,14 +37,21 @@ public class CustomLocationController {
     @PostMapping("/outdoor-search")
     public String addNewLocation(@Valid @ModelAttribute("newLocation") LocationDto locationDto,
                                  BindingResult bindingResult,
+                                 Model model,
                                  HttpServletRequest request) throws JsonProcessingException {
-        if (bindingResult.hasErrors()) {
-            log.debug("New location form has errors");
-            return "redirect:/outdoor-search";
-        }
         Principal principal = request.getUserPrincipal();
         if (principal == null) {
             return "login";
+        }
+        if (bindingResult.hasErrors()) {
+            log.debug("New location form has errors");
+            final User activeUser = userService.findByUsername(principal.getName());
+            model.addAttribute("username", activeUser.getUsername());
+            model.addAttribute("locations", activeUser.getLocations());
+            model.addAttribute("city", activeUser.getDefaultCity());
+            model.addAttribute("ads", adService.findAllDto());
+            model.addAttribute("error", true);
+            return "index";
         }
         final User activeUser = userService.findByUsername(principal.getName());
         userService.addNewLocationToUser(activeUser, locationDto);
