@@ -25,6 +25,10 @@ public class CustomLocation {
 
     private double y;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
     public CustomLocation(String name, Coordinates xy) {
         this.x = xy.getX();
         this.y = xy.getY();

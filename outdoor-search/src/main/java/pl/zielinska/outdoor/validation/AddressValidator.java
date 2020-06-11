@@ -4,20 +4,20 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.ResponseEntity;
-import pl.zielinska.outdoor.dto.AdDto;
 import pl.zielinska.model.util.CoordinatesUtil;
+import pl.zielinska.outdoor.dto.Adress;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class AddressValidator implements ConstraintValidator<Address, AdDto> {
+public class AddressValidator implements ConstraintValidator<Address, Adress> {
 
     @Override
     public void initialize(Address constraintAnnotation) {}
 
     @Override
-    public boolean isValid(AdDto ad, ConstraintValidatorContext constraintValidatorContext) {
-        ResponseEntity<String> response = CoordinatesUtil.getResponseFor(ad.getCity(), ad.getStreet());
+    public boolean isValid(Adress adress, ConstraintValidatorContext constraintValidatorContext) {
+        ResponseEntity<String> response = CoordinatesUtil.getResponseFor(adress.getCity(), adress.getStreet());
         if (response.hasBody()) {
             try {
                 JsonNode features = new ObjectMapper()
