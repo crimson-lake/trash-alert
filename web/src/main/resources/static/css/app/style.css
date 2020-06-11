@@ -167,42 +167,24 @@ p
     font-weight: 900;
     font-size: 1.2em;
     color: #8a0967;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 #location-menu button
 {
     font-weight: 800;
-}
-
-#location-menu button:hover
-{
-    cursor: pointer;
-}
-
-#location-menu button:nth-of-type(2n)
-{
+    border: 2px solid #f5e0bd;
+    border-radius: 25px;
     color: #9D6E72;
     background-color: transparent;
     border: 2px solid #9D6E72;
 }
 
-#location-menu button:nth-of-type(2n):hover
+#location-menu button:hover
 {
+    cursor: pointer;
     background-color: #9D6E72;
-    color: white;
-}
-
-#location-menu button:nth-of-type(2n+1)
-{
-    color: #d43a3a;
-    background-color: transparent;
-    border: 2px solid #d43a3a;
-
-}
-
-#location-menu button:nth-of-type(2n+1):hover
-{
-    background-color: #d43a3a;
     color: white;
 }
 
