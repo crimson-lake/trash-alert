@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import pl.zielinska.model.domain.SortAndFilterArguments;
 import pl.zielinska.model.repository.AdRepository;
 import pl.zielinska.model.domain.Ad;
 import pl.zielinska.model.domain.Coordinates;
@@ -16,6 +17,7 @@ import pl.zielinska.outdoor.exception.NotFoundException;
 import pl.zielinska.model.util.CoordinatesUtil;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor @NoArgsConstructor
@@ -39,7 +41,21 @@ public class AdServiceImpl implements AdService{
 
     @Override
     public List<AdDto> findAllDto(Sort sort) {
+        if (sort == null) {
+            return findAllDto();
+        }
         return adConverter.createFromEntities(adRepository.findAll(sort));
+    }
+
+    @Override
+    public List<AdDto> findAllDto(SortAndFilterArguments sortAndFilterArgs) {
+        if (sortAndFilterArgs == null) {
+            return findAllDto();
+        } else if (sortAndFilterArgs.getFilterBy().isEmpty()) {
+            return findAllDto(sortAndFilterArgs.getSortBy());
+        } else {
+            return filterAndSort(sortAndFilterArgs);
+        }
     }
 
     @Override
@@ -77,6 +93,11 @@ public class AdServiceImpl implements AdService{
         ad.setAdAuthor(user);
         ad.setCoordinates(xy);
         return adRepository.save(ad);
+    }
+
+    private List<AdDto> filterAndSort(SortAndFilterArguments sortAndFilterArgs) {
+        Map<String, String> filterArgs = sortAndFilterArgs.getFilterBy();
+        return findByTagsName(filterArgs.get("tag"), sortAndFilterArgs.getSortBy());
     }
 
 }

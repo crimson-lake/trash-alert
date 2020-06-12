@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import pl.zielinska.model.domain.SortAndFilterArguments;
 import pl.zielinska.model.domain.SortingArgument;
 import pl.zielinska.outdoor.dto.AdDto;
 import pl.zielinska.outdoor.service.AdService;
@@ -20,38 +21,33 @@ public class SortFilterAdsController {
     @Autowired
     private AdService adService;
 
-    private String filterBy;
-    private Sort sortBy;
+    @Autowired
+    private SortAndFilterArguments sortAndFilterArgs;
 
     @GetMapping("/outdoor-search/sort")
     public String sortedAds(@RequestParam(name = "sortBy") String sortArg, Model model) {
         SortingArgument sortingArg = SortingArgument.valueOf(sortArg);
-        sortBy = Sort.by(sortingArg.getDirection(), sortingArg.getArgument());
-        List<AdDto> filteredAds;
-        if (filterBy != null) {
-            filteredAds = adService.findByTagsName(filterBy, sortBy);
-        } else {
-            filteredAds = adService.findAllDto(sortBy);
-        }
+        sortAndFilterArgs.setSortBy(Sort.by(sortingArg.getDirection(), sortingArg.getArgument()));
+        List<AdDto> filteredAds = adService.findAllDto(sortAndFilterArgs);
         model.addAttribute("ads", filteredAds);
         return "fragments/board :: board";
     }
 
     @GetMapping("/outdoor-search/filter")
     public String filteredAds(@RequestParam(name = "filterBy") String filterBy, Model model) {
-        this.filterBy = filterBy;
-        List<AdDto> filteredAds = adService.findByTagsName(filterBy, sortBy);
+        sortAndFilterArgs.addToFilterList("tag", filterBy);
+        List<AdDto> filteredAds = adService.findAllDto(sortAndFilterArgs);
+        model.addAttribute("filtered", sortAndFilterArgs.isFiltered());
         model.addAttribute("ads", filteredAds);
         return "fragments/board :: board";
     }
 
     @GetMapping("/outdoor-search/clear")
     public String clearFilters(Model model) {
-        if (sortBy == null) {
-            model.addAttribute("ads", adService.findAllDto());
-        } else {
-            model.addAttribute("ads", adService.findAllDto(sortBy));
-        }
+        sortAndFilterArgs.clearFilterList();
+        List<AdDto> filteredAds = adService.findAllDto(sortAndFilterArgs);
+        model.addAttribute("filtered", sortAndFilterArgs.isFiltered());
+        model.addAttribute("ads", filteredAds);
         return "fragments/board :: board";
     }
 }
