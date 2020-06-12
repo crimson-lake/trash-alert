@@ -7,12 +7,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
 import pl.zielinska.model.domain.City;
+import pl.zielinska.outdoor.util.Regex;
 import pl.zielinska.outdoor.validation.ConfirmedPassword;
 import pl.zielinska.outdoor.validation.UniqueEmail;
 import pl.zielinska.outdoor.validation.UniqueUsername;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Data @Builder
 @NoArgsConstructor
@@ -26,9 +28,11 @@ public class UserDto implements Dto{
     private String username;
 
     @NotBlank
+    @Pattern(regexp = Regex.LETTERS_ONLY, message = "Should consist only of letters")
     private String firstName;
 
     @NotBlank
+    @Pattern(regexp = Regex.LETTERS_ONLY, message = "Should consist only of letters")
     private String lastName;
 
     @NotBlank
@@ -46,6 +50,7 @@ public class UserDto implements Dto{
     @Email
     @NotBlank
     @UniqueEmail
+    @Pattern(regexp = Regex.EMAIL, message = "Email not valid")
     private String email;
 
     @JsonIgnore
