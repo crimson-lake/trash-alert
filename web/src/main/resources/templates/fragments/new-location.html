@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+    <div id="locationModal"
+         class="modal fade"
+         role="dialog"
+         th:fragment="locationModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title"
+                        th:text="#{new.location.modal.header}"></h5>
+                    <button type="button"
+                            class="close"
+                            data-dismiss="modal"
+                            aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" th:object="${newLocation}">
+                        <div class="form-group">
+                            <label for="name"
+                                   th:text="#{general.name}"></label>
+                            <input id="name"
+                                   type="text"
+                                   maxlength="50"
+                                   class="form-control"
+                                   th:classappend="${#fields.hasErrors('name')} ? is-invalid : ''"
+                                   th:field="*{name}"
+                                   autofocus="autofocus"
+                                   required>
+                            <small class="form-text red"
+                                   th:if="${#fields.hasErrors('name')}"
+                                   th:errors="*{name}">
+                            </small>
+                        </div>
+                        <div th:insert="new-ad.html :: address-form-row"></div>
+                        <p class="alert alert-warning"
+                           th:if="${#fields.hasErrors('global')}"
+                           th:errors="*{global}"></p>
+                        <button type="submit"
+                                class="btn btn-success mx-2"
+                                th:text="#{general.button.submit}"></button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -23,51 +23,42 @@
 
     <nav th:fragment="navbar"
          id="mainNavbar"
-         class="navbar navbar-light bg-light py-0 fixed-top">
+         class="navbar navbar-expand-lg navbar-light bg-light py-0 fixed-top">
         <div class="container">
-        <a th:href="@{/}" class="navbar-brand hover">
-            <span th:text="#{logo}"> </span>
-        </a>
-        <ul class="nav d-flex justify-content-end">
-            <li th:if="${username != null}" class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle red"
-                   data-toggle="dropdown"
-                   href="#">
-                    <i class="far fa-user"></i>
-                </a>
-
-                <div class="dropdown-menu">
-                    <a class="dropdown-item hover"
-                       th:href="@{/outdoor-search/new-ad}">
-                        <i class="fas fa-plus red"> </i>
-                        <span th:text="#{navbar.new.ad}"></span>
-                    </a>
-                    <a class="dropdown-item hover"
-                       th:href="@{/outdoor-search/my-ads}">
-                        <i class="fas fa-couch red"></i>
-                        <span th:text="#{navbar.my.ads}"></span>
-                    </a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item"
-                       th:href="@{/logout}">
-                        <i class="fas fa-sign-out-alt red"></i>
-                        <span th:text="#{navbar.logout}"></span>
-                    </a>
-                </div>
-
-            </li>
-            <li th:if="${username == null}" class="nav-item">
-                <a  class="nav-link hover"
-                    th:text="#{general.login}"
-                    th:href="@{/login}">
-                </a>
-            </li>
-            <li th:unless="${username == null}" class="nav-item">
-                <span   class="nav-link"
-                        th:text="${username}">
-                </span>
-            </li>
-        </ul>
+            <a th:href="@{/}" class="navbar-brand hover">
+                <span th:text="#{logo}"> </span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-hamburger"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li th:if="${username != null}" class="nav-item">
+                        <a class="nav-link hover"
+                           th:href="@{/logout}">
+                            <span th:text="#{navbar.logout}"></span>
+                        </a>
+                    </li>
+                    <li th:if="${username == null}" class="nav-item">
+                        <a  class="nav-link hover"
+                            th:text="#{general.login}"
+                            th:href="@{/login}">
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link hover"
+                                th:href="@{/outdoor-search/new-ad}">
+                            <span th:text="#{navbar.new.ad}"></span>
+                        </a>
+                    </li>
+                    <li th:if="${username != null}">
+                        <a class="nav-link hover"
+                           th:href="@{/outdoor-search/my-ads}">
+                            <span th:text="#{navbar.my.ads}"></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
         </div>
     </nav>
 

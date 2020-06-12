@@ -55,6 +55,11 @@ public class User implements UserDetails {
 
     @OneToMany( fetch=FetchType.LAZY,
                 cascade=CascadeType.ALL,
+                mappedBy="user")
+    private Set<CustomLocation> locations = new HashSet<>();
+
+    @OneToMany( fetch=FetchType.LAZY,
+                cascade=CascadeType.ALL,
                 mappedBy = "adAuthor")
     @Singular private Set<Ad> ads = new HashSet<>();
 
@@ -68,6 +73,11 @@ public class User implements UserDetails {
         if (!theAd.getAdAuthor().equals(this)) {
             theAd.setAdAuthor(this);
         }
+    }
+
+    public void addNewCustomLocation(CustomLocation location) {
+        location.setUser(this);
+        locations.add(location);
     }
 
     @Override
