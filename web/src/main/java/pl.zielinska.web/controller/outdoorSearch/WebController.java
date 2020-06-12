@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import pl.zielinska.model.domain.SortAndFilterArguments;
 import pl.zielinska.model.domain.User;
 import pl.zielinska.outdoor.service.AdService;
 import pl.zielinska.outdoor.service.UserService;
@@ -20,6 +21,9 @@ public class WebController {
     @Autowired
     private AdService adService;
 
+    @Autowired
+    private SortAndFilterArguments sortAndFilterArgs;
+
     @GetMapping("/outdoor-search")
     public String home(Model model, HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
@@ -27,10 +31,11 @@ public class WebController {
             return "login";
         }
         final User activeUser = userService.findByUsername(principal.getName());
+        model.addAttribute("filtered", sortAndFilterArgs.isFiltered());
         model.addAttribute("username", activeUser.getUsername());
         model.addAttribute("locations", activeUser.getLocations());
         model.addAttribute("city", activeUser.getDefaultCity());
-        model.addAttribute("ads", adService.findAllDto());
+        model.addAttribute("ads", adService.findAllDto(sortAndFilterArgs));
         return "index";
     }
 }

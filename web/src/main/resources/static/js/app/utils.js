@@ -19,12 +19,14 @@ function sortAds(sortBy) {
 }
 
 function filterAds(filterBy) {
+    toggle = true;
     $.get("/type190-200/outdoor-search/filter?filterBy= " + filterBy, function(data) {
             $("#boardWithAds").replaceWith(data).done(toggleClearFilterButton());
         });
 }
 
 function clearFilter() {
+    toggle = false;
     $.get("/type190-200/outdoor-search/clear" , function(data) {
             $("#boardWithAds").replaceWith(data).done(toggleClearFilterButton());
         });
@@ -32,7 +34,7 @@ function clearFilter() {
 
 function toggleClearFilterButton() {
   var x = document.getElementById("clearFilter");
-  if (x.style.display === "none") {
+  if (toggle) {
     x.style.display = "block";
   } else {
     x.style.display = "none";

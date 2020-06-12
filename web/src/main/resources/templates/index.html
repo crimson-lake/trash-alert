@@ -48,7 +48,7 @@
 					<div style="display: none;" id="clearFilter">
 						<button type="button"
 								class="tag hover"
-                                th:text="#{filter.clear}"
+								th:text="#{filter.clear}"
 								th:onclick="javascript:clearFilter();">
 						</button>
 					</div>
@@ -74,6 +74,11 @@
     var y = /*[[${city.getY()}]]*/ 51.55;
     var x = /*[[${city.getX()}]]*/ 19.08;
     var zoom = /*[[${city.getZoom()}]]*/ 6;
+    var toggle = /*[[${filtered}]]*/ false;
+
+    if (toggle == true) {
+		document.getElementById("clearFilter").style.display = "block";
+    }
 
     $(document).ready(function() {
     	showMap(y, x, zoom);
