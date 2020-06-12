@@ -4,15 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import pl.zielinska.outdoor.validation.Address;
 
 import javax.validation.constraints.NotBlank;
 
-@Address
+@pl.zielinska.outdoor.validation.Address
 @Data @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class LocationDto implements Dto, Adress {
+public class LocationDto implements Dto, Address {
 
     @NotBlank
     private String name;

@@ -1,7 +1,6 @@
 package pl.zielinska.outdoor.dto;
 
-public interface Adress {
+public interface Address {
     String getStreet();
     String getCity();
-
 }

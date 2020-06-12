@@ -55,9 +55,9 @@ public class NewAdController {
 
     @PostMapping("/outdoor-search/new-ad")
     public String newAd(@Valid @ModelAttribute("newAd") AdDto adDto,
-                        @RequestParam(name = "tags") String tags,
                         BindingResult bindingResult,
-                        HttpServletRequest request) throws JsonProcessingException {
+                        HttpServletRequest request,
+                        @RequestParam(name = "tags") String tags) throws JsonProcessingException {
         if (bindingResult.hasErrors()) {
             log.debug("New ad form has errors");
             return "new-ad";

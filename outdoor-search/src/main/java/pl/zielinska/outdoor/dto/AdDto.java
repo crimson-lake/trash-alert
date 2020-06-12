@@ -5,16 +5,15 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
-import pl.zielinska.outdoor.validation.Address;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
-@Address
+@pl.zielinska.outdoor.validation.Address
 @Data @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class AdDto implements Dto, Adress {
+public class AdDto implements Dto, Address {
 
     private int id;
 

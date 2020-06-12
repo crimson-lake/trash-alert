@@ -5,19 +5,19 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.ResponseEntity;
 import pl.zielinska.model.util.CoordinatesUtil;
-import pl.zielinska.outdoor.dto.Adress;
+import pl.zielinska.outdoor.dto.Address;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 
-public class AddressValidator implements ConstraintValidator<Address, Adress> {
+public class AddressValidator implements ConstraintValidator<pl.zielinska.outdoor.validation.Address, Address> {
 
     @Override
-    public void initialize(Address constraintAnnotation) {}
+    public void initialize(pl.zielinska.outdoor.validation.Address constraintAnnotation) {}
 
     @Override
-    public boolean isValid(Adress adress, ConstraintValidatorContext constraintValidatorContext) {
-        ResponseEntity<String> response = CoordinatesUtil.getResponseFor(adress.getCity(), adress.getStreet());
+    public boolean isValid(Address address, ConstraintValidatorContext constraintValidatorContext) {
+        ResponseEntity<String> response = CoordinatesUtil.getResponseFor(address.getCity(), address.getStreet());
         if (response.hasBody()) {
             try {
                 JsonNode features = new ObjectMapper()
