@@ -13,7 +13,13 @@
             <div class="col-md-5 text-center my-ads-board">
                 <div id="boardWithMyAds" th:replace="fragments/board-my-ads.html :: board-my-ads"></div>
             </div>
-            <div id="editAdForm" class="col-md-5"></div>
+            <div class="col-md-5">
+                <div id="editAdForm">
+                    <th:block th:if="${error}">
+                        <div th:insert="fragments/edit-ad-form.html :: editAdForm"/>
+                    </th:block>
+                </div>
+            </div>
             <div class="col-md-1"></div>
         </div>
     </section>

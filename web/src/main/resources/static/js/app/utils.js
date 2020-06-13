@@ -19,6 +19,12 @@ function deleteAd(id) {
     });
 };
 
+function editAd(id) {
+    $.get("/type190-200/outdoor-search/edit-ad?id= " + id, function(data) {
+          $("#editAdForm").replaceWith(data);
+    });
+}
+
 function openLocationModal() {
     $.get("/type190-200/outdoor-search/new-location-form", function(data) {
         $("#locationModalContainer").html(data);

@@ -81,6 +81,11 @@ public class AdServiceImpl implements AdService{
     }
 
     @Override
+    public void save(AdDto adDto) {
+        adRepository.save(adConverter.createFrom(adDto));
+    }
+
+    @Override
     public void save(Ad theAd) {
         adRepository.save(theAd);
     }

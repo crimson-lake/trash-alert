@@ -19,6 +19,7 @@ public interface AdService {
     List<AdDto> findByTagsName(String name, Sort sort);
     Ad findById(int id);
     AdDto findByIdDto(int id);
+    void save(AdDto adDto);
     void save(Ad theAd);
     void deleteById(int id);
     Ad publishNewAd(AdDto adDto, User user) throws JsonProcessingException;

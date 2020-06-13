@@ -15,7 +15,9 @@
                             th:onclick="javascript:openConfirmationDialog(this.getAttribute('id'));">
                         <i class="fas fa-trash-alt"></i>
                     </button>
-                    <button class="button-edit mx-2">
+                    <button class="button-edit mx-2"
+                            th:id = ${ad.id}
+                            th:onclick="javascript:editAd(this.getAttribute('id'));">
                         <i class="fas fa-edit"></i>
                     </button>
                 </div>
