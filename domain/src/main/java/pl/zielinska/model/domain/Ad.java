@@ -35,7 +35,10 @@ public class Ad {
 
     private LocalDateTime created;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne( fetch = FetchType.LAZY,
+                cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE})
     @JoinColumn(name = "users_id")
     private User adAuthor;
 
@@ -50,7 +53,9 @@ public class Ad {
     private Set<Photo> photos = new HashSet<>();
 
     @ManyToMany(fetch=FetchType.LAZY,
-                cascade=CascadeType.ALL)
+                cascade = {
+                    CascadeType.PERSIST,
+                    CascadeType.MERGE})
     @JoinTable( name = "tags_linking_table",
                 joinColumns = @JoinColumn(name = "ad_id"),
                 inverseJoinColumns = @JoinColumn(name = "tag_id"))

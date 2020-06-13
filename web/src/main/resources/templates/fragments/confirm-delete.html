@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div id="confirmDeleteModal"
+     class="modal fade"
+     role="dialog"
+     th:fragment="confirmDeleteModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p th:text="#{confirm.deleting}"></p>
+            </div>
+            <div class="modal-footer d-flex justify-content-end">
+                <button type="button"
+                        class="btn btn-danger"
+                        data-dismiss="modal"
+                        th:text="#{general.button.no}"></button>
+                <button type="button"
+                        class="btn btn-success"
+                        th:id="${id}"
+                        th:onclick="javascript:deleteAd(this.getAttribute('id'));"
+                        th:text="#{general.button.yes}"></button>
+            </div>
+        </div>
+    </div>
+</div>

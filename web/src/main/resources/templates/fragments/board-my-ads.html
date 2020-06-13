@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<div id="boardWithMyAds" th:fragment="board-my-ads">
+    <div th:each="ad : ${myads}">
+        <div class="ad p-2 rounded my-2">
+            <div class="row text-left p-1">
+                <div class="col-md-6">
+                    <h5 th:text="${ad.title}"></h5>
+                </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <button class="button-delete mx-2"
+                            th:id = ${ad.id}
+                            th:onclick="javascript:openConfirmationDialog(this.getAttribute('id'));">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                    <button class="button-edit mx-2">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <div class="d-flex flex-row">
+                    <div th:each="tag : ${ad.tags}">
+                                        <span class="tag p-1 mx-1"
+                                              th:text="'#' + ${tag}"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

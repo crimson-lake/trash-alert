@@ -20,5 +20,6 @@ public interface AdService {
     Ad findById(int id);
     AdDto findByIdDto(int id);
     void save(Ad theAd);
+    void deleteById(int id);
     Ad publishNewAd(AdDto adDto, User user) throws JsonProcessingException;
 }

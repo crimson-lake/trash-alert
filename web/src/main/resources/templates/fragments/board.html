@@ -26,9 +26,9 @@
                  class="p-2 toggleable">
                 <p th:text="${ad.details}"></p>
                 <button type="button"
-                        class="btn btn-info"
-                        th:text="#{general.button.more}"
+                        class="button-more"
                         th:onclick="'openAdModal(\'' + ${ad.id} + '\')'">
+                    <i class="fas fa-ellipsis-h"></i>
                 </button>
             </div>
         </div>

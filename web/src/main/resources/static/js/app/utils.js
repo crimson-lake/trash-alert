@@ -5,6 +5,20 @@ function openAdModal(id) {
     });
 };
 
+function openConfirmationDialog(id) {
+    $.get("/type190-200/outdoor-search/my-ads/confirm-delete?id=" + id, function(data) {
+        $("#confirmDeleteContainer").html(data);
+        $("#confirmDeleteModal").modal("show");
+    });
+};
+
+function deleteAd(id) {
+    $.get("/type190-200/outdoor-search/my-ads/delete?id=" + id, function(data) {
+        $("#confirmDeleteModal").modal("hide");
+        $("#boardWithMyAds").replaceWith(data);
+    });
+};
+
 function openLocationModal() {
     $.get("/type190-200/outdoor-search/new-location-form", function(data) {
         $("#locationModalContainer").html(data);

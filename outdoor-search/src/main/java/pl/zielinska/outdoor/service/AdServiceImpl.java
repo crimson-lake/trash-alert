@@ -86,6 +86,11 @@ public class AdServiceImpl implements AdService{
     }
 
     @Override
+    public void deleteById(int id) {
+        adRepository.deleteById(id);
+    }
+
+    @Override
     public Ad publishNewAd(AdDto adDto, User user) throws JsonProcessingException {
         final Coordinates xy = CoordinatesUtil.translateAdressToCoordinates(adDto.getCity(), adDto.getStreet());
 
