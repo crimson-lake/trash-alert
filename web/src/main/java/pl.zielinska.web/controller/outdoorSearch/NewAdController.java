@@ -75,7 +75,7 @@ public class NewAdController {
     }
 
     private Set<Tag> makeTags(String tags) {
-        return Arrays.stream(tags.split("(\\s+#*)|(#+)"))
+        return Arrays.stream(tags.split("(,*\\s+#*)|(#+)"))
                 .filter(x -> !x.isEmpty())
                 .map(x -> tagService.createTag(x))
                 .collect(Collectors.toSet());

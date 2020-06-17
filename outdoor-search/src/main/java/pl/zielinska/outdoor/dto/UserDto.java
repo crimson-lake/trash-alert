@@ -28,11 +28,9 @@ public class UserDto implements Dto{
     private String username;
 
     @NotBlank
-    @Pattern(regexp = Regex.LETTERS_ONLY, message = "Should consist only of letters")
     private String firstName;
 
     @NotBlank
-    @Pattern(regexp = Regex.LETTERS_ONLY, message = "Should consist only of letters")
     private String lastName;
 
     @NotBlank
