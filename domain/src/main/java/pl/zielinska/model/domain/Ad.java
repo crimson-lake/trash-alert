@@ -67,6 +67,9 @@ public class Ad {
     private Coordinates coordinates;
 
     public String getFormattedDate() {
+        if (created == null) {
+            return "unknown";
+        }
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("HH:mm dd-MM-yyyy");
         return created.format(formatter);
     }
