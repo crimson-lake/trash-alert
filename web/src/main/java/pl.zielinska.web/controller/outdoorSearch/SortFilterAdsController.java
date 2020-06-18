@@ -2,6 +2,7 @@ package pl.zielinska.web.controller.outdoorSearch;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,7 @@ import java.util.List;
 
 @Slf4j
 @Controller
+@Scope("session")
 public class SortFilterAdsController {
 
     @Autowired

@@ -2,6 +2,7 @@ package pl.zielinska.model.domain;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.context.annotation.Scope;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +11,7 @@ import java.util.Map;
 
 @Component
 @Getter @Setter
+@Scope("session")
 public class SortAndFilterArguments {
     private Sort sortBy;
     private Map<String, String> filterBy = new HashMap<>();
