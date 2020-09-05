@@ -26,7 +26,7 @@ public class SortFilterAdsController {
     @Autowired
     private SortAndFilterArguments sortAndFilterArgs;
 
-    @GetMapping("/outdoor-search/sort")
+    @GetMapping("/sort")
     public String sortedAds(@RequestParam(name = "sortBy") String sortArg, Model model) {
         SortingArgument sortingArg = SortingArgument.valueOf(sortArg);
         sortAndFilterArgs.setSortBy(Sort.by(sortingArg.getDirection(), sortingArg.getArgument()));
@@ -35,7 +35,7 @@ public class SortFilterAdsController {
         return "fragments/board :: board";
     }
 
-    @GetMapping("/outdoor-search/filter")
+    @GetMapping("/filter")
     public String filteredAds(@RequestParam(name = "filterBy") String filterBy, Model model) {
         sortAndFilterArgs.addToFilterList("tag", filterBy);
         List<AdDto> filteredAds = adService.findAllDto(sortAndFilterArgs);
@@ -44,7 +44,7 @@ public class SortFilterAdsController {
         return "fragments/board :: board";
     }
 
-    @GetMapping("/outdoor-search/clear")
+    @GetMapping("/clear")
     public String clearFilters(Model model) {
         sortAndFilterArgs.clearFilterList();
         List<AdDto> filteredAds = adService.findAllDto(sortAndFilterArgs);

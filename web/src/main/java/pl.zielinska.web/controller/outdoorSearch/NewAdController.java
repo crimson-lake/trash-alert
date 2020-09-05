@@ -42,7 +42,7 @@ public class NewAdController {
     @Autowired
     private TagService tagService;
 
-    @GetMapping("/outdoor-search/new-ad")
+    @GetMapping("/new-ad")
     public String newAd(Model model, HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
         if (principal == null) {
@@ -53,7 +53,7 @@ public class NewAdController {
         return "new-ad";
     }
 
-    @PostMapping("/outdoor-search/new-ad")
+    @PostMapping("/new-ad")
     public String newAd(@Valid @ModelAttribute("newAd") AdDto adDto,
                         BindingResult bindingResult,
                         HttpServletRequest request,
@@ -71,7 +71,7 @@ public class NewAdController {
         adService.save(theAd);
         userService.bindAdWithUser(theUser, theAd);
 
-        return "redirect:/outdoor-search";
+        return "redirect:/";
     }
 
     private Set<Tag> makeTags(String tags) {

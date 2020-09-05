@@ -20,13 +20,13 @@ public class DeleteAdController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/outdoor-search/my-ads/confirm-delete")
+    @GetMapping("/my-ads/confirm-delete")
     public String confirmDeleting(@RequestParam(name = "id") int id, Model model) {
         model.addAttribute("id", id);
         return "fragments/confirm-delete :: confirmDeleteModal";
     }
 
-    @GetMapping("/outdoor-search/my-ads/delete")
+    @GetMapping("/my-ads/delete")
     public String deleteAd(@RequestParam(name = "id") int id,
                            Model model,
                            HttpServletRequest request) {

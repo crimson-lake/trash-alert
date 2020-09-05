@@ -15,7 +15,7 @@ public class MyAdsController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/outdoor-search/my-ads")
+    @GetMapping("/my-ads")
     public String showMyAds(Model model, HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
         if (principal == null) {

@@ -14,7 +14,7 @@ public class AdModalController {
     @Autowired
     private AdService adService;
 
-    @GetMapping("/outdoor-search/ad/{id}")
+    @GetMapping("/ad/{id}")
     public String ad(@PathVariable(name="id") int id, Model model) {
         AdDto ad = adService.findByIdDto(id);
         model.addAttribute("ad", ad);

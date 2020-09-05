@@ -32,7 +32,7 @@ function showMap(y, x, zoom) {
 			     });
 		}
 
-		$.get("/type190-200/api/ads/geoinfo", function(data) {
+		$.get("/api/ads/geoinfo", function(data) {
 			L.geoJSON(data, {
 				pointToLayer: function (feature, latlng) {
                     markers.set(feature.properties.id, latlng);
@@ -54,7 +54,7 @@ function firePopup(id) {
 };
 
 function display(id, elementId) {
-    $.get("/type190-200/api/ads/" + id, function(data){
+    $.get("/api/ads/" + id, function(data){
         var adHTML = "<h3 class=\"hover\">" + data.title + "</h3>";
         adHTML += "<hr>"
         adHTML += "<p class=\"px-2 d-flex justify-content-end\">created: " + data.created + " </p>";

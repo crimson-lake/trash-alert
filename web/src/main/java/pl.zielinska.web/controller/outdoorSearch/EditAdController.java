@@ -26,13 +26,13 @@ public class EditAdController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/outdoor-search/edit-ad")
+    @GetMapping("/edit-ad")
     public String editAd(@RequestParam(name = "id") int id, Model model) {
         model.addAttribute("ad", adService.findByIdDto(id));
         return "fragments/edit-ad-form :: editAdForm";
     }
 
-    @PostMapping("/outdoor-search/my-ads")
+    @PostMapping("/my-ads")
     public String saveAd(@Valid @ModelAttribute("ad") AdDto adDto,
                          BindingResult bindingResult,
                          HttpServletRequest request,

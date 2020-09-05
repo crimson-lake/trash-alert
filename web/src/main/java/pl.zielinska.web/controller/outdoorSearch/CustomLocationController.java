@@ -28,13 +28,13 @@ public class CustomLocationController {
     @Autowired
     private AdService adService;
 
-    @GetMapping("/outdoor-search/new-location-form")
+    @GetMapping("/new-location-form")
     public String newLocationForm(Model model) {
         model.addAttribute("newLocation", new LocationDto());
         return "fragments/new-location :: locationModal";
     }
 
-    @PostMapping("/outdoor-search")
+    @PostMapping("/")
     public String addNewLocation(@Valid @ModelAttribute("newLocation") LocationDto locationDto,
                                  BindingResult bindingResult,
                                  Model model,
@@ -55,6 +55,6 @@ public class CustomLocationController {
         }
         final User activeUser = userService.findByUsername(principal.getName());
         userService.addNewLocationToUser(activeUser, locationDto);
-        return "redirect:/outdoor-search";
+        return "redirect:/";
     }
 }

@@ -26,7 +26,7 @@ public class WebController {
     @Autowired
     private SortAndFilterArguments sortAndFilterArgs;
 
-    @GetMapping("/outdoor-search")
+    @GetMapping("/")
     public String home(Model model, HttpServletRequest request) {
         Principal principal = request.getUserPrincipal();
         if (principal == null) {

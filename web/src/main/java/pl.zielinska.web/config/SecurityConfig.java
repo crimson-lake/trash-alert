@@ -34,7 +34,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/outdoor-search").authenticated()
+                .antMatchers("/new-ad").authenticated()
+                .antMatchers("/my-ads").authenticated()
+                .antMatchers("/").permitAll()
                 .antMatchers("/api/ads/geoinfo").permitAll()
                 .and().formLogin().loginPage("/login").failureUrl("/login-error")
                 .and().logout().logoutSuccessUrl("/");
