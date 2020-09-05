@@ -4,7 +4,8 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import pl.zielinska.model.domain.SortAndFilterArguments;
 import pl.zielinska.model.repository.AdRepository;
@@ -16,7 +17,6 @@ import pl.zielinska.outdoor.dto.ConverterDto;
 import pl.zielinska.outdoor.exception.NotFoundException;
 import pl.zielinska.model.util.CoordinatesUtil;
 
-import java.util.List;
 import java.util.Map;
 
 @Service
@@ -30,42 +30,31 @@ public class AdServiceImpl implements AdService{
     private ConverterDto<Ad, AdDto> adConverter;
 
     @Override
-    public List<Ad> findAll() {
-        return adRepository.findAll();
+    public Page<Ad> findAll(Pageable pageable) {
+        return adRepository.findAll(pageable);
     }
 
     @Override
-    public List<AdDto> findAllDto() {
-        return adConverter.createFromEntities(adRepository.findAll());
+    public Page<AdDto> findAllDto(Pageable pageable) {
+        return adRepository.findAll(pageable)
+                           .map(adConverter::createFrom);
     }
 
     @Override
-    public List<AdDto> findAllDto(Sort sort) {
-        if (sort == null) {
-            return findAllDto();
-        }
-        return adConverter.createFromEntities(adRepository.findAll(sort));
-    }
-
-    @Override
-    public List<AdDto> findAllDto(SortAndFilterArguments sortAndFilterArgs) {
+    public Page<AdDto> findAllDto(SortAndFilterArguments sortAndFilterArgs, Pageable pageable) {
         if (sortAndFilterArgs == null) {
-            return findAllDto();
+            return findAllDto(pageable);
         } else if (sortAndFilterArgs.getFilterBy().isEmpty()) {
-            return findAllDto(sortAndFilterArgs.getSortBy());
+            return findAllDto(pageable);
         } else {
-            return filterAndSort(sortAndFilterArgs);
+            return filterAndSort(sortAndFilterArgs, pageable);
         }
     }
 
     @Override
-    public List<AdDto> findByTagsName(String name) {
-        return adConverter.createFromEntities(adRepository.findByTagsName(name));
-    }
-
-    @Override
-    public List<AdDto> findByTagsName(String name, Sort sort) {
-        return adConverter.createFromEntities(adRepository.findByTagsName(name, sort));
+    public Page<AdDto> findByTagsName(String name, Pageable pageable) {
+        Page<Ad> page = adRepository.findByTagsName(name, pageable);
+        return page.map(adConverter::createFrom);
     }
 
     @Override
@@ -105,9 +94,9 @@ public class AdServiceImpl implements AdService{
         return adRepository.save(ad);
     }
 
-    private List<AdDto> filterAndSort(SortAndFilterArguments sortAndFilterArgs) {
+    private Page<AdDto> filterAndSort(SortAndFilterArguments sortAndFilterArgs, Pageable pageable) {
         Map<String, String> filterArgs = sortAndFilterArgs.getFilterBy();
-        return findByTagsName(filterArgs.get("tag"), sortAndFilterArgs.getSortBy());
+        return findByTagsName(filterArgs.get("tag"), pageable);
     }
 
 }

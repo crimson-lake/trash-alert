@@ -6,6 +6,8 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.zielinska.model.TestVal;
 import pl.zielinska.model.domain.Ad;
@@ -111,7 +113,7 @@ public class AdRepositoryTest {
 
         ad.addTag(TestVal.TEST_TAG);
         entityManager.persistAndFlush(testUser);
-        List<Ad> testAd = adRepository.findByTagsName(TestVal.TEST_TAG.getName());
+        Page<Ad> testAd = adRepository.findByTagsName(TestVal.TEST_TAG.getName(), PageRequest.of(0,5));
         assertNotNull(testAd);
     }
 }

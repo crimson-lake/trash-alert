@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 import pl.zielinska.outdoor.TestVal;
 import pl.zielinska.model.repository.AdRepository;
@@ -84,26 +85,6 @@ public class AdServiceTest {
                     .build());
         }
         assertEquals(TEST_SIZE, testAdsList.size());
-    }
-
-    @Test
-    public void findAllTest() {
-        Mockito.when(adRepository.findAll())
-                .thenReturn(testAdsList);
-
-        assertEquals(testAdsList, adService.findAll());
-    }
-
-    @Test
-    public void findAllTestDto() {
-        List<AdDto> listDto = new ArrayList<>();
-        listDto.add(Mockito.mock(AdDto.class));
-        Mockito.when(adConverter.createFromEntities(any()))
-                .thenReturn(listDto);
-
-        List<AdDto> testDto = adService.findAllDto();
-        assertEquals(listDto, testDto);
-        Mockito.verify(adConverter, times(1)).createFromEntities(any());
     }
 
     @Test

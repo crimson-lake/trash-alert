@@ -131,6 +131,16 @@ p
     color: #0a727e;
 }
 
+.active
+{
+    color: #0a727e;
+}
+
+.active:hover
+{
+    cursor: pointer;
+}
+
 .error
 {
     color: #e62e00;

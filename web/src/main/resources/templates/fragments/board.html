@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <div id="boardWithAds" th:fragment="board">
-    <div th:each="ad : ${ads}">
+    <div th:each="ad : ${ads.content}">
         <div class="ad p-2 rounded my-2">
             <div class="text-left p-1">
                 <h5 th:text="${ad.title}"
@@ -33,4 +33,14 @@
             </div>
         </div>
     </div>
+    <th:block
+            th:if="${ads.totalPages > 0}"
+            class="pagination"
+            th:each="pageNumber: ${#numbers.sequence(1, ads.totalPages)}">
+        <span th:size="${ads.size}"
+              th:page="${pageNumber}"
+              th:text=${pageNumber}
+              th:onclick="javascript:refreshBoard(this.getAttribute('page'), this.getAttribute('size'));"
+              th:class="${pageNumber==ads.number + 1} ? active : hover"></span>
+    </th:block>
 </div>

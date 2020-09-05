@@ -3,21 +3,21 @@ function openAdModal(id) {
         $("#adModalContainer").html(data);
         $("#adModal").modal("show");
     });
-};
+}
 
 function openConfirmationDialog(id) {
     $.get("/my-ads/confirm-delete?id=" + id, function(data) {
         $("#confirmDeleteContainer").html(data);
         $("#confirmDeleteModal").modal("show");
     });
-};
+}
 
 function deleteAd(id) {
     $.get("/my-ads/delete?id=" + id, function(data) {
         $("#confirmDeleteModal").modal("hide");
         $("#boardWithMyAds").replaceWith(data);
     });
-};
+}
 
 function editAd(id) {
     $.get("/edit-ad?id= " + id, function(data) {
@@ -30,7 +30,7 @@ function openLocationModal() {
         $("#locationModalContainer").html(data);
         $("#locationModal").modal("show");
     });
-};
+}
 
 function sortAds(sortBy) {
     $.get("/sort?sortBy= " + sortBy, function(data) {
@@ -59,4 +59,10 @@ function toggleClearFilterButton() {
   } else {
     x.style.display = "none";
   }
-};
+}
+
+function refreshBoard(page, size) {
+    $.get("/board?size=" + size + "&page=" + page, function(data) {
+            $("#boardWithAds").replaceWith(data);
+        });
+}

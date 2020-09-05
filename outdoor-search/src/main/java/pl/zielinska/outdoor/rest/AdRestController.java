@@ -19,11 +19,6 @@ public class AdRestController {
     @Autowired
     private AdService adService;
 
-    @GetMapping
-    public List<AdDto> findAll() {
-        return adService.findAllDto();
-    }
-
     @GetMapping(path = "/{id}")
     public AdDto findById(@PathVariable(name="id") int id) {
         return adService.findByIdDto(id);

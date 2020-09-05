@@ -41,17 +41,17 @@ function showMap(y, x, zoom) {
 				onEachFeature: onEachFeature
 			}).addTo(mymap);
 		});
-};
+}
 
 function changeView(y, x, zoom) {
     mymap.flyTo([y, x], zoom);
     console.log("change view")
-};
+}
 
 function firePopup(id) {
     mymap.flyTo(markers.get(id), 15);
     layers.get(id).openPopup();
-};
+}
 
 function display(id, elementId) {
     $.get("/api/ads/" + id, function(data){
@@ -61,7 +61,7 @@ function display(id, elementId) {
         adHTML += "<p>" + data.details + "</p>";
         document.getElementById("board" + elementId).innerHTML = adHTML;
     });
-};
+}
 
 function toggle(elementId) {
   var x = document.getElementById(elementId);
@@ -76,7 +76,7 @@ function toggle(elementId) {
     mymap.closePopup();
     mymap.flyTo(defaultView, defaultZoom);
   }
-};
+}
 
 function toggleAll() {
     var divs = document.getElementsByClassName("toggleable");
@@ -84,7 +84,7 @@ function toggleAll() {
       divs[i].style.display = "none";
       divs[i].parentElement.classList.remove("active-ad");
     }
-};
+}
 
 function truncate(text) {
     var maxLength = 100;
@@ -92,7 +92,7 @@ function truncate(text) {
         text = text.substr(0,maxLength) + '...';
     }
     return text;
-};
+}
 
 function flyTo(x, y) {
     mymap.flyTo([y, x], 17);

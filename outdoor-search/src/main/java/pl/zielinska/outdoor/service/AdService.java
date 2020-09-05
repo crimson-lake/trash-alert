@@ -1,22 +1,19 @@
 package pl.zielinska.outdoor.service;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import pl.zielinska.model.domain.Ad;
 import pl.zielinska.model.domain.SortAndFilterArguments;
 import pl.zielinska.model.domain.User;
 import pl.zielinska.outdoor.dto.AdDto;
 
-import java.util.List;
-
 public interface AdService {
 
-    List<Ad> findAll();
-    List<AdDto> findAllDto();
-    List<AdDto> findAllDto(Sort sort);
-    List<AdDto> findAllDto(SortAndFilterArguments sortAndFilterArgs);
-    List<AdDto> findByTagsName(String name);
-    List<AdDto> findByTagsName(String name, Sort sort);
+    Page<Ad> findAll(Pageable pageable);
+    Page<AdDto> findAllDto(Pageable pageable);
+    Page<AdDto> findAllDto(SortAndFilterArguments sortAndFilterArgs, Pageable pageable);
+    Page<AdDto> findByTagsName(String name, Pageable pageable);
     Ad findById(int id);
     AdDto findByIdDto(int id);
     void save(AdDto adDto);

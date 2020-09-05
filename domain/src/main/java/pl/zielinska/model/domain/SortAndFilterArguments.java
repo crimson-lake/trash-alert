@@ -13,7 +13,7 @@ import java.util.Map;
 @Getter @Setter
 @Scope("session")
 public class SortAndFilterArguments {
-    private Sort sortBy;
+    private Sort sortBy = Sort.by(Sort.Direction.ASC, "created");
     private Map<String, String> filterBy = new HashMap<>();
 
     public void addToFilterList(String attribute, String value) {
