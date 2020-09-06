@@ -9,7 +9,7 @@ import pl.zielinska.outdoor.dto.AdDto;
 import pl.zielinska.outdoor.service.AdService;
 
 @Controller
-public class AdModalController {
+public class AdDetailsController {
 
     @Autowired
     private AdService adService;
@@ -18,6 +18,6 @@ public class AdModalController {
     public String ad(@PathVariable(name="id") int id, Model model) {
         AdDto ad = adService.findByIdDto(id);
         model.addAttribute("ad", ad);
-        return "fragments/ad-modal :: adModal";
+        return "fragments/ad-details :: adDetails";
     }
 }

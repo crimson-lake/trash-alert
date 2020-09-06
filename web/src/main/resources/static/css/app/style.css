@@ -212,12 +212,6 @@ p
     background-color: white;
 }
 
-.ad p
-{
-    overflow: auto;
-    max-height: 100px;
-}
-
 .tag
 {
     background-color: #f5e0bd;

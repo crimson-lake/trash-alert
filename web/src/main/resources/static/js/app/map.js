@@ -28,7 +28,7 @@ function showMap(y, x, zoom) {
 			layer.bindPopup(popupContext, {closeButton: false, className: "popup"})
 			     .on('click', function(e){
 			        mymap.flyTo(e.latlng, 15);
-			        toggle("ad" + feature.properties.id);
+			        displayAd(feature.properties.id);
 			     });
 		}
 
@@ -53,13 +53,9 @@ function firePopup(id) {
     layers.get(id).openPopup();
 }
 
-function display(id, elementId) {
-    $.get("/api/ads/" + id, function(data){
-        var adHTML = "<h3 class=\"hover\">" + data.title + "</h3>";
-        adHTML += "<hr>"
-        adHTML += "<p class=\"px-2 d-flex justify-content-end\">created: " + data.created + " </p>";
-        adHTML += "<p>" + data.details + "</p>";
-        document.getElementById("board" + elementId).innerHTML = adHTML;
+function displayAd(id) {
+    $.get("/ad/" + id, function(data) {
+           $("#boardWithAds").replaceWith(data);
     });
 }
 

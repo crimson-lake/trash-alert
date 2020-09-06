@@ -1,10 +1,3 @@
-function openAdModal(id) {
-    $.get("/ad/ " + id, function(data) {
-        $("#adModalContainer").html(data);
-        $("#adModal").modal("show");
-    });
-}
-
 function openConfirmationDialog(id) {
     $.get("/my-ads/confirm-delete?id=" + id, function(data) {
         $("#confirmDeleteContainer").html(data);
@@ -63,6 +56,6 @@ function toggleClearFilterButton() {
 
 function refreshBoard(page, size) {
     $.get("/board?size=" + size + "&page=" + page, function(data) {
-            $("#boardWithAds").replaceWith(data);
+            $("#boardWithAds").replaceWith(data).done(mymap.closePopup());
         });
 }
