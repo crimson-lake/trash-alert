@@ -11,7 +11,6 @@ public class TagServiceImpl implements TagService {
     @Autowired
     private TagRepository tagRepository;
 
-
     @Override
     public Tag findByName(String name) {
         return tagRepository.findByName(name.toLowerCase());

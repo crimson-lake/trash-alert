@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.constraints.NotBlank;
 import java.util.Set;
@@ -34,4 +35,6 @@ public class AdDto implements Dto, Address {
     private String details;
 
     private Set<String> tags;
+
+    private MultipartFile photo;
 }

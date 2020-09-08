@@ -19,6 +19,7 @@
             <p th:text="'' + #{ad.created} + ': ' + ${ad.created}"></p>
         </div>
         <p th:text="${ad.details}"></p>
+        <img th:src="'/ad/photo?id=' + ${ad.id}" class="img-fluid" onerror="this.style='display:none'"/>
         <button type="button"
                 class="button-delete"
                 th:onclick="refreshBoard(1, 10)">

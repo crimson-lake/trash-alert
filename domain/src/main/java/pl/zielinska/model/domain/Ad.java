@@ -49,8 +49,8 @@ public class Ad {
 
     @OneToMany( fetch = FetchType.LAZY,
                 cascade = CascadeType.ALL,
-                mappedBy = "adId")
-    private Set<Photo> photos = new HashSet<>();
+                mappedBy = "ad")
+    private Set<Photo> photos;
 
     @ManyToMany(fetch=FetchType.LAZY,
                 cascade = {
@@ -98,5 +98,13 @@ public class Ad {
         }
         tags.add(tag);
         tag.addAd(this);
+    }
+
+    public void addPhoto(Photo photo) {
+        if (photos == null) {
+            photos = new HashSet<>();
+        }
+        photos.add(photo);
+        photo.setAd(this);
     }
 }

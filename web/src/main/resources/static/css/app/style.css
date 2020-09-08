@@ -1,19 +1,19 @@
 #mapid 
 { 
-	height: 560px;
+	height: 590px;
 	width: auto;
 }
 
 #board
 {
-    height: 560px;
+    height: 590px;
     width: auto;
     overflow: auto;
 }
 
 .my-ads-board
 {
-    height: 560px;
+    height: 590px;
     width: auto;
     overflow: auto;
 }

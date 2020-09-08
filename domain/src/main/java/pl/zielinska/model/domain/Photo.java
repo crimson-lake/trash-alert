@@ -1,13 +1,16 @@
 package pl.zielinska.model.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name="photos")
-@Data @NoArgsConstructor
+@Data @NoArgsConstructor @AllArgsConstructor
+@EqualsAndHashCode(of = {"id", "photo"})
 public class Photo {
 
     @Id
@@ -20,6 +23,5 @@ public class Photo {
 
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="ad_id", nullable=false)
-    private Ad adId;
-
+    private Ad ad;
 }
