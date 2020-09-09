@@ -2,9 +2,10 @@ package pl.zielinska.outdoor.service;
 
 import pl.zielinska.model.domain.Photo;
 
-import java.util.Optional;
+import java.util.List;
 
 public interface PhotoService {
 
-    Optional<Photo> photoByAdId(int id);
+    List<Photo> photosByAdId(int id);
+    Photo photoById(int id);
 }

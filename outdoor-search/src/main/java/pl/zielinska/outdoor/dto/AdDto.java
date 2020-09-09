@@ -36,5 +36,5 @@ public class AdDto implements Dto, Address {
 
     private Set<String> tags;
 
-    private MultipartFile photo;
+    private MultipartFile[] photos;
 }

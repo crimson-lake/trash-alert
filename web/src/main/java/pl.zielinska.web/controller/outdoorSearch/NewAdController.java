@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import pl.zielinska.model.domain.Ad;
 import pl.zielinska.model.domain.Photo;
 import pl.zielinska.model.domain.Tag;
@@ -69,9 +70,7 @@ public class NewAdController {
         User theUser = userService.findByUsername(activeUser);
         Ad theAd = adService.publishNewAd(adDto, theUser);
         theAd.setTags(makeTags(tags));
-        Photo photo = new Photo();
-        photo.setPhoto(adDto.getPhoto().getBytes());
-        theAd.addPhoto(photo);
+        processPhotos(adDto.getPhotos(), theAd);
         adService.save(theAd);
         userService.bindAdWithUser(theUser, theAd);
 
@@ -83,5 +82,14 @@ public class NewAdController {
                 .filter(x -> !x.isEmpty())
                 .map(x -> tagService.createTag(x))
                 .collect(Collectors.toSet());
+    }
+
+    private void processPhotos(MultipartFile[] files, Ad ad) throws IOException {
+        for(MultipartFile file : files) {
+            Photo photo = Photo.builder()
+                                .photo(file.getBytes())
+                                .build();
+            ad.addPhoto(photo);
+        }
     }
 }

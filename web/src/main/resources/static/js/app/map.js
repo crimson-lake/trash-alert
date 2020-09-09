@@ -59,6 +59,17 @@ function displayAd(id) {
     });
 }
 
+function displayPhotos(id) {
+    $.get("/api/ads/photos?id=" + id, function(data) {
+        var images = "<div>";
+        for(var i = 0; i < data.length; i++) {
+            images += "<img class=\"img-fluid\" src=\"/photos/photo?id=" + data[i] + "\">"
+        }
+        images += "</div>"
+        document.getElementById("photos").innerHTML = images;
+    });
+}
+
 function toggle(elementId) {
   var x = document.getElementById(elementId);
   if (x.style.display === "none") {

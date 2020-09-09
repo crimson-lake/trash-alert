@@ -95,8 +95,9 @@
                                th:text="#{general.photo}"></label>
                         <input id="photo"
                                type="file"
-                               name="file"
-                               th:field="*{photo}"
+                               name="files[]"
+                               multiple="multiple"
+                               th:field="*{photos}"
                                class="form-control-file">
                     </div>
 

@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import pl.zielinska.model.domain.Photo;
 import pl.zielinska.model.repository.PhotoRepository;
 
-import java.util.Optional;
+import java.util.List;
 
 @Service
 public class PhotoServiceImpl implements PhotoService {
@@ -14,7 +14,12 @@ public class PhotoServiceImpl implements PhotoService {
     private PhotoRepository photoRepository;
 
     @Override
-    public Optional<Photo> photoByAdId(int id) {
+    public List<Photo> photosByAdId(int id) {
         return photoRepository.findByAdId(id);
+    }
+
+    @Override
+    public Photo photoById(int id) {
+        return photoRepository.findById(id);
     }
 }
