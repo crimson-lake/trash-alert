@@ -9,12 +9,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import pl.zielinska.model.domain.Ad;
+import pl.zielinska.model.domain.Photo;
 import pl.zielinska.outdoor.dto.AdDto;
 import pl.zielinska.outdoor.service.AdService;
 import pl.zielinska.outdoor.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.security.Principal;
 
 @Controller
@@ -36,7 +38,7 @@ public class EditAdController {
     public String saveAd(@Valid @ModelAttribute("ad") AdDto adDto,
                          BindingResult bindingResult,
                          HttpServletRequest request,
-                         Model model) {
+                         Model model) throws IOException {
         Principal principal = request.getUserPrincipal();
         if (principal == null) {
             return "login";
@@ -53,6 +55,7 @@ public class EditAdController {
         ad.setDetails(adDto.getDetails());
         ad.setCity(adDto.getCity());
         ad.setStreet(ad.getStreet());
+        Photo.process(adDto.getPhotos(), ad);
         adService.save(ad);
         return "redirect:my-ads";
     }

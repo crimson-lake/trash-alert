@@ -70,7 +70,7 @@ public class NewAdController {
         User theUser = userService.findByUsername(activeUser);
         Ad theAd = adService.publishNewAd(adDto, theUser);
         theAd.setTags(makeTags(tags));
-        processPhotos(adDto.getPhotos(), theAd);
+        Photo.process(adDto.getPhotos(), theAd);
         adService.save(theAd);
         userService.bindAdWithUser(theUser, theAd);
 
@@ -82,14 +82,5 @@ public class NewAdController {
                 .filter(x -> !x.isEmpty())
                 .map(x -> tagService.createTag(x))
                 .collect(Collectors.toSet());
-    }
-
-    private void processPhotos(MultipartFile[] files, Ad ad) throws IOException {
-        for(MultipartFile file : files) {
-            Photo photo = Photo.builder()
-                                .photo(file.getBytes())
-                                .build();
-            ad.addPhoto(photo);
-        }
     }
 }

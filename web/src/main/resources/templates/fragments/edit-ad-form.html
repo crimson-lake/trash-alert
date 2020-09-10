@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org">
 
 <div id="editAdForm" th:fragment="editAdForm" class="p-3 ad rounded">
-    <form method="POST" th:object="${ad}">
+    <form method="POST" th:object="${ad}" enctype="multipart/form-data">
             <input type="hidden"
                    th:value="${ad.id}"
                    th:field="*{id}"
@@ -37,6 +37,7 @@
         </div>
 
         <div th:insert="new-ad.html :: address-form-row"></div>
+        <div th:insert="new-ad.html :: add-photos-form"></div>
 
         <p class="alert alert-warning"
            th:if="${#fields.hasErrors('global')}"
