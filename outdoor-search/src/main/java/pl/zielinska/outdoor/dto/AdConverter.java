@@ -29,6 +29,9 @@ public class AdConverter implements ConverterDto<Ad, AdDto> {
                 .map(String::toLowerCase)
                 .collect(Collectors.toSet());
 
+        StringBuilder builder = new StringBuilder();
+        tags.stream().forEach(x -> builder.append(x + " "));
+
         return AdDto.builder()
                 .id(entity.getId())
                 .title(entity.getTitle())
@@ -37,6 +40,7 @@ public class AdConverter implements ConverterDto<Ad, AdDto> {
                 .street(entity.getStreet())
                 .created(entity.getFormattedDate())
                 .tags(tags)
+                .editTags(builder.toString())
                 .build();
     }
 

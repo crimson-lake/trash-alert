@@ -37,6 +37,17 @@
         </div>
 
         <div th:insert="new-ad.html :: address-form-row"></div>
+
+        <div class="form-group">
+            <label for="tags"
+                   th:text="#{general.tags}"></label>
+            <input id="tags"
+                   name="editTags"
+                   type="text"
+                   th:value="*{editTags}"
+                   class="form-control">
+        </div>
+
         <div th:insert="new-ad.html :: add-photos-form"></div>
 
         <p class="alert alert-warning"

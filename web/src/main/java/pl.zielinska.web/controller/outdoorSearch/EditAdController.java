@@ -12,6 +12,7 @@ import pl.zielinska.model.domain.Ad;
 import pl.zielinska.model.domain.Photo;
 import pl.zielinska.outdoor.dto.AdDto;
 import pl.zielinska.outdoor.service.AdService;
+import pl.zielinska.outdoor.service.TagService;
 import pl.zielinska.outdoor.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +29,9 @@ public class EditAdController {
     @Autowired
     private UserService userService;
 
+    @Autowired
+    private TagService tagService;
+
     @GetMapping("/edit-ad")
     public String editAd(@RequestParam(name = "id") int id, Model model) {
         model.addAttribute("ad", adService.findByIdDto(id));
@@ -38,7 +42,8 @@ public class EditAdController {
     public String saveAd(@Valid @ModelAttribute("ad") AdDto adDto,
                          BindingResult bindingResult,
                          HttpServletRequest request,
-                         Model model) throws IOException {
+                         Model model,
+                         @RequestParam(name = "editTags") String tags) throws IOException {
         Principal principal = request.getUserPrincipal();
         if (principal == null) {
             return "login";
@@ -56,6 +61,7 @@ public class EditAdController {
         ad.setCity(adDto.getCity());
         ad.setStreet(ad.getStreet());
         Photo.process(adDto.getPhotos(), ad);
+        ad.setTags(tagService.makeTags(tags));
         adService.save(ad);
         return "redirect:my-ads";
     }
