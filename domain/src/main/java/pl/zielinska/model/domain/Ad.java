@@ -107,4 +107,10 @@ public class Ad {
         photos.add(photo);
         photo.setAd(this);
     }
+
+    public void updateAdress(String city, String street) throws JsonProcessingException {
+        this.street = street;
+        this.city = city;
+        this.coordinates = CoordinatesUtil.translateAdressToCoordinates(city, street);
+    }
 }

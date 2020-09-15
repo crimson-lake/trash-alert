@@ -58,8 +58,7 @@ public class EditAdController {
         Ad ad = adService.findById(adDto.getId());
         ad.setTitle(adDto.getTitle());
         ad.setDetails(adDto.getDetails());
-        ad.setCity(adDto.getCity());
-        ad.setStreet(ad.getStreet());
+        ad.updateAdress(adDto.getCity(), adDto.getStreet());
         Photo.process(adDto.getPhotos(), ad);
         ad.setTags(tagService.makeTags(tags));
         adService.save(ad);
