@@ -1,6 +1,8 @@
 package pl.zielinska.web.controller.outdoorSearch;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,7 +22,9 @@ import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
 
+@Slf4j
 @Controller
+@Scope("session")
 public class EditAdController {
 
     @Autowired
@@ -43,7 +47,8 @@ public class EditAdController {
                          BindingResult bindingResult,
                          HttpServletRequest request,
                          Model model,
-                         @RequestParam(name = "editTags") String tags) throws IOException {
+                         @RequestParam(name = "editTags") String tags,
+                         @RequestParam(name = "delete", required = false) int[] delete) throws IOException {
         Principal principal = request.getUserPrincipal();
         if (principal == null) {
             return "login";
@@ -55,6 +60,11 @@ public class EditAdController {
             model.addAttribute("myads", userService.usersAdsDto(activeUser));
             return "my-ads";
         }
+        updateAdWith(adDto, tags);
+        return "redirect:my-ads";
+    }
+
+    private Ad updateAdWith(AdDto adDto, String tags) throws IOException {
         Ad ad = adService.findById(adDto.getId());
         ad.setTitle(adDto.getTitle());
         ad.setDetails(adDto.getDetails());
@@ -62,6 +72,6 @@ public class EditAdController {
         Photo.process(adDto.getPhotos(), ad);
         ad.setTags(tagService.makeTags(tags));
         adService.save(ad);
-        return "redirect:my-ads";
+        return ad;
     }
 }

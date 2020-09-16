@@ -48,6 +48,15 @@
                    class="form-control">
         </div>
 
+        <div id="edit-photos"></div>
+        <script th:inline="javascript" type="text/javascript">
+            /*<![CDATA[*/
+                var id = /*[[${ad.id}]]*/
+                editPhotos(id);
+            /*]]>*/
+        </script>
+        <div id="delete-photo"></div>
+
         <div th:insert="new-ad.html :: add-photos-form"></div>
 
         <p class="alert alert-warning"

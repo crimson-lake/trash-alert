@@ -280,3 +280,28 @@ p
     background-color: #0a727e;
     color:  white;
 }
+
+.deleted-photo
+{
+    opacity: 0.5;
+}
+
+.img-container
+{
+  position: relative;
+  width: 150px;
+  height 150px;
+}
+
+.img-container img
+{
+  width: 100%;
+  height: auto;
+}
+
+.img-container .button-delete
+{
+  position: absolute;
+  top: 2%;
+  right: 2%;
+}

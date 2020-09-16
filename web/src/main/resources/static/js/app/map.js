@@ -70,6 +70,26 @@ function displayPhotos(id) {
     });
 }
 
+function editPhotos(id) {
+    $.get("/api/ads/photos?id=" + id, function(data) {
+        var images = "<div class=\"d-flex justify-content-center\">";
+        for(var i = 0; i < data.length; i++) {
+            images += "<div id=\"photo" + data[i] + "\" class=\"img-container\">";
+            images += "<img class=\"img-thumbnail p-2\" src=\"/photos/photo?id=" + data[i] + "\">"
+            images += "<span role=\"button\" class=\"button-delete px-2 pt-1\" onclick=\"deletePhoto(" + data[i] + ")\"><i class=\"fas fa-trash-alt\"></i></span></div>"
+        }
+        images += "</div>"
+        document.getElementById("edit-photos").innerHTML = images;
+    });
+}
+
+function deletePhoto(id) {
+    var photoId = "photo" + id;
+    var input = "<input type=\"hidden\" name=\"delete\" value=\"" + id + "\">";
+    $('#' + photoId).remove();
+    document.getElementById("delete-photo").innerHTML += input;
+}
+
 function toggle(elementId) {
   var x = document.getElementById(elementId);
   if (x.style.display === "none") {
