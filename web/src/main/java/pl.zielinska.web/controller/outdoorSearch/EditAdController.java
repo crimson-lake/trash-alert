@@ -14,6 +14,7 @@ import pl.zielinska.model.domain.Ad;
 import pl.zielinska.model.domain.Photo;
 import pl.zielinska.outdoor.dto.AdDto;
 import pl.zielinska.outdoor.service.AdService;
+import pl.zielinska.outdoor.service.PhotoService;
 import pl.zielinska.outdoor.service.TagService;
 import pl.zielinska.outdoor.service.UserService;
 
@@ -21,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 
 @Slf4j
 @Controller
@@ -36,6 +38,9 @@ public class EditAdController {
     @Autowired
     private TagService tagService;
 
+    @Autowired
+    private PhotoService photoService;
+
     @GetMapping("/edit-ad")
     public String editAd(@RequestParam(name = "id") int id, Model model) {
         model.addAttribute("ad", adService.findByIdDto(id));
@@ -48,7 +53,7 @@ public class EditAdController {
                          HttpServletRequest request,
                          Model model,
                          @RequestParam(name = "editTags") String tags,
-                         @RequestParam(name = "delete", required = false) int[] delete) throws IOException {
+                         @RequestParam(name = "delete", required = false) List<Integer> photosIdsToDelete) throws IOException {
         Principal principal = request.getUserPrincipal();
         if (principal == null) {
             return "login";
@@ -60,6 +65,7 @@ public class EditAdController {
             model.addAttribute("myads", userService.usersAdsDto(activeUser));
             return "my-ads";
         }
+        photoService.deletePhotos(photosIdsToDelete);
         updateAdWith(adDto, tags);
         return "redirect:my-ads";
     }

@@ -4,13 +4,13 @@
 <head>
     <th:block th:include="fragments/general.html :: headerfiles"></th:block>
 </head>
-<body class="body-img">
+<body>
     <nav th:insert="fragments/general.html :: navbar"> </nav>
 
     <section class="container-fluid content mt-5">
         <div class="row">
             <div class="col-md-1"></div>
-            <div class="col-md-5 text-center my-ads-board">
+            <div class="col-md-5 text-center">
                 <div id="boardWithMyAds" th:replace="fragments/board-my-ads.html :: board-my-ads"></div>
             </div>
             <div class="col-md-5">

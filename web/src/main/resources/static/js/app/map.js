@@ -76,7 +76,8 @@ function editPhotos(id) {
         for(var i = 0; i < data.length; i++) {
             images += "<div id=\"photo" + data[i] + "\" class=\"img-container\">";
             images += "<img class=\"img-thumbnail p-2\" src=\"/photos/photo?id=" + data[i] + "\">"
-            images += "<span role=\"button\" class=\"button-delete px-2 pt-1\" onclick=\"deletePhoto(" + data[i] + ")\"><i class=\"fas fa-trash-alt\"></i></span></div>"
+            images += "<span class=\"button-delete px-2 pt-1\" onclick=\"deletePhoto(" + data[i] + ")\" data-toggle=\"tooltip\" data-placement=\"top\" title=\"Tooltip on top\">";
+            images += "<i class=\"fas fa-trash-alt\"></i></span></div>"
         }
         images += "</div>"
         document.getElementById("edit-photos").innerHTML = images;
@@ -111,14 +112,6 @@ function toggleAll() {
       divs[i].style.display = "none";
       divs[i].parentElement.classList.remove("active-ad");
     }
-}
-
-function truncate(text) {
-    var maxLength = 100;
-    if (text.length > maxLength) {
-        text = text.substr(0,maxLength) + '...';
-    }
-    return text;
 }
 
 function flyTo(x, y) {

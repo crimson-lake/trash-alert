@@ -22,4 +22,13 @@ public class PhotoServiceImpl implements PhotoService {
     public Photo photoById(int id) {
         return photoRepository.findById(id);
     }
+
+    @Override
+    public void deletePhotos(List<Integer> ids) {
+        if (ids != null) {
+            ids.stream().forEach(photoRepository::deleteById);
+        }
+    }
+
+
 }

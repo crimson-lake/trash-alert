@@ -8,4 +8,5 @@ public interface PhotoService {
 
     List<Photo> photosByAdId(int id);
     Photo photoById(int id);
+    void deletePhotos(List<Integer> ids);
 }
