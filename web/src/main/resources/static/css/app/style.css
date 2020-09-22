@@ -20,13 +20,9 @@
 
 body
 {
+    font-size: 0.9em;
     word-wrap: break-word;
     font-family: 'Poppins', sans-serif;
-}
-
-p
-{
-    font-size: 0.9em;
 }
 
 .content-map-page
