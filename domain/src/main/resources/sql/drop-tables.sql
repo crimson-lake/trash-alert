@@ -1,0 +1,10 @@
+USE test-db;
+
+DROP TABLE IF EXISTS comments;
+DROP TABLE IF EXISTS localizations;
+DROP TABLE IF EXISTS coordinates;
+DROP TABLE IF EXISTS tags_linking_table;
+DROP TABLE IF EXISTS tags;
+DROP TABLE IF EXISTS photos;
+DROP TABLE IF EXISTS ads;
+DROP TABLE IF EXISTS users-data;
