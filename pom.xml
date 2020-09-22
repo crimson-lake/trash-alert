@@ -76,20 +76,4 @@
             <version>1.4.194</version>
         </dependency>
     </dependencies>
-
-    <build>
-        <plugins>
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <descriptors>
-                        <descriptor>web/src/main/resources/assembly/src-code.xml</descriptor>
-                    </descriptors>
-                    <finalName>200-190</finalName>
-                    <appendAssemblyId>false</appendAssemblyId>
-                    <outputDirectory>${project.build.directory}/</outputDirectory>
-                </configuration>
-            </plugin>
-        </plugins>
-    </build>
 </project>

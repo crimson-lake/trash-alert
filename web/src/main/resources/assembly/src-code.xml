@@ -36,7 +36,6 @@
                         <outputDirectory>/</outputDirectory>
                         <excludes>
                             <exclude>${project.build.directory}/**</exclude>
-                            <exclude>**/config/example-application.properties</exclude>
                         </excludes>
                     </fileSet>
                 </fileSets>
@@ -54,20 +53,22 @@
                         <outputDirectory>/</outputDirectory>
                         <excludes>
                             <exclude>${project.build.directory}/**</exclude>
+                            <exclude>**/config/example-application.properties</exclude>
                         </excludes>
                     </fileSet>
                 </fileSets>
             </sources>
         </moduleSet>
     </moduleSets>
-    <fileSets>
-        <fileSet>
-            <outputDirectory>/</outputDirectory>
-            <includes>
-                <include>Buildfile</include>
-                <include>Procfile</include>
-                <include>pom.xml</include>
-            </includes>
-        </fileSet>
-    </fileSets>
+    <files>
+        <file>
+            <source>../Procfile</source>
+        </file>
+        <file>
+            <source>../Buildfile</source>
+        </file>
+        <file>
+            <source>../pom.xml</source>
+        </file>
+    </files>
 </assembly>
